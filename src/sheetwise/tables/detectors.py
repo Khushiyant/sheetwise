@@ -4,7 +4,7 @@ from typing import List
 
 import pandas as pd
 
-from .data_types import TableRegion
+from sheetwise.encoding.data_types import TableRegion
 
 
 class TableDetector:

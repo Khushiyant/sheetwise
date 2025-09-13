@@ -5,9 +5,9 @@ import logging
 
 import pandas as pd
 
-from .chain import ChainOfSpreadsheet
-from .compressor import SheetCompressor
-from .encoders import VanillaEncoder
+from sheetwise.core.chain import ChainOfSpreadsheet
+from sheetwise.core.compressor import SheetCompressor
+from sheetwise.encoding.encoders import VanillaEncoder, JSONEncoder
 
 
 class SpreadsheetLLM:
@@ -26,6 +26,7 @@ class SpreadsheetLLM:
         params = compression_params or {}
         self.compressor = SheetCompressor(**params)
         self.vanilla_encoder = VanillaEncoder()
+        self.json_encoder = JSONEncoder()
         self.chain_processor = ChainOfSpreadsheet(self.compressor)
         
         # Setup logging if requested
@@ -112,7 +113,11 @@ class SpreadsheetLLM:
 
     def encode_vanilla(self, df: pd.DataFrame, include_format: bool = False) -> str:
         """Encode using vanilla method"""
-        return self.vanilla_encoder.encode_to_markdown(df, include_format)
+        return self.vanilla_encoder.encode(df, include_format)
+    
+    def encode_json(self, df: pd.DataFrame) -> str:
+        """Encode with json encoding"""
+        return self.json_encoder.encode(df)
 
     def compress_spreadsheet(self, df: pd.DataFrame) -> Dict[str, Any]:
         """Compress spreadsheet using SheetCompressor"""
@@ -175,9 +180,13 @@ class SpreadsheetLLM:
         """Get statistics about the spreadsheet encoding"""
         vanilla_encoding = self.encode_vanilla(df)
         compressed_result = self.compress_spreadsheet(df)
+        json_encoding = self.encode_json(df)
 
-        # Count actual tokens more accurately
-        vanilla_tokens = len(vanilla_encoding.split("|"))  # Each cell is a token
+        # Count actual tokens recieved via vanilla encoding
+        vanilla_tokens = self.vanilla_encoder.estimate_tokens(vanilla_encoding) 
+
+        # Count estimated tokens recieved via json encoding
+        json_tokens = self.json_encoder.estimate_tokens(json_encoding)
 
         # For compressed data, count meaningful entries
         compressed_tokens = 0
@@ -195,6 +204,7 @@ class SpreadsheetLLM:
             "original_shape": df.shape,
             "compressed_shape": compressed_result["compressed_data"].shape,
             "vanilla_tokens_estimate": vanilla_tokens,
+            "json_tokens_estimate":json_tokens,
             "compressed_tokens_estimate": compressed_tokens,
             "compression_ratio": compressed_result["compression_ratio"],
             "token_reduction_ratio": vanilla_tokens / compressed_tokens

@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from sheetwise.compressor import SheetCompressor
+from sheetwise.core.compressor import SheetCompressor
 
 
 class TestSheetCompressor:

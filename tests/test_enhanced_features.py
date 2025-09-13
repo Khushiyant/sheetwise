@@ -2,8 +2,8 @@
 
 import pytest
 import pandas as pd
-from sheetwise import SpreadsheetLLM
-from sheetwise.utils import create_realistic_spreadsheet
+from sheetwise.core.core import SpreadsheetLLM
+from sheetwise.utils.utils import create_realistic_spreadsheet
 
 
 class TestEnhancedFeatures:
@@ -52,7 +52,7 @@ class TestEnhancedFeatures:
         
     def test_enhanced_address_ranges(self):
         """Test the enhanced address range merging."""
-        from sheetwise.extractors import InvertedIndexTranslator
+        from sheetwise.tables.extractors import InvertedIndexTranslator
         
         translator = InvertedIndexTranslator()
         
@@ -65,7 +65,7 @@ class TestEnhancedFeatures:
         
     def test_contiguous_cell_grouping(self):
         """Test contiguous cell grouping in data aggregator."""
-        from sheetwise.extractors import DataFormatAggregator
+        from sheetwise.tables.extractors import DataFormatAggregator
         
         aggregator = DataFormatAggregator()
         

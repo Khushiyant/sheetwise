@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 
 import pandas as pd
 
-from .extractors import (
+from sheetwise.tables.extractors import (
     DataFormatAggregator,
     InvertedIndexTranslator,
     StructuralAnchorExtractor,

@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Tuple
 
 import pandas as pd
 
-from .classifiers import DataTypeClassifier
+from sheetwise.encoding.classifiers import DataTypeClassifier
 
 
 class StructuralAnchorExtractor:

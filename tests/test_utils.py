@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from sheetwise.utils import create_realistic_spreadsheet
+from sheetwise.utils.utils import create_realistic_spreadsheet
 
 
 class TestUtils:

@@ -6,7 +6,7 @@ import numpy as np
 from enum import Enum
 from dataclasses import dataclass
 
-from .data_types import TableRegion
+from sheetwise.encoding.data_types import TableRegion
 
 
 class TableType(Enum):

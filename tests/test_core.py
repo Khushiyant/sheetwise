@@ -2,8 +2,8 @@
 
 import pandas as pd
 import pytest
-
-from sheetwise import SpreadsheetLLM
+import json
+from sheetwise.core.core import SpreadsheetLLM
 
 
 class TestSpreadsheetLLM:
@@ -14,6 +14,7 @@ class TestSpreadsheetLLM:
         sllm = SpreadsheetLLM()
         assert sllm.compressor is not None
         assert sllm.vanilla_encoder is not None
+        assert sllm.json_encoder is not None
         assert sllm.chain_processor is not None
 
     def test_initialization_with_params(self):
@@ -33,6 +34,34 @@ class TestSpreadsheetLLM:
         assert "B2,100" in encoded
         assert len(encoded) > 0
 
+    def test_json_encoder_with_sample_data(self,sample_dataframe):
+        """Test JSON encoder with the provided sample DataFrame"""
+        sllm = SpreadsheetLLM()
+        encoded = sllm.encode_json(sample_dataframe)
+        # Verify the encoded data is valid JSON
+        parsed = json.loads(encoded)
+
+        assert 'columns' in parsed
+        assert 'data' in parsed
+        assert 'dimensions' in parsed
+        
+        # Test column names
+        assert parsed['columns'] == ['A', 'B', 'C', 'D'], f"Expected ['A', 'B', 'C', 'D'], got {parsed['columns']}"
+        
+        # Test dimensions
+        assert parsed['dimensions'] == {'rows': 5, 'columns': 4}, f"Expected 5 rows, 4 columns, got {parsed['dimensions']}"
+        
+        # Test data content
+        expected_data = [
+            ["Header1", "Header2", "Header3", ""],
+            ["Data1", 100, "2023-01-01", ""],
+            ["Data2", 200, "2023-01-02", ""],
+            ["", "", "", ""],
+            ["Data3", 300, "2023-01-03", ""]
+        ]
+        assert parsed['data'] == expected_data, f"Data content mismatch. Expected {expected_data}, got {parsed['data']}"
+        
+        
     def test_compress_spreadsheet(self, sparse_dataframe):
         """Test spreadsheet compression."""
         sllm = SpreadsheetLLM()

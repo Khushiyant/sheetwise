@@ -16,18 +16,11 @@ Based on the research paper: "SpreadsheetLLM: Encoding Spreadsheets for Large La
 by Microsoft Research Team
 """
 
-from .chain import ChainOfSpreadsheet
-from .compressor import SheetCompressor
-from .core import SpreadsheetLLM
-from .data_types import CellInfo, TableRegion
-from .encoders import VanillaEncoder
-from .utils import create_realistic_spreadsheet
-
-# New enhanced modules
-from .formula_parser import FormulaParser, FormulaDependencyAnalyzer
-from .visualizer import CompressionVisualizer
-from .workbook import WorkbookManager
-from .smart_tables import SmartTableDetector, TableType, EnhancedTableRegion
+from sheetwise.core.core_aggregator import SpreadsheetLLM, ChainOfSpreadsheet, SheetCompressor
+from sheetwise.encoding.encoding_aggregator import CellInfo,TableRegion,VanillaEncoder,FormulaParser, FormulaDependencyAnalyzer
+from sheetwise.utils.utils_aggregator import create_realistic_spreadsheet,CompressionVisualizer
+from sheetwise.workbook.workbook_aggregator import WorkbookManager
+from sheetwise.tables.tables_aggregator import SmartTableDetector, TableType, EnhancedTableRegion
 
 try:
     from importlib.metadata import version

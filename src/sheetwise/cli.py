@@ -6,10 +6,13 @@ import sys
 import os
 from pathlib import Path
 import json
-
 import pandas as pd
 
-from . import SpreadsheetLLM, FormulaParser, CompressionVisualizer, WorkbookManager, SmartTableDetector
+from sheetwise.core.core import SpreadsheetLLM
+from sheetwise.utils.visualizer import CompressionVisualizer
+from sheetwise.encoding.formula_parser import FormulaParser
+from sheetwise.workbook.workbook import WorkbookManager
+from sheetwise.tables.smart_tables import SmartTableDetector
 
 # Rich for colorized CLI output
 from rich.console import Console
@@ -83,7 +86,7 @@ def main():
 
     # Handle demo mode
     if args.demo:
-        from .utils import create_realistic_spreadsheet
+        from sheetwise.utils.utils import create_realistic_spreadsheet
 
         console.rule("[bold blue]SheetWise Demo Mode")
         console.print("[bold green]Running SheetWise demo...", style="green")

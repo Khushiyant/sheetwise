@@ -4,9 +4,9 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
-from .compressor import SheetCompressor
-from .data_types import TableRegion
-from .detectors import TableDetector
+from sheetwise.core.compressor import SheetCompressor
+from sheetwise.encoding.data_types import TableRegion
+from sheetwise.tables.detectors import TableDetector
 
 
 class ChainOfSpreadsheet:

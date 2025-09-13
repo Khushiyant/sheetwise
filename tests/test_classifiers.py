@@ -2,7 +2,7 @@
 
 import pytest
 
-from sheetwise.classifiers import DataTypeClassifier
+from sheetwise.encoding.classifiers import DataTypeClassifier
 
 
 class TestDataTypeClassifier:

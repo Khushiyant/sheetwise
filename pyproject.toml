@@ -32,7 +32,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = "^3.8.1"
+python = "^3.9"
 pandas = "^2.0.0"
 numpy = "^1.21.0"
 openpyxl = "^3.1.0"

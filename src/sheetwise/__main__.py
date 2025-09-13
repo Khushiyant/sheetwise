@@ -1,6 +1,6 @@
 """Entry point for command-line execution."""
 
-from .cli import main
+from sheetwise.cli import main
 
 if __name__ == "__main__":
     main()
