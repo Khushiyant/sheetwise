@@ -28,6 +28,21 @@ SheetWise is a Python package that implements the key components from Microsoft 
 - **Enhanced Algorithms**: Improved range detection and contiguous cell grouping
 - **Easy Integration**: Simple API for immediate use
 
+### Token Budgeting
+
+Unsure if your spreadsheet fits in the context window? Use `encode_to_token_limit`:
+
+```python
+from sheetwise import SpreadsheetLLM
+import pandas as pd
+
+df = pd.read_excel("large_file.xlsx")
+sllm = SpreadsheetLLM()
+
+# Automatically adjust compression to fit within 4000 tokens
+encoded_text = sllm.encode_to_token_limit(df, max_tokens=4000)
+```
+
 ## Installation
 
 ### Using pip
