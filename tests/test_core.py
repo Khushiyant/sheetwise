@@ -2,6 +2,7 @@
 
 import pandas as pd
 import pytest
+from unittest.mock import patch, MagicMock
 
 from sheetwise import SpreadsheetLLM
 
@@ -105,3 +106,37 @@ class TestSpreadsheetLLM:
         assert isinstance(encoded, str)
         assert "Spreadsheet Data" in encoded
         assert len(encoded) > 0
+
+    def test_encode_to_token_limit_basic(self, sample_dataframe):
+        """Test token limiting with a limit large enough to fit easily."""
+        sllm = SpreadsheetLLM()
+        # Set a very large limit (e.g., 1000 tokens)
+        encoded = sllm.encode_to_token_limit(sample_dataframe, max_tokens=1000)
+        
+        assert isinstance(encoded, str)
+        assert len(encoded) > 0
+        # Should contain basic data
+        assert "Header1" in encoded
+
+    def test_encode_to_token_limit_iterative(self, sparse_dataframe):
+        """
+        Test that the method iteratively reduces 'k' when the output is too large.
+        We mock the internal methods to simulate a large output shrinking.
+        """
+        sllm = SpreadsheetLLM(enable_logging=True)
+        
+        # Create mock side effects for compress_with_auto_config and encode_compressed_for_llm
+        # 1. First call (auto-config) returns a huge string (too big)
+        # 2. Second call (k=3) returns a huge string
+        # 3. Third call (k=2) returns a small string (fits!)
+        
+        long_string = "x" * 5000  # > 1000 chars
+        short_string = "small result" # < 1000 chars
+        
+        with patch.object(sllm, 'compress_with_auto_config', return_value=long_string), \
+             patch.object(sllm, 'encode_compressed_for_llm', side_effect=[long_string, short_string]):
+            
+            # We set max_tokens=250 -> max_chars = 1000
+            result = sllm.encode_to_token_limit(sparse_dataframe, max_tokens=250)
+            
+            assert result == short_string

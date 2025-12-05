@@ -2,6 +2,7 @@
 
 from typing import Any, Dict, Optional, Union
 import logging
+import math
 
 import pandas as pd
 
@@ -23,8 +24,8 @@ class SpreadsheetLLM:
             compression_params: Parameters for SheetCompressor
             enable_logging: Enable detailed logging for debugging
         """
-        params = compression_params or {}
-        self.compressor = SheetCompressor(**params)
+        self.params = compression_params or {}
+        self.compressor = SheetCompressor(**self.params)
         self.vanilla_encoder = VanillaEncoder()
         self.chain_processor = ChainOfSpreadsheet(self.compressor)
         
@@ -100,6 +101,47 @@ class SpreadsheetLLM:
         # Compress and encode
         compressed = optimal_compressor.compress(df)
         return self.encode_compressed_for_llm(compressed)
+
+    def encode_to_token_limit(self, df: pd.DataFrame, max_tokens: int) -> str:
+        """
+        Attempt to compress the spreadsheet to fit within a specific token limit.
+        Iteratively adjusts compression aggressiveness.
+
+        Args:
+            df: Input DataFrame
+            max_tokens: The target maximum number of tokens (approx words/0.75)
+
+        Returns:
+            Encoded string fitting the limit, or best effort result.
+        """
+        # Estimated char/token ratio. 4 chars ~= 1 token is a safe rule of thumb
+        max_chars = max_tokens * 4
+        
+        # 1. Try Auto-Config first (balanced approach)
+        encoded = self.compress_with_auto_config(df)
+        if len(encoded) <= max_chars:
+            return encoded
+            
+        # 2. Iterative Reduction: Reduce 'k' (neighborhood size)
+        # We start from k=3 and go down to 0 (just anchors, no context)
+        for k in range(3, -1, -1):
+            if hasattr(self, 'logger'):
+                self.logger.info(f"Output too large ({len(encoded)} chars). Retrying with k={k}")
+            
+            compressor = SheetCompressor(k=k, use_extraction=True, use_translation=True, use_aggregation=True)
+            result = compressor.compress(df)
+            encoded = self.encode_compressed_for_llm(result)
+            
+            if len(encoded) <= max_chars:
+                return encoded
+
+        # 3. Last Resort: Aggressive Truncation
+        # If even k=0 is too big, we likely have huge text cells. 
+        # We can enable a future feature here to truncate cell values.
+        if hasattr(self, 'logger'):
+            self.logger.warning(f"Could not meet token limit {max_tokens}. Returning best effort ({len(encoded)} chars).")
+            
+        return encoded
 
     def load_from_file(self, filepath: str) -> pd.DataFrame:
         """Load spreadsheet from file"""

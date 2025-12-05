@@ -3,6 +3,7 @@
 from collections import defaultdict
 from typing import Any, Dict, List, Tuple
 
+import numpy as np
 import pandas as pd
 
 from .classifiers import DataTypeClassifier
@@ -22,7 +23,8 @@ class StructuralAnchorExtractor:
 
     def find_structural_anchors(self, df: pd.DataFrame) -> Tuple[List[int], List[int]]:
         """
-        Identify heterogeneous rows and columns that serve as structural anchors
+        Identify heterogeneous rows and columns that serve as structural anchors.
+        Optimized using vectorized operations.
 
         Args:
             df: Input DataFrame
@@ -30,48 +32,39 @@ class StructuralAnchorExtractor:
         Returns:
             Tuple of (anchor_rows, anchor_cols)
         """
-        anchor_rows = []
-        anchor_cols = []
+        if df.empty:
+            return [], []
 
-        # Find heterogeneous rows (rows with significant changes)
-        for i in range(len(df)):
-            if self._is_heterogeneous_row(df, i):
-                anchor_rows.append(i)
+        # create a grid of types for the entire dataframe at once
+        type_grid = df.map(DataTypeClassifier.classify_cell_type)
 
-        # Find heterogeneous columns
-        for j in range(len(df.columns)):
-            if self._is_heterogeneous_col(df, j):
-                anchor_cols.append(j)
+        # Vectorized check for heterogeneity
+        # A row/col is heterogeneous if it has > 2 unique types
+        row_nunique = type_grid.nunique(axis=1)
+        col_nunique = type_grid.nunique(axis=0)
 
-        return anchor_rows, anchor_cols
+        # Get integer indices where unique count > 2
+        # We use .values to ignore index labels (which might be strings) and get raw positions
+        anchor_rows = np.where(row_nunique.values > 2)[0].tolist()
+        anchor_cols = np.where(col_nunique.values > 2)[0].tolist()
 
-    def _is_heterogeneous_row(self, df: pd.DataFrame, row_idx: int) -> bool:
-        """Check if a row is heterogeneous (contains diverse data types/formats)"""
-        if row_idx >= len(df):
-            return False
+        # Always include boundaries if they aren't already included
+        if 0 not in anchor_rows:
+            anchor_rows.insert(0, 0)
+        if len(df) - 1 not in anchor_rows and len(df) > 0:
+            anchor_rows.append(len(df) - 1)
 
-        row_data = df.iloc[row_idx]
-        data_types = [DataTypeClassifier.classify_cell_type(val) for val in row_data]
-        unique_types = set(data_types)
+        if 0 not in anchor_cols:
+            anchor_cols.insert(0, 0)
+        if len(df.columns) - 1 not in anchor_cols and len(df.columns) > 0:
+            anchor_cols.append(len(df.columns) - 1)
 
-        # Consider row heterogeneous if it has multiple data types or is at boundary
-        return len(unique_types) > 2 or row_idx in [0, len(df) - 1]
-
-    def _is_heterogeneous_col(self, df: pd.DataFrame, col_idx: int) -> bool:
-        """Check if a column is heterogeneous"""
-        if col_idx >= len(df.columns):
-            return False
-
-        col_data = df.iloc[:, col_idx]
-        data_types = [DataTypeClassifier.classify_cell_type(val) for val in col_data]
-        unique_types = set(data_types)
-
-        return len(unique_types) > 2 or col_idx in [0, len(df.columns) - 1]
+        return sorted(list(set(anchor_rows))), sorted(list(set(anchor_cols)))
 
     def extract_skeleton(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        Extract spreadsheet skeleton by keeping only structurally important rows/columns
-        More aggressive compression by removing homogeneous empty regions
+        Extract spreadsheet skeleton by keeping only structurally important rows/columns.
+        More aggressive compression by removing homogeneous empty regions.
 
         Args:
             df: Input DataFrame
@@ -79,61 +72,66 @@ class StructuralAnchorExtractor:
         Returns:
             Compressed DataFrame with structural skeleton
         """
-        # Find rows and columns with actual content
-        rows_with_content = []
-        cols_with_content = []
+        if df.empty:
+            return df
 
-        for i in range(len(df)):
-            row_has_content = any(
-                pd.notna(df.iloc[i, j]) and df.iloc[i, j] != ""
-                for j in range(len(df.columns))
-            )
-            if row_has_content:
-                rows_with_content.append(i)
+        # Vectorized detection of content
+        # Create a boolean mask where True indicates content exists
+        content_mask = df.notna() & (df != "")
+        
+        # Get indices of rows/cols that have ANY content
+        rows_with_content = content_mask.any(axis=1).values
+        rows_with_content_indices = np.where(rows_with_content)[0]
+        
+        cols_with_content = content_mask.any(axis=0).values
+        cols_with_content_indices = np.where(cols_with_content)[0]
 
-        for j in range(len(df.columns)):
-            col_has_content = any(
-                pd.notna(df.iloc[i, j]) and df.iloc[i, j] != "" for i in range(len(df))
-            )
-            if col_has_content:
-                cols_with_content.append(j)
-
-        # Find structural anchors among content rows/columns
+        # Find structural anchors
         anchor_rows, anchor_cols = self.find_structural_anchors(df)
 
-        # Combine content-based and anchor-based selection
-        important_rows = set(rows_with_content)
-        important_cols = set(cols_with_content)
+        # Efficiently calculate valid anchors (those near content)
+        # Using sets for O(1) lookups and automatic deduplication
+        important_rows = set(rows_with_content_indices)
+        important_cols = set(cols_with_content_indices)
 
-        # Add anchors and their neighborhoods (but only if they have nearby content)
-        for anchor in anchor_rows:
-            if any(
-                abs(anchor - content_row) <= self.k for content_row in rows_with_content
-            ):
-                for i in range(
-                    max(0, anchor - self.k), min(len(df), anchor + self.k + 1)
-                ):
-                    important_rows.add(i)
+        # Process Row Anchors
+        if len(rows_with_content_indices) > 0:
+            # Convert to numpy arrays for broadcasting
+            content_row_arr = np.array(rows_with_content_indices)
+            
+            for anchor in anchor_rows:
+                # Vectorized distance check: find min distance to any content row
+                min_dist = np.min(np.abs(content_row_arr - anchor))
+                
+                if min_dist <= self.k:
+                    # Add neighborhood
+                    start = max(0, anchor - self.k)
+                    end = min(len(df), anchor + self.k + 1)
+                    important_rows.update(range(start, end))
 
-        for anchor in anchor_cols:
-            if any(
-                abs(anchor - content_col) <= self.k for content_col in cols_with_content
-            ):
-                for j in range(
-                    max(0, anchor - self.k), min(len(df.columns), anchor + self.k + 1)
-                ):
-                    important_cols.add(j)
+        # Process Column Anchors
+        if len(cols_with_content_indices) > 0:
+            content_col_arr = np.array(cols_with_content_indices)
+            
+            for anchor in anchor_cols:
+                min_dist = np.min(np.abs(content_col_arr - anchor))
+                
+                if min_dist <= self.k:
+                    start = max(0, anchor - self.k)
+                    end = min(len(df.columns), anchor + self.k + 1)
+                    important_cols.update(range(start, end))
 
-        # If no content found, keep minimal structure
+        # Fallback for empty/sparse sheets
         if not important_rows:
-            important_rows = {0, min(5, len(df) - 1)}
+            important_rows = {0, min(5, len(df) - 1)} if len(df) > 0 else {0}
         if not important_cols:
-            important_cols = {0, min(5, len(df.columns) - 1)}
+            important_cols = {0, min(5, len(df.columns) - 1)} if len(df.columns) > 0 else {0}
 
-        # Extract skeleton
+        # Sort and slice
         sorted_rows = sorted(list(important_rows))
         sorted_cols = sorted(list(important_cols))
 
+        # Using iloc for integer-position based indexing
         skeleton_df = df.iloc[sorted_rows, sorted_cols].copy()
 
         return skeleton_df
@@ -144,8 +142,8 @@ class InvertedIndexTranslator:
 
     def translate(self, df: pd.DataFrame) -> Dict[str, List[str]]:
         """
-        Convert spreadsheet to inverted index format
-        More efficient by grouping empty cells and deduplicating values
+        Convert spreadsheet to inverted index format.
+        Optimized to use DataFrame stacking instead of iteration.
 
         Args:
             df: Input DataFrame
@@ -153,30 +151,35 @@ class InvertedIndexTranslator:
         Returns:
             Dictionary with cell values as keys and cell addresses as values
         """
+        if df.empty:
+            return {}
+
+        # Resetting index to get simple integer coordinates relative to the current slice
+        # This ensures we work with 0-based integer indices regardless of the DF's index labels
+        temp_df = df.copy()
+        temp_df.index = range(len(temp_df))
+        temp_df.columns = range(len(temp_df.columns))
+        
+        stacked = temp_df.stack()
+        mask = (stacked != "") & pd.notna(stacked)
+        valid_cells = stacked[mask]
+
         inverted_index = defaultdict(list)
-        empty_cells = []
+        
+        # Iterate over the valid cells only
+        for (row_idx, col_idx), value in valid_cells.items():
+            str_value = str(value).strip()
+            if str_value:
+                cell_addr = self._to_excel_address(row_idx, col_idx)
+                inverted_index[str_value].append(cell_addr)
 
-        for i, row in df.iterrows():
-            for j, col in enumerate(df.columns):
-                cell_value = row[col]
-                cell_addr = self._to_excel_address(i, j)
-
-                if pd.isna(cell_value) or cell_value == "":
-                    empty_cells.append(cell_addr)
-                else:
-                    str_value = str(cell_value).strip()
-                    inverted_index[str_value].append(cell_addr)
-
-        # Don't include empty cells in final output (major token savings)
-        # Only keep non-empty values
+        # Merge ranges for final output
         final_index = {}
         for value, addresses in inverted_index.items():
-            if value and value.strip():  # Skip empty/whitespace values
-                if len(addresses) > 1:
-                    # Try to create ranges for contiguous cells
-                    final_index[value] = self._merge_address_ranges(addresses)
-                else:
-                    final_index[value] = addresses
+            if len(addresses) > 1:
+                final_index[value] = self._merge_address_ranges(addresses)
+            else:
+                final_index[value] = addresses
 
         return final_index
 
@@ -195,27 +198,23 @@ class InvertedIndexTranslator:
         if len(addresses) <= 1:
             return addresses
             
-        # Parse addresses and sort them
-        parsed = []
-        for addr in addresses:
-            col_match = ""
-            row_match = ""
+        # Helper to parse A1 to (col, row)
+        def parse_addr(addr):
             i = 0
             while i < len(addr) and addr[i].isalpha():
-                col_match += addr[i]
                 i += 1
-            row_match = addr[i:]
+            col_str = addr[:i]
+            row_str = addr[i:]
             
-            # Convert column letters to numbers
             col_num = 0
-            for char in col_match:
+            for char in col_str:
                 col_num = col_num * 26 + (ord(char) - ord('A') + 1)
-            
-            parsed.append((col_num, int(row_match), addr))
+            return col_num, int(row_str), addr
+
+        parsed = [parse_addr(addr) for addr in addresses]
+        # Sort by row then column
+        parsed.sort(key=lambda x: (x[1], x[0]))
         
-        parsed.sort()
-        
-        # Group contiguous addresses
         ranges = []
         current_range = [parsed[0]]
         
@@ -223,29 +222,27 @@ class InvertedIndexTranslator:
             prev_col, prev_row, _ = current_range[-1]
             curr_col, curr_row, _ = parsed[i]
             
-            # Check if addresses are contiguous
-            if (curr_col == prev_col and curr_row == prev_row + 1) or \
-               (curr_row == prev_row and curr_col == prev_col + 1):
+            # Check adjacency (horizontal OR vertical)
+            is_horizontal_next = (curr_row == prev_row and curr_col == prev_col + 1)
+            is_vertical_next = (curr_col == prev_col and curr_row == prev_row + 1)
+            
+            if is_horizontal_next or is_vertical_next:
                 current_range.append(parsed[i])
             else:
-                # Process current range
-                if len(current_range) >= 3:  # Only create ranges for 3+ cells
-                    start_addr = current_range[0][2]
-                    end_addr = current_range[-1][2]
-                    ranges.append(f"{start_addr}:{end_addr}")
-                else:
-                    ranges.extend([cell[2] for cell in current_range])
+                self._finalize_range(current_range, ranges)
                 current_range = [parsed[i]]
         
-        # Process final range
+        self._finalize_range(current_range, ranges)
+        return ranges
+
+    def _finalize_range(self, current_range, ranges):
+        """Helper to format and append range"""
         if len(current_range) >= 3:
             start_addr = current_range[0][2]
             end_addr = current_range[-1][2]
             ranges.append(f"{start_addr}:{end_addr}")
         else:
-            ranges.extend([cell[2] for cell in current_range])
-        
-        return ranges
+            ranges.extend([x[2] for x in current_range])
 
 
 class DataFormatAggregator:
@@ -253,7 +250,8 @@ class DataFormatAggregator:
 
     def aggregate(self, df: pd.DataFrame) -> Dict[str, Any]:
         """
-        Aggregate cells by data format and type
+        Aggregate cells by data format and type.
+        Vectorized where possible.
 
         Args:
             df: Input DataFrame
@@ -261,26 +259,42 @@ class DataFormatAggregator:
         Returns:
             Dictionary containing aggregated format information
         """
-        format_groups = defaultdict(list)
+        if df.empty:
+            return {}
 
-        for i, row in df.iterrows():
-            for j, col in enumerate(df.columns):
-                cell_value = row[col]
-                if pd.notna(cell_value) and cell_value != "":
-                    data_type = DataTypeClassifier.classify_cell_type(cell_value)
-                    cell_addr = InvertedIndexTranslator()._to_excel_address(i, j)
-
-                    format_groups[data_type].append(
-                        {"address": cell_addr, "value": cell_value, "row": i, "col": j}
-                    )
-
-        # Aggregate contiguous regions with same format
+        # Create type grid
+        type_grid = df.map(DataTypeClassifier.classify_cell_type)
+        
+        # We need coordinates for the groups
         aggregated = {}
-        for data_type, cells in format_groups.items():
+        
+        # Group by type
+        unique_types = type_grid.stack().unique()
+        
+        for data_type in unique_types:
+            if data_type == "Empty":
+                continue
+                
+            # Get boolean mask for this type
+            mask = (type_grid == data_type)
+            
+            # Get coordinates
+            rows, cols = np.where(mask)
+            cells = []
+            
+            # This part is still a loop but over specific cells of one type
+            for r, c in zip(rows, cols):
+                val = df.iloc[r, c]
+                addr = InvertedIndexTranslator()._to_excel_address(r, c)
+                cells.append({
+                    "address": addr,
+                    "value": val,
+                    "row": r,
+                    "col": c
+                })
+            
             if len(cells) > 1:
-                # Group cells by proximity
-                regions = self._group_contiguous_cells(cells)
-                aggregated[data_type] = regions
+                aggregated[data_type] = self._group_contiguous_cells(cells)
             else:
                 aggregated[data_type] = cells
 
@@ -291,7 +305,7 @@ class DataFormatAggregator:
         if len(cells) <= 1:
             return cells
             
-        # Sort cells by position
+        # Sort cells by position (row-major)
         cells.sort(key=lambda x: (x['row'], x['col']))
         
         groups = []
@@ -301,36 +315,23 @@ class DataFormatAggregator:
             prev_cell = current_group[-1]
             curr_cell = cells[i]
             
-            # Check if cells are adjacent (same row, next column OR same column, next row)
-            is_adjacent = (
-                (prev_cell['row'] == curr_cell['row'] and 
-                 curr_cell['col'] == prev_cell['col'] + 1) or
-                (prev_cell['col'] == curr_cell['col'] and 
-                 curr_cell['row'] == prev_cell['row'] + 1)
-            )
+            # Check if cells are adjacent (horizontal OR vertical)
+            is_horizontal = (prev_cell['row'] == curr_cell['row'] and 
+                           curr_cell['col'] == prev_cell['col'] + 1)
+            is_vertical = (prev_cell['col'] == curr_cell['col'] and 
+                         curr_cell['row'] == prev_cell['row'] + 1)
             
-            if is_adjacent:
+            if is_horizontal or is_vertical:
                 current_group.append(curr_cell)
             else:
-                # Finalize current group
-                if len(current_group) >= 3:
-                    # Create range representation
-                    start_addr = current_group[0]['address']
-                    end_addr = current_group[-1]['address']
-                    groups.append({
-                        'type': 'range',
-                        'start': start_addr,
-                        'end': end_addr,
-                        'count': len(current_group),
-                        'sample_value': current_group[0]['value']
-                    })
-                else:
-                    # Keep individual cells
-                    groups.extend(current_group)
-                
+                self._finalize_group(current_group, groups)
                 current_group = [curr_cell]
         
-        # Handle final group
+        self._finalize_group(current_group, groups)
+        return groups
+
+    def _finalize_group(self, current_group, groups):
+        """Helper to format and append group"""
         if len(current_group) >= 3:
             start_addr = current_group[0]['address']
             end_addr = current_group[-1]['address']
@@ -343,5 +344,3 @@ class DataFormatAggregator:
             })
         else:
             groups.extend(current_group)
-        
-        return groups
