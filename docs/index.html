@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SheetWise - Spreadsheet Encoding for LLMs</title>
     <meta name="description" content="A Python package for efficiently encoding spreadsheets for Large Language Models">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <div class="paper-texture"></div>
+
     <header>
         <nav>
-            <div class="container">
+            <div class="container nav-container">
                 <div class="nav-brand">
                     <h1>SheetWise</h1>
                 </div>
                 <div class="nav-links">
-                    <a href="#features">Features</a>
-                    <a href="#usage">Usage</a>
-                    <a href="https://github.com/Khushiyant/sheetwise" class="btn-github">GitHub</a>
+                    <a href="#features" class="sketch-link">Features</a>
+                    <a href="#usage" class="sketch-link">Usage</a>
+                    <a href="https://github.com/Khushiyant/sheetwise" class="btn-sketch btn-black">GitHub</a>
                 </div>
             </div>
         </nav>
@@ -28,51 +32,43 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Spreadsheet Encoding for LLMs</h1>
-                    <p>A Python package that implements encoding spreadsheets for Large Language Models.</p>
+                    <div class="badge">v2.3 Now Available!</div>
+                    <h1>Spreadsheet Encoding <br>for LLMs</h1>
+                    <p class="subtitle">Don't waste tokens on empty cells. SheetWise compresses Excel files by 96% while
+                        keeping the context intact.</p>
+
                     <div class="hero-stats">
-                        <div class="stat">
+                        <div class="stat-card">
                             <span class="stat-number">96%</span>
                             <span class="stat-label">Token Reduction</span>
                         </div>
-                        <div class="stat">
+                        <div class="stat-card">
                             <span class="stat-number">5x</span>
-                            <span class="stat-label">Faster Processing</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Structure Preserved</span>
+                            <span class="stat-label">Faster</span>
                         </div>
                     </div>
+
                     <div class="hero-actions">
-                        <a href="#usage" class="btn btn-primary">Get Started</a>
-                        <a href="https://github.com/Khushiyant/sheetwise" class="btn btn-secondary">View on GitHub</a>
+                        <a href="#usage" class="btn-sketch btn-primary">Get Started -></a>
+                        <div class="install-cmd">pip install sheetwise</div>
                     </div>
                 </div>
-                <div class="hero-demo">
-                    <div class="terminal">
+
+                <div class="hero-visual">
+                    <div class="sketch-box terminal">
                         <div class="terminal-header">
-                            <div class="terminal-buttons">
-                                <span class="btn-close"></span>
-                                <span class="btn-minimize"></span>
-                                <span class="btn-maximize"></span>
-                            </div>
-                            <span class="terminal-title">Terminal</span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
                         </div>
                         <div class="terminal-body">
-                            <div class="terminal-line">
-                                <span class="prompt">$</span>
-                                <span class="command">pip install sheetwise</span>
+                            <div class="line"><span class="prompt">$</span> sheetwise finance.xlsx --token-limit 2000
                             </div>
-                            <div class="terminal-line">
-                                <span class="prompt">$</span>
-                                <span class="command">sheetwise --demo</span>
-                            </div>
-                            <div class="terminal-output">
-                                <div>Created demo spreadsheet: (100, 30)</div>
-                                <div>Compression ratio: 1.3x</div>
-                                <div>Token reduction: 5.1x</div>
-                                <div class="success">✓ Ready for LLM processing</div>
+                            <div class="output">
+                                <div>> Loading spreadsheet...</div>
+                                <div>> Optimizing compression (k=3)...</div>
+                                <div>> Success! Reduced 15k tokens to 1.2k</div>
+                                <div class="success">✓ Ready for LLM</div>
                             </div>
                         </div>
                     </div>
@@ -80,107 +76,60 @@
             </div>
         </section>
 
-        <section id="features" class="features">
+        <section id="features" class="section">
             <div class="container">
-                <h2>Key Features</h2>
+                <h2 class="section-title">Why use it?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">◆</div>
-                        <h3>Intelligent Compression</h3>
-                        <p>Up to 96% reduction in token usage while preserving semantic information and structure.</p>
+                        <div class="icon">{ }</div>
+                        <h3>Smart Compression</h3>
+                        <p>Automatically removes empty space while keeping the table structure LLMs need to understand
+                            data.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">○</div>
-                        <h3>Structural Analysis</h3>
-                        <p>Identifies and preserves important structural elements in spreadsheets.</p>
+                        <div class="icon">$</div>
+                        <h3>Token Budgeting</h3>
+                        <p>New! Tell SheetWise your token limit, and it auto-adjusts compression to fit.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">□</div>
-                        <h3>Multi-Table Support</h3>
-                        <p>Handles complex spreadsheets with multiple tables and preserves their relationships.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">◇</div>
-                        <h3>Structural Analysis</h3>
-                        <p>Identifies and preserves important structural elements like headers and data types.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">△</div>
-                        <h3>Easy Integration</h3>
-                        <p>Simple API that works with pandas DataFrames and common spreadsheet formats.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">◎</div>
-                        <h3>Configurable</h3>
-                        <p>Customizable compression parameters to fit your specific use case and requirements.</p>
+                        <div class="icon">f(x)</div>
+                        <h3>Formula Aware</h3>
+                        <p>Doesn't just read values. Extracts and explains complex Excel formulas for the AI.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="usage" class="usage">
+        <section id="usage" class="section alt-bg">
             <div class="container">
-                <h2>Quick Start</h2>
-                <p class="section-subtitle">Three simple steps to compress your spreadsheets</p>
-                
-                <div class="quickstart-steps">
-                    <div class="step">
-                        <div class="step-header">
-                            <span class="step-number">1</span>
-                            <h3>Install</h3>
-                        </div>
-                        <div class="step-code">
-                            <code>pip install sheetwise</code>
-                            <button class="copy-btn" onclick="copyToClipboard('pip install sheetwise')">Copy</button>
-                        </div>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-header">
-                            <span class="step-number">2</span>
-                            <h3>Import & Load Data</h3>
-                        </div>
-                        <div class="step-code">
-                            <code>from sheetwise import SpreadsheetLLM
+                <h2 class="section-title">Quick Start</h2>
+
+                <div class="code-showcase">
+                    <div class="sketch-box code-box">
+                        <pre><code><span class="comment"># 1. Import</span>
+from sheetwise import SpreadsheetLLM
 import pandas as pd
 
-df = pd.read_csv("your_data.csv")</code>
-                            <button class="copy-btn" onclick="copyToClipboard(`from sheetwise import SpreadsheetLLM
-import pandas as pd
+<span class="comment"># 2. Load Data</span>
+df = pd.read_excel("quarterly_report.xlsx")
+sllm = SpreadsheetLLM()
 
-df = pd.read_csv('your_data.csv')`)">Copy</button>
-                        </div>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-header">
-                            <span class="step-number">3</span>
-                            <h3>Compress & Get Results</h3>
-                        </div>
-                        <div class="step-code">
-                            <code>sllm = SpreadsheetLLM()
-compressed = sllm.compress_and_encode_for_llm(df)
-stats = sllm.get_encoding_stats(df)
+<span class="comment"># 3. Magic Happens</span>
+encoded_text = sllm.encode_to_token_limit(df, max_tokens=4000)
 
-print(f"Reduced by {stats['compression_ratio']:.1f}x")</code>
-                            <button class="copy-btn" onclick="copyToClipboard(`sllm = SpreadsheetLLM()
-compressed = sllm.compress_and_encode_for_llm(df)
-stats = sllm.get_encoding_stats(df)
-
-print(f'Reduced by {stats[\"compression_ratio\"]:.1f}x')`)">Copy</button>
-                        </div>
+print(encoded_text)</code></pre>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta">
-            <div class="container">
-                <h2>Ready to get started?</h2>
-                <p>Transform your spreadsheets for LLM processing in minutes</p>
-                <div class="cta-actions">
-                    <a href="https://github.com/Khushiyant/sheetwise" class="btn btn-primary">View on GitHub</a>
-                    <a href="https://pypi.org/project/sheetwise/" class="btn btn-secondary">Install from PyPI</a>
+        <section class="cta section">
+            <div class="container text-center">
+                <h2>Ready to save tokens?</h2>
+                <p>Open source and ready for your next AI project.</p>
+                <div class="cta-buttons">
+                    <a href="https://pypi.org/project/sheetwise/" class="btn-sketch btn-primary">Download on PyPI</a>
+                    <a href="https://github.com/Khushiyant/sheetwise" class="btn-sketch btn-white">Star on GitHub</a>
                 </div>
             </div>
         </section>
@@ -188,123 +137,6 @@ print(f'Reduced by {stats[\"compression_ratio\"]:.1f}x')`)">Copy</button>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>SheetWise</h3>
-                    <p>Spreadsheet encoding for the AI era</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Resources</h4>
-                        <a href="https://github.com/Khushiyant/sheetwise">GitHub</a>
-                        <a href="https://pypi.org/project/sheetwise/">PyPI</a>
-                        <a href="#usage">Documentation</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Research</h4>
-                        <a href="#">SpreadsheetLLM Paper</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 SheetWise. Built for the AI community.</p>
-            </div>
+            <p>Hand-coded by <a href="https://github.com/Khushiyant">Khushiyant</a></p>
+            <p class="copyright">&copy; 2025 SheetWise</p>
         </div>
-    </footer>
-
-    <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                // Show feedback
-                event.target.textContent = 'Copied!';
-                setTimeout(() => {
-                    event.target.textContent = 'Copy';
-                }, 2000);
-            });
-        }
-
-        function showTab(tabName) {
-            // Hide all tab panels
-            document.querySelectorAll('.tab-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            
-            // Remove active class from all tab buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected tab panel
-            document.getElementById(tabName + '-tab').classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
-
-        function showDemo(demoName) {
-            // Hide all demo panels
-            document.querySelectorAll('.demo-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            
-            // Remove active class from all demo buttons
-            document.querySelectorAll('.demo-tab').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected demo panel
-            document.getElementById(demoName + '-demo').classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
-
-        function copyCodeBlock(codeId) {
-            const codeElement = document.getElementById(codeId);
-            const text = codeElement.textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                event.target.textContent = 'Copied!';
-                setTimeout(() => {
-                    event.target.textContent = 'Copy Code';
-                }, 2000);
-            });
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card, .install-step').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
