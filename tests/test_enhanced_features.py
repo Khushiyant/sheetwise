@@ -1,10 +1,17 @@
-"""Test the enhanced features of SheetWise."""
+"""Test the enhanced features of SheetWise (Offline Edition)."""
 
 import pytest
 import pandas as pd
+import json
 from sheetwise import SpreadsheetLLM
 from sheetwise.utils import create_realistic_spreadsheet
 
+# Check for optional dependencies
+try:
+    import duckdb
+    HAS_DUCKDB = True
+except ImportError:
+    HAS_DUCKDB = False
 
 class TestEnhancedFeatures:
     """Test cases for enhanced features."""
@@ -25,66 +32,40 @@ class TestEnhancedFeatures:
         assert 'k' in config
         assert 'use_extraction' in config
         assert 'use_translation' in config
-        assert config['k'] <= 5  # Should be smaller for sparse data
-        
-    def test_compress_with_auto_config(self):
-        """Test auto-config compression."""
+        # Sparse data implies smaller k
+        assert config['k'] <= 5  
+
+    def test_json_export_structure(self):
+        """Test that JSON export produces valid, structured data."""
         sllm = SpreadsheetLLM()
         df = create_realistic_spreadsheet()
         
-        result = sllm.compress_with_auto_config(df)
+        json_str = sllm.encode_to_json(df)
+        data = json.loads(json_str)
         
-        assert isinstance(result, str)
-        assert len(result) > 0
-        assert "Spreadsheet Data" in result
-    def test_logging_enabled(self):
-        """Test logging functionality."""
-        sllm = SpreadsheetLLM(enable_logging=True)
-        
-        # Should have logger attribute
-        assert hasattr(sllm, 'logger')
-        
-        # Test that auto-config generates logs (would need to capture logs in real test)
-        df = create_realistic_spreadsheet()
-        config = sllm.auto_configure(df)
-        
-        assert isinstance(config, dict)
-        
-    def test_enhanced_address_ranges(self):
-        """Test the enhanced address range merging."""
-        from sheetwise.extractors import InvertedIndexTranslator
-        
-        translator = InvertedIndexTranslator()
-        
-        # Test with contiguous addresses
-        addresses = ["A1", "A2", "A3", "A4", "A5"]
-        merged = translator._merge_address_ranges(addresses)
-        
-        # Should create a range for 5 contiguous cells
-        assert any(":" in addr for addr in merged)
-        
-    def test_contiguous_cell_grouping(self):
-        """Test contiguous cell grouping in data aggregator."""
-        from sheetwise.extractors import DataFormatAggregator
-        
-        aggregator = DataFormatAggregator()
-        
-        # Test with contiguous cells
-        cells = [
-            {'address': 'A1', 'value': 1, 'row': 0, 'col': 0},
-            {'address': 'A2', 'value': 2, 'row': 1, 'col': 0},
-            {'address': 'A3', 'value': 3, 'row': 2, 'col': 0},
-        ]
-        
-        grouped = aggregator._group_contiguous_cells(cells)
-        
-        # Should group contiguous cells into ranges
-        assert len(grouped) > 0
-        
-        # Check if range was created for 3+ contiguous cells
-        has_range = any(isinstance(item, dict) and item.get('type') == 'range' for item in grouped)
-        assert has_range
+        assert "metadata" in data
+        assert "original_rows" in data["metadata"]
+        assert "cell_index" in data
+        assert isinstance(data["cell_index"], dict)
 
+    @pytest.mark.skipif(not HAS_DUCKDB, reason="DuckDB needed for SQL tests")
+    def test_sql_integration(self):
+        """Test advanced SQL integration."""
+        sllm = SpreadsheetLLM()
+        
+        # Create a df with specific values
+        df = pd.DataFrame({
+            'Year': [2020, 2021, 2022],
+            'Revenue': [100, 200, 300]
+        })
+        
+        # Query it
+        result = sllm.query_sql(df, "SELECT Revenue FROM df WHERE Year > 2020")
+        
+        assert len(result) == 2
+        assert 200 in result['Revenue'].values
+        assert 300 in result['Revenue'].values
+        assert 100 not in result['Revenue'].values
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

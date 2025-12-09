@@ -7,11 +7,11 @@ import pandas as pd
 
 
 class DataTypeClassifier:
-    """Rule-based classifier for identifying data types in spreadsheet cells"""
+    """Rule-based classifier for identifying data types, PII, and business entities."""
 
     @staticmethod
     def classify_cell_type(value: Any) -> str:
-        """Classify cell value into predefined data types"""
+        """Classify cell value into predefined data types."""
         if pd.isna(value) or value == "" or value is None:
             return "Empty"
 
@@ -21,11 +21,35 @@ class DataTypeClassifier:
         if not str_value:
             return "Empty"
 
+        # --- Business & PII Logic (High Priority) ---
+
+        # Email
+        if re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", str_value):
+            return "PII_Email"
+
+        # US Phone Number (Loose match)
+        if re.match(r"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", str_value):
+            return "PII_Phone"
+
+        # SSN (Simple US format)
+        if re.match(r"^\d{3}-\d{2}-\d{4}$", str_value):
+            return "PII_SSN"
+
+        # IBAN (International Bank Account Number) - Generic structure
+        if re.match(r"^[A-Z]{2}\d{2}[A-Z0-9]{1,30}$", str_value):
+            return "Biz_IBAN"
+
+        # Ticker Symbol (e.g., $AAPL, AAPL) - Heuristic: All caps, 2-5 chars
+        if re.match(r"^\$?[A-Z]{2,5}$", str_value) and not re.match(r"^\d+$", str_value):
+            return "Biz_Ticker"
+
+        # --- Standard Types (Lower Priority) ---
+
         # Year pattern
         if re.match(r"^\d{4}$", str_value) and 1900 <= int(str_value) <= 2100:
             return "Year"
 
-        # Scientific notation (check before float to catch scientific notation)
+        # Scientific notation
         if re.match(r"^-?\d+\.?\d*[eE][+-]?\d+$", str_value):
             return "Scientific"
 
@@ -67,8 +91,4 @@ class DataTypeClassifier:
         if any(symbol in str_value for symbol in currency_symbols):
             return "Currency"
 
-        # Email
-        if re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", str_value):
-            return "Email"
-
-        return "Others"
+        return "String"

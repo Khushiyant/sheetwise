@@ -5,7 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.2.0] - 2025-08-19
+## [2.4.0] - 2025-12-09
+
+### Added
+- **Offline SQL Interface**: Integrated `duckdb` to allow standard SQL queries directly against spreadsheet data via `query_sql()`.
+- **Deterministic Reasoning Engine**: Replaced LLM-based reasoning with a fuzzy keyword search engine using `thefuzz` in `ChainOfSpreadsheet`.
+- **Structured JSON Export**: New `encode_to_json()` method that exports compressed data to machine-readable JSON, featuring a custom `NumpyEncoder` for numerical stability.
+- **Advanced Data Classifiers**: Expanded `DataTypeClassifier` to detect PII (Emails, SSNs, Phone Numbers) and Business Entities (IBANs, Stock Tickers).
+
+### Changed
+- **Core Philosophy Pivot**: Transformed the project into a fully offline tool, removing dependencies on external LLM APIs and context window constraints.
+- **Refactored Reasoning**: `ChainOfSpreadsheet` now uses `SmartTableDetector` and relevance scoring instead of LLM prompts.
+- **Updated Tests**: Refactored test suite (`test_classifiers.py`, `test_core.py`) to validate deterministic outputs and new offline capabilities.
+
+### Removed
+- **LLM-Specific Features**: Removed `encode_to_token_limit` and other token-counting logic associated with LLM context windows.
+- **Heuristic Detectors**: Deprecated/removed older heuristic table detectors in favor of `SmartTableDetector`.
+
+### Fixed
+- **JSON Serialization**: Implemented a robust `NumpyEncoder` to fix `TypeError` crashes when exporting `int64` or `float64` data types to JSON.
+
+## [2.3.0] - 2025-08-19
 
 ### Added
 - **Colorful CLI Output**: Enhanced CLI with rich color, tables, and progress bars for a more user-friendly experience (using the `rich` library).
