@@ -3,7 +3,7 @@
 A Python package for encoding spreadsheets for Large Language Models, implementing the SpreadsheetLLM research framework.
 
 [![PyPI version](https://img.shields.io/pypi/v/sheetwise.svg)](https://pypi.org/project/sheetwise/)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
