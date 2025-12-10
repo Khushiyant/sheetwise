@@ -108,3 +108,22 @@ class TestSheetCompressor:
         expected_ratio = original_cells / compressed_cells
 
         assert abs(result["compression_ratio"] - expected_ratio) < 0.01
+
+    def test_compress_inplace(self, sample_dataframe):
+            """Test compression with inplace=True."""
+            compressor = SheetCompressor()
+            
+            # Create a copy to compare later
+            original_copy = sample_dataframe.copy()
+            
+            # Compress inplace
+            result = compressor.compress(sample_dataframe, inplace=True)
+            
+            assert "compressed_data" in result
+            
+            # Ensure result is valid
+            assert not result["compressed_data"].empty
+            
+            # Verify the operation didn't crash and produced same results as standard
+            standard_result = compressor.compress(original_copy, inplace=False)
+            pd.testing.assert_frame_equal(result["compressed_data"], standard_result["compressed_data"])

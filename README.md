@@ -43,6 +43,19 @@ sllm = SpreadsheetLLM()
 encoded_text = sllm.encode_to_token_limit(df, max_tokens=4000)
 ```
 
+### Memory Optimization (Large Files)
+
+For very large spreadsheets (100MB+), you can use `inplace=True` to significantly reduce RAM usage during compression.
+
+```python
+# Standard Compression (Creates a copy in RAM)
+result = compressor.compress(df)
+
+# Memory-Efficient Compression (Modifies DataFrame in-place or minimizes copies)
+# Use this when working with datasets close to your RAM limit.
+result = compressor.compress(df, inplace=True)
+```
+
 ## Installation
 
 ### Using pip
