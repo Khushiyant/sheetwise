@@ -3,5 +3,5 @@ sheetwise.chain module
 
 .. automodule:: sheetwise.chain
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:

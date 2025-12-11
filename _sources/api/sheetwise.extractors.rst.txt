@@ -3,5 +3,5 @@ sheetwise.extractors module
 
 .. automodule:: sheetwise.extractors
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:

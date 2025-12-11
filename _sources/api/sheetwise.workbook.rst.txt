@@ -3,5 +3,5 @@ sheetwise.workbook module
 
 .. automodule:: sheetwise.workbook
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:

@@ -3,8 +3,8 @@ sheetwise package
 
 .. automodule:: sheetwise
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 Submodules
 ----------

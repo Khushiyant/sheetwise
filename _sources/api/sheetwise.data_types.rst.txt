@@ -3,5 +3,5 @@ sheetwise.data\_types module
 
 .. automodule:: sheetwise.data_types
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:

@@ -3,5 +3,5 @@ sheetwise.detectors module
 
 .. automodule:: sheetwise.detectors
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:

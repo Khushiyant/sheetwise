@@ -5,8 +5,8 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
-        <title>sheetwise - SheetWise 2.3.0 documentation</title>
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
+        <title>sheetwise - SheetWise 2.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">SheetWise 2.3.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">SheetWise 2.5.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">SheetWise 2.3.0 documentation</span>
+  <span class="sidebar-brand-text">SheetWise 2.5.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -271,7 +271,7 @@
 by Microsoft Research Team</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SpreadsheetLLM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compression_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SpreadsheetLLM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compression_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM" title="Link to this definition">¶</a></dt>
 <dd><p>Main class integrating all SheetWise components.
 Includes Offline SQL and JSON export capabilities.</p>
 <dl class="py method">
@@ -281,52 +281,9 @@ Includes Offline SQL and JSON export capabilities.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>compression_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span>) – Parameters for SheetCompressor</p></li>
+<li><p><strong>compression_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Parameters for SheetCompressor</p></li>
 <li><p><strong>enable_logging</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Enable detailed logging for debugging</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.load_from_file">
-<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.load_from_file" title="Link to this definition">¶</a></dt>
-<dd><p>Load spreadsheet from file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.query_sql">
-<span class="sig-name descname"><span class="pre">query_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql_query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.query_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.query_sql" title="Link to this definition">¶</a></dt>
-<dd><p>Run a SQL query directly against the DataFrame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – The dataframe to query (treated as table ‘df’ or ‘input_data’)</p></li>
-<li><p><strong>sql_query</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Standard SQL query (e.g., “SELECT * FROM input_data WHERE Year &gt; 2020”)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Result as a new DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.encode_to_json">
-<span class="sig-name descname"><span class="pre">encode_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.encode_to_json" title="Link to this definition">¶</a></dt>
-<dd><p>Encode compressed spreadsheet data into structured JSON.
-Ideal for piping into other scripts or APIs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -354,12 +311,66 @@ Ideal for piping into other scripts or APIs.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.compress_spreadsheet">
+<span class="sig-name descname"><span class="pre">compress_spreadsheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.compress_spreadsheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.compress_spreadsheet" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.encode_compressed_for_llm">
 <span class="sig-name descname"><span class="pre">encode_compressed_for_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compressed_result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_compressed_for_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.encode_compressed_for_llm" title="Link to this definition">¶</a></dt>
 <dd><p>Generate text representation (Markdown).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.encode_to_json">
+<span class="sig-name descname"><span class="pre">encode_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.encode_to_json" title="Link to this definition">¶</a></dt>
+<dd><p>Encode compressed spreadsheet data into structured JSON.
+Ideal for piping into other scripts or APIs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.encode_vanilla">
+<span class="sig-name descname"><span class="pre">encode_vanilla</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_vanilla"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.encode_vanilla" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.get_encoding_stats">
+<span class="sig-name descname"><span class="pre">get_encoding_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.get_encoding_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.get_encoding_stats" title="Link to this definition">¶</a></dt>
+<dd><p>Get basic statistics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.load_from_file">
+<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.load_from_file" title="Link to this definition">¶</a></dt>
+<dd><p>Load spreadsheet from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -376,32 +387,21 @@ Ideal for piping into other scripts or APIs.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.encode_vanilla">
-<span class="sig-name descname"><span class="pre">encode_vanilla</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_vanilla"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.encode_vanilla" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.compress_spreadsheet">
-<span class="sig-name descname"><span class="pre">compress_spreadsheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.compress_spreadsheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.compress_spreadsheet" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.get_encoding_stats">
-<span class="sig-name descname"><span class="pre">get_encoding_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.get_encoding_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.get_encoding_stats" title="Link to this definition">¶</a></dt>
-<dd><p>Get basic statistics.</p>
+<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.query_sql">
+<span class="sig-name descname"><span class="pre">query_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql_query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.query_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.query_sql" title="Link to this definition">¶</a></dt>
+<dd><p>Run a SQL query directly against the DataFrame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – The dataframe to query (treated as table ‘df’ or ‘input_data’)</p></li>
+<li><p><strong>sql_query</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Standard SQL query (e.g., “SELECT * FROM input_data WHERE Year &gt; 2020”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result as a new DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -410,7 +410,7 @@ Ideal for piping into other scripts or APIs.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.SheetCompressor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SheetCompressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_extraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_translation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_aggregation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/compressor.html#SheetCompressor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SheetCompressor" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SheetCompressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_extraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_translation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_aggregation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/compressor.html#SheetCompressor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SheetCompressor" title="Link to this definition">¶</a></dt>
 <dd><p>Main compression framework combining all three modules.
 Optimized for memory efficiency.</p>
 <dl class="py method">
@@ -444,7 +444,7 @@ prevents the initial full copy.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.VanillaEncoder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">VanillaEncoder</span></span><a class="reference internal" href="../../_modules/sheetwise/encoders.html#VanillaEncoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.VanillaEncoder" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">VanillaEncoder</span></span><a class="reference internal" href="../../_modules/sheetwise/encoders.html#VanillaEncoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.VanillaEncoder" title="Link to this definition">¶</a></dt>
 <dd><p>Vanilla spreadsheet encoding with cell addresses and formats</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.VanillaEncoder.encode_to_markdown">
@@ -470,7 +470,7 @@ prevents the initial full copy.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.ChainOfSpreadsheet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">ChainOfSpreadsheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compressor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/chain.html#ChainOfSpreadsheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.ChainOfSpreadsheet" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">ChainOfSpreadsheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compressor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/chain.html#ChainOfSpreadsheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.ChainOfSpreadsheet" title="Link to this definition">¶</a></dt>
 <dd><p>Implements deterministic ‘Chain of Spreadsheet’ reasoning.
 Uses fuzzy matching and heuristic scoring instead of LLMs.</p>
 <dl class="py method">
@@ -502,8 +502,28 @@ Uses fuzzy matching and heuristic scoring instead of LLMs.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.CellInfo">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">CellInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/data_types.html#CellInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CellInfo" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">CellInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/data_types.html#CellInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CellInfo" title="Link to this definition">¶</a></dt>
 <dd><p>Information about a spreadsheet cell</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.CellInfo.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sheetwise.CellInfo.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sheetwise.CellInfo.col">
+<span class="sig-name descname"><span class="pre">col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sheetwise.CellInfo.col" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sheetwise.CellInfo.format_string">
+<span class="sig-name descname"><span class="pre">format_string</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.CellInfo.format_string" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sheetwise.CellInfo.row">
+<span class="sig-name descname"><span class="pre">row</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sheetwise.CellInfo.row" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sheetwise.CellInfo.address">
 <span class="sig-name descname"><span class="pre">address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#sheetwise.CellInfo.address" title="Link to this definition">¶</a></dt>
@@ -519,32 +539,22 @@ Uses fuzzy matching and heuristic scoring instead of LLMs.</p>
 <span class="sig-name descname"><span class="pre">data_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#sheetwise.CellInfo.data_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.CellInfo.format_string">
-<span class="sig-name descname"><span class="pre">format_string</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.CellInfo.format_string" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.CellInfo.row">
-<span class="sig-name descname"><span class="pre">row</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sheetwise.CellInfo.row" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.CellInfo.col">
-<span class="sig-name descname"><span class="pre">col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sheetwise.CellInfo.col" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.CellInfo.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sheetwise.CellInfo.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.TableRegion">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">TableRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/data_types.html#TableRegion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.TableRegion" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">TableRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/data_types.html#TableRegion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.TableRegion" title="Link to this definition">¶</a></dt>
 <dd><p>Represents a detected table region in the spreadsheet</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.TableRegion.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sheetwise.TableRegion.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sheetwise.TableRegion.confidence">
+<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#sheetwise.TableRegion.confidence" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sheetwise.TableRegion.top_left">
 <span class="sig-name descname"><span class="pre">top_left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#sheetwise.TableRegion.top_left" title="Link to this definition">¶</a></dt>
@@ -565,16 +575,6 @@ Uses fuzzy matching and heuristic scoring instead of LLMs.</p>
 <span class="sig-name descname"><span class="pre">cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#range" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">range</span></code></a></em><a class="headerlink" href="#sheetwise.TableRegion.cols" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.TableRegion.confidence">
-<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#sheetwise.TableRegion.confidence" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.TableRegion.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sheetwise.TableRegion.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="py function">
@@ -585,7 +585,7 @@ Uses fuzzy matching and heuristic scoring instead of LLMs.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.FormulaParser">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">FormulaParser</span></span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">FormulaParser</span></span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser" title="Link to this definition">¶</a></dt>
 <dd><p>Extracts, analyzes and simplifies Excel formulas from spreadsheets.
 Optimized for memory usage with streaming reads.</p>
 <dl class="py attribute">
@@ -597,6 +597,39 @@ Optimized for memory usage with streaming reads.</p>
 <dt class="sig sig-object py" id="sheetwise.FormulaParser.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize the formula parser.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.FormulaParser.build_dependency_graph">
+<span class="sig-name descname"><span class="pre">build_dependency_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.build_dependency_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.build_dependency_graph" title="Link to this definition">¶</a></dt>
+<dd><p>Build a graph of cell dependencies based on extracted formulas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.FormulaParser.encode_formulas_for_llm">
+<span class="sig-name descname"><span class="pre">encode_formulas_for_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formulas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.encode_formulas_for_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.encode_formulas_for_llm" title="Link to this definition">¶</a></dt>
+<dd><p>Generate LLM-friendly encoding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.FormulaParser.extract_cell_references">
+<span class="sig-name descname"><span class="pre">extract_cell_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.extract_cell_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.extract_cell_references" title="Link to this definition">¶</a></dt>
+<dd><p>Extract all cell references from a formula.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -620,23 +653,12 @@ Optimized for memory usage with streaming reads.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.build_dependency_graph">
-<span class="sig-name descname"><span class="pre">build_dependency_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.build_dependency_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.build_dependency_graph" title="Link to this definition">¶</a></dt>
-<dd><p>Build a graph of cell dependencies based on extracted formulas.</p>
+<dt class="sig sig-object py" id="sheetwise.FormulaParser.get_formula_impact">
+<span class="sig-name descname"><span class="pre">get_formula_impact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_address</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.get_formula_impact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.get_formula_impact" title="Link to this definition">¶</a></dt>
+<dd><p>Analyze the impact of a formula cell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.extract_cell_references">
-<span class="sig-name descname"><span class="pre">extract_cell_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.extract_cell_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.extract_cell_references" title="Link to this definition">¶</a></dt>
-<dd><p>Extract all cell references from a formula.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -653,33 +675,11 @@ Handles nested functions better than Regex.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.get_formula_impact">
-<span class="sig-name descname"><span class="pre">get_formula_impact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_address</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.get_formula_impact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.get_formula_impact" title="Link to this definition">¶</a></dt>
-<dd><p>Analyze the impact of a formula cell.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.encode_formulas_for_llm">
-<span class="sig-name descname"><span class="pre">encode_formulas_for_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formulas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaParser.encode_formulas_for_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.encode_formulas_for_llm" title="Link to this definition">¶</a></dt>
-<dd><p>Generate LLM-friendly encoding.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.FormulaDependencyAnalyzer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">FormulaDependencyAnalyzer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula_parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaDependencyAnalyzer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaDependencyAnalyzer" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">FormulaDependencyAnalyzer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula_parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/formula_parser.html#FormulaDependencyAnalyzer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaDependencyAnalyzer" title="Link to this definition">¶</a></dt>
 <dd><p>Specialized analyzer for formula dependencies.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.FormulaDependencyAnalyzer.__init__">
@@ -710,7 +710,7 @@ Handles nested functions better than Regex.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.CompressionVisualizer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">CompressionVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable_interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CompressionVisualizer" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">CompressionVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable_interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CompressionVisualizer" title="Link to this definition">¶</a></dt>
 <dd><p>Visualization tools for spreadsheet compression analysis.</p>
 <p>This class provides utilities to:
 1. Generate heatmaps showing data density
@@ -724,47 +724,6 @@ Handles nested functions better than Regex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>enable_interactive</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to enable interactive visualizations</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.CompressionVisualizer.create_data_density_heatmap">
-<span class="sig-name descname"><span class="pre">create_data_density_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Data</span> <span class="pre">Density</span> <span class="pre">Heatmap'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.create_data_density_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CompressionVisualizer.create_data_density_heatmap" title="Link to this definition">¶</a></dt>
-<dd><p>Generate a heatmap showing data density in the spreadsheet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – The dataframe to visualize</p></li>
-<li><p><strong>title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Title for the plot</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Matplotlib figure object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.CompressionVisualizer.visualize_anchors">
-<span class="sig-name descname"><span class="pre">visualize_anchors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Structural</span> <span class="pre">Anchors'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.visualize_anchors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CompressionVisualizer.visualize_anchors" title="Link to this definition">¶</a></dt>
-<dd><p>Visualize structural anchors identified in the spreadsheet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – Original dataframe</p></li>
-<li><p><strong>anchors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – Tuple of (row_anchors, col_anchors)</p></li>
-<li><p><strong>title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Title for the plot</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Matplotlib figure object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -785,6 +744,26 @@ Handles nested functions better than Regex.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Matplotlib figure with comparison visualization</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.CompressionVisualizer.create_data_density_heatmap">
+<span class="sig-name descname"><span class="pre">create_data_density_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Data</span> <span class="pre">Density</span> <span class="pre">Heatmap'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.create_data_density_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CompressionVisualizer.create_data_density_heatmap" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a heatmap showing data density in the spreadsheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – The dataframe to visualize</p></li>
+<li><p><strong>title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Title for the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matplotlib figure object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -829,11 +808,32 @@ Handles nested functions better than Regex.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.CompressionVisualizer.visualize_anchors">
+<span class="sig-name descname"><span class="pre">visualize_anchors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Structural</span> <span class="pre">Anchors'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.visualize_anchors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CompressionVisualizer.visualize_anchors" title="Link to this definition">¶</a></dt>
+<dd><p>Visualize structural anchors identified in the spreadsheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – Original dataframe</p></li>
+<li><p><strong>anchors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – Tuple of (row_anchors, col_anchors)</p></li>
+<li><p><strong>title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Title for the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matplotlib figure object</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.WorkbookManager">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">WorkbookManager</span></span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">WorkbookManager</span></span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager" title="Link to this definition">¶</a></dt>
 <dd><p>Manages multi-sheet workbooks and cross-sheet references.</p>
 <p>This class provides utilities to:
 1. Load and process entire Excel workbooks with multiple sheets
@@ -844,51 +844,6 @@ Handles nested functions better than Regex.</p>
 <dt class="sig sig-object py" id="sheetwise.WorkbookManager.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize the workbook manager.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.WorkbookManager.load_workbook">
-<span class="sig-name descname"><span class="pre">load_workbook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager.load_workbook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager.load_workbook" title="Link to this definition">¶</a></dt>
-<dd><p>Load all sheets from an Excel workbook.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>excel_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the Excel file</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dictionary mapping sheet names to dataframes</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.WorkbookManager.detect_cross_sheet_references">
-<span class="sig-name descname"><span class="pre">detect_cross_sheet_references</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager.detect_cross_sheet_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager.detect_cross_sheet_references" title="Link to this definition">¶</a></dt>
-<dd><p>Detect references between sheets using formula analysis.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dictionary mapping sheet names to sets of referenced sheets</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.WorkbookManager.get_sheet_relationship_graph">
-<span class="sig-name descname"><span class="pre">get_sheet_relationship_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager.get_sheet_relationship_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager.get_sheet_relationship_graph" title="Link to this definition">¶</a></dt>
-<dd><p>Generate a directed graph of sheet relationships.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dictionary with graph representation of sheet relationships</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -904,6 +859,20 @@ Handles nested functions better than Regex.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Dictionary with compression results for each sheet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.WorkbookManager.detect_cross_sheet_references">
+<span class="sig-name descname"><span class="pre">detect_cross_sheet_references</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager.detect_cross_sheet_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager.detect_cross_sheet_references" title="Link to this definition">¶</a></dt>
+<dd><p>Detect references between sheets using formula analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary mapping sheet names to sets of referenced sheets</p>
 </dd>
 </dl>
 </dd></dl>
@@ -939,11 +908,42 @@ Handles nested functions better than Regex.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.WorkbookManager.get_sheet_relationship_graph">
+<span class="sig-name descname"><span class="pre">get_sheet_relationship_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager.get_sheet_relationship_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager.get_sheet_relationship_graph" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a directed graph of sheet relationships.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with graph representation of sheet relationships</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.WorkbookManager.load_workbook">
+<span class="sig-name descname"><span class="pre">load_workbook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/workbook.html#WorkbookManager.load_workbook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.WorkbookManager.load_workbook" title="Link to this definition">¶</a></dt>
+<dd><p>Load all sheets from an Excel workbook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>excel_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the Excel file</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary mapping sheet names to dataframes</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.SmartTableDetector">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SmartTableDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_table_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_empty_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_detection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/smart_tables.html#SmartTableDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SmartTableDetector" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SmartTableDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_table_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_empty_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_detection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/smart_tables.html#SmartTableDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SmartTableDetector" title="Link to this definition">¶</a></dt>
 <dd><p>Advanced table detection with enhanced capabilities.</p>
 <p>This class provides utilities to:
 1. Detect multiple tables in spreadsheets
@@ -1003,7 +1003,7 @@ Handles nested functions better than Regex.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.TableType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">TableType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/smart_tables.html#TableType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.TableType" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">TableType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/smart_tables.html#TableType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.TableType" title="Link to this definition">¶</a></dt>
 <dd><p>Types of tables that can be detected.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sheetwise.TableType.DATA_TABLE">
@@ -1039,26 +1039,11 @@ Handles nested functions better than Regex.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">EnhancedTableRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TableType.DATA_TABLE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/smart_tables.html#EnhancedTableRegion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.EnhancedTableRegion" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">EnhancedTableRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TableType.DATA_TABLE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/smart_tables.html#EnhancedTableRegion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.EnhancedTableRegion" title="Link to this definition">¶</a></dt>
 <dd><p>Extended table region with additional metadata.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.table_type">
-<span class="sig-name descname"><span class="pre">table_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../user_guide/tables.html#sheetwise.smart_tables.TableType" title="sheetwise.smart_tables.TableType"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableType</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'data_table'</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.table_type" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.has_headers">
-<span class="sig-name descname"><span class="pre">has_headers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.has_headers" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.header_rows">
-<span class="sig-name descname"><span class="pre">header_rows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.header_rows" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.header_cols">
-<span class="sig-name descname"><span class="pre">header_cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.header_cols" title="Link to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TableType.DATA_TABLE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sheetwise.EnhancedTableRegion.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1067,28 +1052,43 @@ Handles nested functions better than Regex.</p>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.start_row">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_row</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.start_row" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.end_col">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.end_col" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.end_row">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_row</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.end_row" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_row</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.end_row" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.has_headers">
+<span class="sig-name descname"><span class="pre">has_headers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.has_headers" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.header_cols">
+<span class="sig-name descname"><span class="pre">header_cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.header_cols" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.header_rows">
+<span class="sig-name descname"><span class="pre">header_rows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.header_rows" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.start_col">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.start_col" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.start_col" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.end_col">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.end_col" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.start_row">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_row</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.start_row" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TableType.DATA_TABLE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sheetwise.EnhancedTableRegion.__init__" title="Link to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.table_type">
+<span class="sig-name descname"><span class="pre">table_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../user_guide/tables.html#sheetwise.smart_tables.TableType" title="sheetwise.smart_tables.TableType"><code class="xref py py-class docutils literal notranslate"><span class="pre">TableType</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'data_table'</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.table_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1184,16 +1184,16 @@ Handles nested functions better than Regex.</p>
 <li><a class="reference internal" href="#">sheetwise</a><ul>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM</span></code></a><ul>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.__init__"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.load_from_file"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.load_from_file()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.query_sql"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.query_sql()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_to_json"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_to_json()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.auto_configure"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.auto_configure()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.compress_and_encode_for_llm"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.compress_and_encode_for_llm()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_compressed_for_llm"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_compressed_for_llm()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.process_qa_query"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.process_qa_query()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_vanilla"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_vanilla()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.compress_spreadsheet"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.compress_spreadsheet()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_compressed_for_llm"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_compressed_for_llm()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_to_json"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_to_json()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_vanilla"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_vanilla()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.get_encoding_stats"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.get_encoding_stats()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.load_from_file"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.load_from_file()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.process_qa_query"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.process_qa_query()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.query_sql"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.query_sql()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.SheetCompressor"><code class="docutils literal notranslate"><span class="pre">SheetCompressor</span></code></a><ul>
@@ -1211,34 +1211,34 @@ Handles nested functions better than Regex.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.CellInfo"><code class="docutils literal notranslate"><span class="pre">CellInfo</span></code></a><ul>
+<li><a class="reference internal" href="#sheetwise.CellInfo.__init__"><code class="docutils literal notranslate"><span class="pre">CellInfo.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.CellInfo.col"><code class="docutils literal notranslate"><span class="pre">CellInfo.col</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.CellInfo.format_string"><code class="docutils literal notranslate"><span class="pre">CellInfo.format_string</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.CellInfo.row"><code class="docutils literal notranslate"><span class="pre">CellInfo.row</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.CellInfo.address"><code class="docutils literal notranslate"><span class="pre">CellInfo.address</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.CellInfo.value"><code class="docutils literal notranslate"><span class="pre">CellInfo.value</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.CellInfo.data_type"><code class="docutils literal notranslate"><span class="pre">CellInfo.data_type</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.CellInfo.format_string"><code class="docutils literal notranslate"><span class="pre">CellInfo.format_string</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.CellInfo.row"><code class="docutils literal notranslate"><span class="pre">CellInfo.row</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.CellInfo.col"><code class="docutils literal notranslate"><span class="pre">CellInfo.col</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.CellInfo.__init__"><code class="docutils literal notranslate"><span class="pre">CellInfo.__init__()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.TableRegion"><code class="docutils literal notranslate"><span class="pre">TableRegion</span></code></a><ul>
+<li><a class="reference internal" href="#sheetwise.TableRegion.__init__"><code class="docutils literal notranslate"><span class="pre">TableRegion.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.TableRegion.confidence"><code class="docutils literal notranslate"><span class="pre">TableRegion.confidence</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.TableRegion.top_left"><code class="docutils literal notranslate"><span class="pre">TableRegion.top_left</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.TableRegion.bottom_right"><code class="docutils literal notranslate"><span class="pre">TableRegion.bottom_right</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.TableRegion.rows"><code class="docutils literal notranslate"><span class="pre">TableRegion.rows</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.TableRegion.cols"><code class="docutils literal notranslate"><span class="pre">TableRegion.cols</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.TableRegion.confidence"><code class="docutils literal notranslate"><span class="pre">TableRegion.confidence</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.TableRegion.__init__"><code class="docutils literal notranslate"><span class="pre">TableRegion.__init__()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.create_realistic_spreadsheet"><code class="docutils literal notranslate"><span class="pre">create_realistic_spreadsheet()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.FormulaParser"><code class="docutils literal notranslate"><span class="pre">FormulaParser</span></code></a><ul>
 <li><a class="reference internal" href="#sheetwise.FormulaParser.CELL_REF_PATTERN"><code class="docutils literal notranslate"><span class="pre">FormulaParser.CELL_REF_PATTERN</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.FormulaParser.__init__"><code class="docutils literal notranslate"><span class="pre">FormulaParser.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.extract_formulas"><code class="docutils literal notranslate"><span class="pre">FormulaParser.extract_formulas()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.FormulaParser.build_dependency_graph"><code class="docutils literal notranslate"><span class="pre">FormulaParser.build_dependency_graph()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.extract_cell_references"><code class="docutils literal notranslate"><span class="pre">FormulaParser.extract_cell_references()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.simplify_formula"><code class="docutils literal notranslate"><span class="pre">FormulaParser.simplify_formula()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.get_formula_impact"><code class="docutils literal notranslate"><span class="pre">FormulaParser.get_formula_impact()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.FormulaParser.encode_formulas_for_llm"><code class="docutils literal notranslate"><span class="pre">FormulaParser.encode_formulas_for_llm()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.FormulaParser.extract_cell_references"><code class="docutils literal notranslate"><span class="pre">FormulaParser.extract_cell_references()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.FormulaParser.extract_formulas"><code class="docutils literal notranslate"><span class="pre">FormulaParser.extract_formulas()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.FormulaParser.get_formula_impact"><code class="docutils literal notranslate"><span class="pre">FormulaParser.get_formula_impact()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.FormulaParser.simplify_formula"><code class="docutils literal notranslate"><span class="pre">FormulaParser.simplify_formula()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.FormulaDependencyAnalyzer"><code class="docutils literal notranslate"><span class="pre">FormulaDependencyAnalyzer</span></code></a><ul>
@@ -1249,21 +1249,21 @@ Handles nested functions better than Regex.</p>
 </li>
 <li><a class="reference internal" href="#sheetwise.CompressionVisualizer"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer</span></code></a><ul>
 <li><a class="reference internal" href="#sheetwise.CompressionVisualizer.__init__"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.CompressionVisualizer.create_data_density_heatmap"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.create_data_density_heatmap()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.CompressionVisualizer.visualize_anchors"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.visualize_anchors()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.CompressionVisualizer.compare_original_vs_compressed"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.compare_original_vs_compressed()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.CompressionVisualizer.create_data_density_heatmap"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.create_data_density_heatmap()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.CompressionVisualizer.generate_html_report"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.generate_html_report()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.CompressionVisualizer.save_visualization_to_file"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.save_visualization_to_file()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.CompressionVisualizer.visualize_anchors"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.visualize_anchors()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.WorkbookManager"><code class="docutils literal notranslate"><span class="pre">WorkbookManager</span></code></a><ul>
 <li><a class="reference internal" href="#sheetwise.WorkbookManager.__init__"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.WorkbookManager.load_workbook"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.load_workbook()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.WorkbookManager.detect_cross_sheet_references"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.detect_cross_sheet_references()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.WorkbookManager.get_sheet_relationship_graph"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.get_sheet_relationship_graph()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.WorkbookManager.compress_workbook"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.compress_workbook()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.WorkbookManager.detect_cross_sheet_references"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.detect_cross_sheet_references()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.WorkbookManager.encode_workbook_for_llm"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.encode_workbook_for_llm()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.WorkbookManager.get_sheet_importance_ranking"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.get_sheet_importance_ranking()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.WorkbookManager.get_sheet_relationship_graph"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.get_sheet_relationship_graph()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.WorkbookManager.load_workbook"><code class="docutils literal notranslate"><span class="pre">WorkbookManager.load_workbook()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.SmartTableDetector"><code class="docutils literal notranslate"><span class="pre">SmartTableDetector</span></code></a><ul>
@@ -1282,16 +1282,16 @@ Handles nested functions better than Regex.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.EnhancedTableRegion"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion</span></code></a><ul>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.table_type"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.table_type</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.has_headers"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.has_headers</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.header_rows"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.header_rows</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.header_cols"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.header_cols</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.confidence"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.confidence</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.start_row"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.start_row</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.end_row"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.end_row</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.start_col"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.start_col</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.end_col"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.end_col</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.__init__"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.confidence"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.confidence</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.end_col"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.end_col</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.end_row"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.end_row</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.has_headers"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.has_headers</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.header_cols"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.header_cols</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.header_rows"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.header_rows</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.start_col"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.start_col</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.start_row"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.start_row</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.EnhancedTableRegion.table_type"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion.table_type</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1305,7 +1305,7 @@ Handles nested functions better than Regex.</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=c3c8ae58"></script>
+</div><script src="../../_static/documentation_options.js?v=3c4615cf"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

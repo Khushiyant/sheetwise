@@ -3,5 +3,5 @@ sheetwise.core module
 
 .. automodule:: sheetwise.core
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
