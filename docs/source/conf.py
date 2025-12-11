@@ -13,7 +13,15 @@ sys.path.insert(0, os.path.abspath('../../src'))
 project = 'SheetWise'
 copyright = '2025, Khushiyant Chauhan'
 author = 'Khushiyant Chauhan'
-release = '2.3.0'
+
+# Read version from pyproject.toml
+import tomli
+try:
+    with open(os.path.abspath('../../pyproject.toml'), 'rb') as f:
+        pyproject = tomli.load(f)
+        release = pyproject['project']['version']
+except Exception:
+    release = '2.5.0'  # Fallback version
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
