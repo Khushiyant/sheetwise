@@ -1,4 +1,5 @@
 # SheetWise
+<img width="1000" height="500" alt="Gemini_Generated_Image_caqyklcaqyklcaqy" src="https://github.com/user-attachments/assets/9eba0c7f-6a01-4900-8085-d3bba1a6ca5a" />
 
 A Python package for encoding spreadsheets for Large Language Models, implementing the SpreadsheetLLM research framework.
 
