@@ -1,0 +1,12 @@
+sheetwise.visualizer
+====================
+
+.. automodule:: sheetwise.visualizer
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CompressionVisualizer
+   

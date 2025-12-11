@@ -1,0 +1,12 @@
+sheetwise.classifiers
+=====================
+
+.. automodule:: sheetwise.classifiers
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DataTypeClassifier
+   

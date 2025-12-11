@@ -1,0 +1,26 @@
+﻿sheetwise
+=========
+
+.. automodule:: sheetwise
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   chain
+   classifiers
+   cli
+   compressor
+   core
+   data_types
+   detectors
+   encoders
+   extractors
+   formula_parser
+   smart_tables
+   utils
+   visualizer
+   workbook

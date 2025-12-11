@@ -1,0 +1,12 @@
+sheetwise.workbook
+==================
+
+.. automodule:: sheetwise.workbook
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      WorkbookManager
+   

@@ -1,0 +1,13 @@
+sheetwise.core
+==============
+
+.. automodule:: sheetwise.core
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      NumpyEncoder
+      SpreadsheetLLM
+   

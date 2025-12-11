@@ -1,0 +1,13 @@
+sheetwise.data\_types
+=====================
+
+.. automodule:: sheetwise.data_types
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CellInfo
+      TableRegion
+   

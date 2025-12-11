@@ -1,0 +1,14 @@
+sheetwise.smart\_tables
+=======================
+
+.. automodule:: sheetwise.smart_tables
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      EnhancedTableRegion
+      SmartTableDetector
+      TableType
+   

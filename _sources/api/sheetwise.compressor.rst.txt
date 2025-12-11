@@ -1,0 +1,7 @@
+sheetwise.compressor module
+===========================
+
+.. automodule:: sheetwise.compressor
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,12 @@
+sheetwise.encoders
+==================
+
+.. automodule:: sheetwise.encoders
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      VanillaEncoder
+   

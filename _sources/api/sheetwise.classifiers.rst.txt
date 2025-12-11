@@ -1,0 +1,7 @@
+sheetwise.classifiers module
+============================
+
+.. automodule:: sheetwise.classifiers
+   :members:
+   :undoc-members:
+   :show-inheritance:

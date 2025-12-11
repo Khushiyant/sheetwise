@@ -1,0 +1,14 @@
+sheetwise.extractors
+====================
+
+.. automodule:: sheetwise.extractors
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DataFormatAggregator
+      InvertedIndexTranslator
+      StructuralAnchorExtractor
+   

@@ -1,0 +1,533 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="License" href="license.html"><link rel="prev" title="Contributing" href="contributing.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Changelog - SheetWise 2.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #ff6b6b;
+  --color-brand-content: #ff6b6b;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff8787;
+  --color-brand-content: #ff8787;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff8787;
+  --color-brand-content: #ff8787;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">SheetWise 2.3.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">SheetWise 2.3.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/compression.html">Compression Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/encoding.html">Encoding Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/formulas.html">Formula Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/tables.html">Table Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/cli.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/changelog.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h1>
+<section id="changelog">
+<h2>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h2>
+<p>All notable changes to this project will be documented in this file.</p>
+<p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
+and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<section id="id1">
+<h3>[2.4.0] - 2025-12-09<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<section id="added">
+<h4>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Offline SQL Interface</strong>: Integrated <code class="docutils literal notranslate"><span class="pre">duckdb</span></code> to allow standard SQL queries directly against spreadsheet data via <code class="docutils literal notranslate"><span class="pre">query_sql()</span></code>.</p></li>
+<li><p><strong>Deterministic Reasoning Engine</strong>: Replaced LLM-based reasoning with a fuzzy keyword search engine using <code class="docutils literal notranslate"><span class="pre">thefuzz</span></code> in <code class="docutils literal notranslate"><span class="pre">ChainOfSpreadsheet</span></code>.</p></li>
+<li><p><strong>Structured JSON Export</strong>: New <code class="docutils literal notranslate"><span class="pre">encode_to_json()</span></code> method that exports compressed data to machine-readable JSON, featuring a custom <code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code> for numerical stability.</p></li>
+<li><p><strong>Advanced Data Classifiers</strong>: Expanded <code class="docutils literal notranslate"><span class="pre">DataTypeClassifier</span></code> to detect PII (Emails, SSNs, Phone Numbers) and Business Entities (IBANs, Stock Tickers).</p></li>
+</ul>
+</section>
+<section id="changed">
+<h4>Changed<a class="headerlink" href="#changed" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Core Philosophy Pivot</strong>: Transformed the project into a fully offline tool, removing dependencies on external LLM APIs and context window constraints.</p></li>
+<li><p><strong>Refactored Reasoning</strong>: <code class="docutils literal notranslate"><span class="pre">ChainOfSpreadsheet</span></code> now uses <code class="docutils literal notranslate"><span class="pre">SmartTableDetector</span></code> and relevance scoring instead of LLM prompts.</p></li>
+<li><p><strong>Updated Tests</strong>: Refactored test suite (<code class="docutils literal notranslate"><span class="pre">test_classifiers.py</span></code>, <code class="docutils literal notranslate"><span class="pre">test_core.py</span></code>) to validate deterministic outputs and new offline capabilities.</p></li>
+</ul>
+</section>
+<section id="removed">
+<h4>Removed<a class="headerlink" href="#removed" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>LLM-Specific Features</strong>: Removed <code class="docutils literal notranslate"><span class="pre">encode_to_token_limit</span></code> and other token-counting logic associated with LLM context windows.</p></li>
+<li><p><strong>Heuristic Detectors</strong>: Deprecated/removed older heuristic table detectors in favor of <code class="docutils literal notranslate"><span class="pre">SmartTableDetector</span></code>.</p></li>
+</ul>
+</section>
+<section id="fixed">
+<h4>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>JSON Serialization</strong>: Implemented a robust <code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code> to fix <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> crashes when exporting <code class="docutils literal notranslate"><span class="pre">int64</span></code> or <code class="docutils literal notranslate"><span class="pre">float64</span></code> data types to JSON.</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h3>[2.3.0] - 2025-08-19<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<section id="id3">
+<h4>Added<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Colorful CLI Output</strong>: Enhanced CLI with rich color, tables, and progress bars for a more user-friendly experience (using the <code class="docutils literal notranslate"><span class="pre">rich</span></code> library).</p></li>
+<li><p><strong>Parallel Processing</strong>: Added <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> and <code class="docutils literal notranslate"><span class="pre">--jobs</span></code> options for fast multi-sheet workbook processing.</p></li>
+<li><p><strong>Benchmark &amp; Visualization Script</strong>: New script (<code class="docutils literal notranslate"><span class="pre">scripts/generate_benchmarks.py</span></code>) to benchmark compression, speed, and memory usage, and generate beautiful Seaborn charts for documentation.</p></li>
+<li><p><strong>Benchmarks Section in Docs</strong>: Updated README with instructions and example output for running and visualizing benchmarks.</p></li>
+</ul>
+</section>
+<section id="enhanced">
+<h4>Enhanced<a class="headerlink" href="#enhanced" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>CLI Usability</strong>: Improved error messages, output formatting, and summary tables for both demo and normal CLI modes.</p></li>
+<li><p><strong>Documentation</strong>: Expanded documentation to cover new CLI features, parallel processing, and benchmarking workflow.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h4>Fixed<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>CLI Argument Handling</strong>: Improved validation and error reporting for missing or invalid arguments.</p></li>
+<li><p><strong>Visualization Output</strong>: Fixed issues with saving and displaying generated charts.</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h3>[2.0.0] - 2025-08-02<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<section id="id6">
+<h4>Added<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Enhanced Spreadsheet Analysis</strong>: Improved structural analysis for better data representation</p></li>
+<li><p><strong>Expanded Visualization Tools</strong>: More visualization options for compression analysis</p></li>
+<li><p><strong>Optimized Token Usage</strong>: Further token reduction for more efficient processing</p></li>
+<li><p><strong>Multi-Sheet Analysis</strong>: Better handling of workbooks with multiple sheets</p></li>
+<li><p><strong>Smart Table Detection</strong>: Advanced algorithms for detecting and classifying table regions</p></li>
+<li><p><strong>Formula Extraction &amp; Analysis</strong>: Improved extraction and dependency analysis for Excel formulas</p></li>
+</ul>
+</section>
+<section id="id7">
+<h4>Enhanced<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Core Architecture</strong>: Refactored core architecture for better maintainability and extensibility</p></li>
+<li><p><strong>Performance Optimizations</strong>: Reduced memory usage and improved processing speed</p></li>
+<li><p><strong>CLI Interface</strong>: Added new command options for enhanced functionality</p></li>
+<li><p><strong>Documentation</strong>: Comprehensive documentation updates with more examples</p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>Fixed<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Table Detection Edge Cases</strong>: Fixed issues with complex table structures</p></li>
+<li><p><strong>Compression Ratio Calculation</strong>: More accurate calculation for sparse spreadsheets</p></li>
+<li><p><strong>Memory Leaks</strong>: Addressed potential memory issues with large spreadsheets</p></li>
+</ul>
+</section>
+</section>
+<section id="id9">
+<h3>[1.1.0] - 2025-07-30<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<section id="id10">
+<h4>Added<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Auto-Configuration</strong>: New <code class="docutils literal notranslate"><span class="pre">auto_configure()</span></code> method that automatically optimizes compression settings based on spreadsheet characteristics (sparsity, size, data types)</p></li>
+<li><p><strong>Auto-Compress</strong>: New <code class="docutils literal notranslate"><span class="pre">compress_with_auto_config()</span></code> method for one-step automatic optimization and compression</p></li>
+<li><p><strong>Multi-LLM Support</strong>: Provider-specific output formats for ChatGPT, Claude, and Gemini via <code class="docutils literal notranslate"><span class="pre">encode_for_llm_provider()</span></code></p></li>
+<li><p><strong>Enhanced CLI</strong>: Support for <code class="docutils literal notranslate"><span class="pre">--auto-config</span></code>, <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> flags with demo mode</p></li>
+<li><p><strong>Advanced Logging</strong>: Optional detailed logging for debugging and monitoring compression operations</p></li>
+<li><p><strong>Enhanced Range Detection</strong>: Improved <code class="docutils literal notranslate"><span class="pre">_merge_address_ranges()</span></code> method that creates ranges like <code class="docutils literal notranslate"><span class="pre">A1:A5</span></code> for contiguous cells</p></li>
+<li><p><strong>Contiguous Cell Grouping</strong>: Enhanced <code class="docutils literal notranslate"><span class="pre">_group_contiguous_cells()</span></code> method for better data format aggregation</p></li>
+<li><p><strong>Comprehensive Test Suite</strong>: Added <code class="docutils literal notranslate"><span class="pre">test_enhanced_features.py</span></code> with 6 new test cases</p></li>
+<li><p><strong>CSV Testing Tools</strong>: Added demo scripts and test files for easy CSV testing</p></li>
+<li><p><strong>Format Comparison Tools</strong>: Added utilities to compare different LLM output formats</p></li>
+</ul>
+</section>
+<section id="id11">
+<h4>Enhanced<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>CLI Interface</strong>: Can now combine <code class="docutils literal notranslate"><span class="pre">--demo</span></code> with <code class="docutils literal notranslate"><span class="pre">--vanilla</span></code>, <code class="docutils literal notranslate"><span class="pre">--auto-config</span></code>, <code class="docutils literal notranslate"><span class="pre">--format</span></code>, and <code class="docutils literal notranslate"><span class="pre">--stats</span></code> options</p></li>
+<li><p><strong>JSON Output</strong>: Proper JSON serialization with numpy type handling</p></li>
+<li><p><strong>Error Handling</strong>: Better error messages and validation</p></li>
+<li><p><strong>Code Coverage</strong>: Increased test coverage to 34 passing tests</p></li>
+</ul>
+</section>
+<section id="id12">
+<h4>Fixed<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Range Detection</strong>: Fixed incomplete implementation in address range merging</p></li>
+<li><p><strong>Cell Grouping</strong>: Fixed placeholder implementation in contiguous cell detection</p></li>
+<li><p><strong>JSON Serialization</strong>: Fixed numpy data type serialization issues</p></li>
+<li><p><strong>CLI Argument Handling</strong>: Fixed argument parsing for combined flags</p></li>
+</ul>
+</section>
+<section id="performance">
+<h4>Performance<a class="headerlink" href="#performance" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Token Reduction</strong>: Improved compression ratios, especially for sparse data (up to 5.5x reduction vs vanilla)</p></li>
+<li><p><strong>Format Optimization</strong>: Provider-specific formats reduce token usage by 34-90% compared to general format</p></li>
+<li><p><strong>Auto-tuning</strong>: Automatic parameter optimization based on data characteristics</p></li>
+</ul>
+</section>
+<section id="documentation">
+<h4>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>README Updates</strong>: Added documentation for all new features and CLI options</p></li>
+<li><p><strong>Format Guide</strong>: Created comprehensive LLM format comparison documentation</p></li>
+<li><p><strong>Testing Guide</strong>: Added CSV testing documentation and examples</p></li>
+<li><p><strong>API Reference</strong>: Updated with new methods and parameters</p></li>
+</ul>
+</section>
+</section>
+<section id="xx-xx">
+<h3>[1.0.0] - 2024-XX-XX<a class="headerlink" href="#xx-xx" title="Link to this heading">¶</a></h3>
+<section id="id13">
+<h4>Added<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Initial release of SheetWise</p></li>
+<li><p>Core compression framework with three modules</p></li>
+<li><p>Vanilla encoding methods</p></li>
+<li><p>Chain of Spreadsheet reasoning</p></li>
+<li><p>Basic CLI interface</p></li>
+<li><p>Comprehensive test suite</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="license.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">License</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="contributing.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Contributing</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Khushiyant Chauhan
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Changelog</a><ul>
+<li><a class="reference internal" href="#changelog">Changelog</a><ul>
+<li><a class="reference internal" href="#id1">[2.4.0] - 2025-12-09</a><ul>
+<li><a class="reference internal" href="#added">Added</a></li>
+<li><a class="reference internal" href="#changed">Changed</a></li>
+<li><a class="reference internal" href="#removed">Removed</a></li>
+<li><a class="reference internal" href="#fixed">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">[2.3.0] - 2025-08-19</a><ul>
+<li><a class="reference internal" href="#id3">Added</a></li>
+<li><a class="reference internal" href="#enhanced">Enhanced</a></li>
+<li><a class="reference internal" href="#id4">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">[2.0.0] - 2025-08-02</a><ul>
+<li><a class="reference internal" href="#id6">Added</a></li>
+<li><a class="reference internal" href="#id7">Enhanced</a></li>
+<li><a class="reference internal" href="#id8">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">[1.1.0] - 2025-07-30</a><ul>
+<li><a class="reference internal" href="#id10">Added</a></li>
+<li><a class="reference internal" href="#id11">Enhanced</a></li>
+<li><a class="reference internal" href="#id12">Fixed</a></li>
+<li><a class="reference internal" href="#performance">Performance</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#xx-xx">[1.0.0] - 2024-XX-XX</a><ul>
+<li><a class="reference internal" href="#id13">Added</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=c3c8ae58"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=30646c52"></script>
+    </body>
+</html>

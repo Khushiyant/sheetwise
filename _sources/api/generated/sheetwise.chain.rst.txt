@@ -1,0 +1,12 @@
+sheetwise.chain
+===============
+
+.. automodule:: sheetwise.chain
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ChainOfSpreadsheet
+   

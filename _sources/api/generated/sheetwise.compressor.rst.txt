@@ -1,0 +1,12 @@
+sheetwise.compressor
+====================
+
+.. automodule:: sheetwise.compressor
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SheetCompressor
+   

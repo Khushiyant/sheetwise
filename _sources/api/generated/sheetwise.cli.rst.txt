@@ -1,0 +1,12 @@
+sheetwise.cli
+=============
+
+.. automodule:: sheetwise.cli
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      main
+   

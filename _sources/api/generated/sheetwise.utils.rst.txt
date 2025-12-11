@@ -1,0 +1,12 @@
+sheetwise.utils
+===============
+
+.. automodule:: sheetwise.utils
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      create_realistic_spreadsheet
+   

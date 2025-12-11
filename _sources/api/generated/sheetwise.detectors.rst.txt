@@ -1,0 +1,12 @@
+sheetwise.detectors
+===================
+
+.. automodule:: sheetwise.detectors
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TableDetector
+   
