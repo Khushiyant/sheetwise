@@ -28,6 +28,10 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         if isinstance(obj, np.bool_):
             return bool(obj)
+        if isinstance(obj, np.generic):
+            return obj.item()
+        if pd.isna(obj):
+            return None
         return super().default(obj)
 
 
@@ -64,23 +68,57 @@ class SpreadsheetLLM:
             self.logger.setLevel(logging.INFO)
 
     def load_from_file(self, filepath: str) -> pd.DataFrame:
-        """Load spreadsheet from file."""
-        if filepath.endswith(".xlsx") or filepath.endswith(".xls"):
-            return pd.read_excel(filepath)
-        elif filepath.endswith(".csv"):
-            return pd.read_csv(filepath)
+        """
+        Load spreadsheet from file with robust type detection.
+        Detects file type using magic numbers (signatures) rather than extensions.
+        """
+        # Read the first 8 bytes to verify the file signature
+        with open(filepath, "rb") as f:
+            header = f.read(8)
+
+        # Signature: XLSX (Zip archive) -> PK\x03\x04
+        if header.startswith(b'PK\x03\x04'):
+            # Force engine='openpyxl' for .xlsx files
+            return pd.read_excel(filepath, engine="openpyxl")
+        
+        # Signature: XLS (OLE Compound File) -> D0 CF 11 E0
+        elif header.startswith(b'\xD0\xCF\x11\xE0'):
+            # Requires 'xlrd' library installed
+            try:
+                return pd.read_excel(filepath, engine="xlrd")
+            except ImportError:
+                raise ImportError(
+                    "Legacy .xls file detected. Please install 'xlrd' to support this format: "
+                    "pip install xlrd"
+                )
+
+        # Fallback: Try decoding as text (CSV or TSV)
         else:
-            raise ValueError("Unsupported file format. Use .xlsx, .xls, or .csv")
+            try:
+                # Try standard CSV (comma-separated)
+                return pd.read_csv(filepath)
+            except Exception:
+                try:
+                    # Try TSV (tab-separated)
+                    return pd.read_csv(filepath, sep="\t")
+                except Exception:
+                    raise ValueError(
+                        "Unsupported or unrecognized file format. "
+                        "Supported formats: Excel (.xlsx, .xls) and CSV/TSV."
+                    )
 
     # --- New Offline Features ---
 
-    def query_sql(self, df: pd.DataFrame, sql_query: str) -> pd.DataFrame:
+    def query_sql(self, df: pd.DataFrame, sql_query: str, params: Optional[Union[list, Dict[str, Any]]] = None) -> pd.DataFrame:
         """
-        Run a SQL query directly against the DataFrame.
+        Run a SQL query against the DataFrame using DuckDB with enhanced security.
         
         Args:
-            df: The dataframe to query (treated as table 'df' or 'input_data')
-            sql_query: Standard SQL query (e.g., "SELECT * FROM input_data WHERE Year > 2020")
+            df: The dataframe to query (registered as table 'input_data')
+            sql_query: SQL query. Use 'input_data' to refer to the dataframe.
+                       Example: "SELECT * FROM input_data WHERE Year > ?"
+            params: Optional parameters for the query to prevent SQL injection.
+                    Supports list (for '?') or dict (for '$name') parameters.
             
         Returns:
             Result as a new DataFrame
@@ -88,9 +126,23 @@ class SpreadsheetLLM:
         if duckdb is None:
             raise ImportError("Please install 'duckdb' for SQL support: pip install duckdb")
         
-        # Register the dataframe as a view named 'input_data'
-        input_data = df  # noqa: F841 (variable used inside SQL query context)
-        return duckdb.sql(sql_query).df()
+        # Use a transient in-memory connection for isolation (avoids global state pollution)
+        con = duckdb.connect(database=':memory:')
+        
+        try:
+            # Explicitly register the dataframe as a table
+            con.register('input_data', df)
+            
+            # Execute with optional parameters for security
+            if params:
+                return con.execute(sql_query, params).df()
+            else:
+                return con.execute(sql_query).df()
+        except Exception as e:
+            # Re-raise with context if query fails
+            raise ValueError(f"SQL Execution failed: {str(e)}") from e
+        finally:
+            con.close()
 
     def encode_to_json(self, df: pd.DataFrame) -> str:
         """

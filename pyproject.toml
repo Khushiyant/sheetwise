@@ -1,6 +1,6 @@
 [project]
 name = "sheetwise"
-version = "2.5.0"
+version = "2.5.1"
 description = "A Python package for encoding spreadsheets for Large Language Models, implementing the SpreadsheetLLM research framework"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -31,6 +31,7 @@ dependencies = [
     "rich>=14.1.0",
     "duckdb>=1.4.3",
     "thefuzz>=0.22.1",
+    "xlrd>=2.0.2",
 ]
 
 [project.scripts]
