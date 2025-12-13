@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath('../../src'))
 project = 'SheetWise'
 copyright = '2025, Khushiyant Chauhan'
 author = 'Khushiyant Chauhan'
-release = '2.5.0' 
+release = '2.5.1' 
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
