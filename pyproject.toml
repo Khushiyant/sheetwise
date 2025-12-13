@@ -139,3 +139,17 @@ exclude_lines = [
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",
 ]
+
+
+[tool.semantic_release]
+# Tells the tool to read/write the version ONLY in pyproject.toml
+version_toml = ["pyproject.toml:project.version"]
+
+# We don't track version in source files
+version_variables = [] 
+
+branch = "main"
+changelog_file = "CHANGELOG.md"
+
+# Use 'uv' to build the package
+build_command = "uv build"
