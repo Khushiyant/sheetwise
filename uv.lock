@@ -3406,7 +3406,7 @@ wheels = [
 
 [[package]]
 name = "sheetwise"
-version = "2.5.1"
+version = "2.6.1"
 source = { editable = "." }
 dependencies = [
     { name = "duckdb" },
