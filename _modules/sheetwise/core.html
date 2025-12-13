@@ -283,6 +283,10 @@
             <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
 </div>
 
@@ -328,26 +332,60 @@
 <div class="viewcode-block" id="SpreadsheetLLM.load_from_file">
 <a class="viewcode-back" href="../../api/sheetwise.core.html#sheetwise.SpreadsheetLLM.load_from_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">load_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load spreadsheet from file.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.xlsx&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.xls&quot;</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load spreadsheet from file with robust type detection.</span>
+<span class="sd">        Detects file type using magic numbers (signatures) rather than extensions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Read the first 8 bytes to verify the file signature</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+        <span class="c1"># Signature: XLSX (Zip archive) -&gt; PK\x03\x04</span>
+        <span class="k">if</span> <span class="n">header</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;PK</span><span class="se">\x03\x04</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="c1"># Force engine=&#39;openpyxl&#39; for .xlsx files</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Signature: XLS (OLE Compound File) -&gt; D0 CF 11 E0</span>
+        <span class="k">elif</span> <span class="n">header</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xD0\xCF\x11\xE0</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="c1"># Requires &#39;xlrd&#39; library installed</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;xlrd&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                    <span class="s2">&quot;Legacy .xls file detected. Please install &#39;xlrd&#39; to support this format: &quot;</span>
+                    <span class="s2">&quot;pip install xlrd&quot;</span>
+                <span class="p">)</span>
+
+        <span class="c1"># Fallback: Try decoding as text (CSV or TSV)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unsupported file format. Use .xlsx, .xls, or .csv&quot;</span><span class="p">)</span></div>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Try standard CSV (comma-separated)</span>
+                <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Try TSV (tab-separated)</span>
+                    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;Unsupported or unrecognized file format. &quot;</span>
+                        <span class="s2">&quot;Supported formats: Excel (.xlsx, .xls) and CSV/TSV.&quot;</span>
+                    <span class="p">)</span></div>
 
 
     <span class="c1"># --- New Offline Features ---</span>
 
 <div class="viewcode-block" id="SpreadsheetLLM.query_sql">
 <a class="viewcode-back" href="../../api/sheetwise.core.html#sheetwise.SpreadsheetLLM.query_sql">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">query_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">sql_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">sql_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Run a SQL query directly against the DataFrame.</span>
+<span class="sd">        Run a SQL query against the DataFrame using DuckDB with enhanced security.</span>
 <span class="sd">        </span>
 <span class="sd">        Args:</span>
-<span class="sd">            df: The dataframe to query (treated as table &#39;df&#39; or &#39;input_data&#39;)</span>
-<span class="sd">            sql_query: Standard SQL query (e.g., &quot;SELECT * FROM input_data WHERE Year &gt; 2020&quot;)</span>
+<span class="sd">            df: The dataframe to query (registered as table &#39;input_data&#39;)</span>
+<span class="sd">            sql_query: SQL query. Use &#39;input_data&#39; to refer to the dataframe.</span>
+<span class="sd">                       Example: &quot;SELECT * FROM input_data WHERE Year &gt; ?&quot;</span>
+<span class="sd">            params: Optional parameters for the query to prevent SQL injection.</span>
+<span class="sd">                    Supports list (for &#39;?&#39;) or dict (for &#39;$name&#39;) parameters.</span>
 <span class="sd">            </span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Result as a new DataFrame</span>
@@ -355,9 +393,23 @@
         <span class="k">if</span> <span class="n">duckdb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Please install &#39;duckdb&#39; for SQL support: pip install duckdb&quot;</span><span class="p">)</span>
         
-        <span class="c1"># Register the dataframe as a view named &#39;input_data&#39;</span>
-        <span class="n">input_data</span> <span class="o">=</span> <span class="n">df</span>  <span class="c1"># noqa: F841 (variable used inside SQL query context)</span>
-        <span class="k">return</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="n">sql_query</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span></div>
+        <span class="c1"># Use a transient in-memory connection for isolation (avoids global state pollution)</span>
+        <span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Explicitly register the dataframe as a table</span>
+            <span class="n">con</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;input_data&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+            
+            <span class="c1"># Execute with optional parameters for security</span>
+            <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql_query</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql_query</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Re-raise with context if query fails</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SQL Execution failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="SpreadsheetLLM.encode_to_json">
