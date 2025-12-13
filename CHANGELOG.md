@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [2.6.1] - 2025-12-13
+
+### Added
+- **Robust File Detection**: Implemented binary signature ("magic number") verification in `load_from_file` to correctly identify file types regardless of extension (fixes crashes on mislabeled files).
+- **Legacy Excel Support**: Added `xlrd` dependency to support older `.xls` files.
+- **CI/CD Pipeline**: Added `.github/workflows/tests.yml` to automate testing across multiple Python versions.
+
+### Enhanced
+- **SQL Security**: Completely rewrote `query_sql` to use isolated DuckDB connections and parameterized queries, preventing SQL injection risks.
+- **Compression Algorithms**:
+    - **Transition Anchors**: Updated `StructuralAnchorExtractor` to detect data type transitions (e.g., Header -> Body) ensuring context is preserved.
+    - **2D Block Merging**: Updated `InvertedIndexTranslator` to merge rectangular regions (e.g., `A1:B2`) instead of just rows, significantly reducing token usage for dense tables.
+
+### Fixed
+- **Dependency Handling**: Fixed optional/missing dependency issues for `duckdb` and `xlrd`.
+- **Production Stability**: Removed "research-grade" shortcuts in favor of robust error handling and type safety.
+
 ## [2.4.0] - 2025-12-09
 
 ### Added
