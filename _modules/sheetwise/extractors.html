@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>sheetwise.extractors - SheetWise 2.5.1 documentation</title>
+        <title>sheetwise.extractors - SheetWise 2.6.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">SheetWise 2.5.1 documentation</div></a>
+      <a href="../../index.html"><div class="brand">SheetWise 2.6.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">SheetWise 2.5.1 documentation</span>
+  <span class="sidebar-brand-text">SheetWise 2.6.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -249,10 +249,10 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for sheetwise.extractors</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Compression modules for SpreadsheetLLM framework.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Compression modules for SpreadsheetLLM framework (Enhanced).&quot;&quot;&quot;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -282,42 +282,51 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">find_structural_anchors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Identify heterogeneous rows and columns that serve as structural anchors.</span>
-<span class="sd">        Optimized using vectorized operations.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            df: Input DataFrame</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Tuple of (anchor_rows, anchor_cols)</span>
+<span class="sd">        </span>
+<span class="sd">        Improvements (v2.5.1):</span>
+<span class="sd">        - Added &#39;Transition Detection&#39;: Captures boundaries between regions (e.g., Header -&gt; Body)</span>
+<span class="sd">        - Vectorized implementation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[],</span> <span class="p">[]</span>
 
-        <span class="c1"># create a grid of types for the entire dataframe at once</span>
+        <span class="c1"># Create a grid of types</span>
         <span class="n">type_grid</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">DataTypeClassifier</span><span class="o">.</span><span class="n">classify_cell_type</span><span class="p">)</span>
+        <span class="n">type_values</span> <span class="o">=</span> <span class="n">type_grid</span><span class="o">.</span><span class="n">values</span>
 
-        <span class="c1"># Vectorized check for heterogeneity</span>
+        <span class="c1"># 1. Internal Heterogeneity (Existing logic)</span>
         <span class="c1"># A row/col is heterogeneous if it has &gt; 2 unique types</span>
         <span class="n">row_nunique</span> <span class="o">=</span> <span class="n">type_grid</span><span class="o">.</span><span class="n">nunique</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">col_nunique</span> <span class="o">=</span> <span class="n">type_grid</span><span class="o">.</span><span class="n">nunique</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="c1"># Get integer indices where unique count &gt; 2</span>
-        <span class="c1"># We use .values to ignore index labels (which might be strings) and get raw positions</span>
-        <span class="n">anchor_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">row_nunique</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="n">anchor_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">col_nunique</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">anchor_rows</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">row_nunique</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">anchor_cols</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">col_nunique</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 
-        <span class="c1"># Always include boundaries if they aren&#39;t already included</span>
-        <span class="k">if</span> <span class="mi">0</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anchor_rows</span><span class="p">:</span>
-            <span class="n">anchor_rows</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anchor_rows</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">anchor_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># 2. Structural Transitions (New logic)</span>
+        <span class="c1"># If a row is significantly different from the one below it, it&#39;s a boundary.</span>
+        <span class="c1"># This catches &quot;All-String Header&quot; vs &quot;All-Float Data&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># Compare Row[i] vs Row[i+1]</span>
+            <span class="c1"># We count how many columns changed type</span>
+            <span class="n">row_diffs</span> <span class="o">=</span> <span class="p">(</span><span class="n">type_values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">type_values</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="c1"># If &gt; 50% of columns change type, it&#39;s a boundary</span>
+            <span class="n">change_magnitude</span> <span class="o">=</span> <span class="n">row_diffs</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">threshold</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+            
+            <span class="c1"># Get indices where change is significant</span>
+            <span class="n">transition_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">change_magnitude</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            
+            <span class="c1"># Add i and i+1 (the boundary pair)</span>
+            <span class="n">anchor_rows</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">transition_indices</span><span class="p">)</span>
+            <span class="n">anchor_rows</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">transition_indices</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="mi">0</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anchor_cols</span><span class="p">:</span>
-            <span class="n">anchor_cols</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anchor_cols</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">anchor_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># 3. Always include boundaries</span>
+        <span class="n">anchor_rows</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">anchor_rows</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">anchor_cols</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">anchor_cols</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">anchor_rows</span><span class="p">))),</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">anchor_cols</span><span class="p">)))</span></div>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">anchor_rows</span><span class="p">)),</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">anchor_cols</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="StructuralAnchorExtractor.extract_skeleton">
@@ -325,77 +334,45 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">extract_skeleton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Extract spreadsheet skeleton by keeping only structurally important rows/columns.</span>
-<span class="sd">        More aggressive compression by removing homogeneous empty regions.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            df: Input DataFrame</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Compressed DataFrame with structural skeleton</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">df</span>
 
         <span class="c1"># Vectorized detection of content</span>
-        <span class="c1"># Create a boolean mask where True indicates content exists</span>
         <span class="n">content_mask</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         
-        <span class="c1"># Get indices of rows/cols that have ANY content</span>
-        <span class="n">rows_with_content</span> <span class="o">=</span> <span class="n">content_mask</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-        <span class="n">rows_with_content_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rows_with_content</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        
-        <span class="n">cols_with_content</span> <span class="o">=</span> <span class="n">content_mask</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-        <span class="n">cols_with_content_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cols_with_content</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">rows_with_content_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">content_mask</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cols_with_content_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">content_mask</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="c1"># Find structural anchors</span>
         <span class="n">anchor_rows</span><span class="p">,</span> <span class="n">anchor_cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_structural_anchors</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-        <span class="c1"># Efficiently calculate valid anchors (those near content)</span>
-        <span class="c1"># Using sets for O(1) lookups and automatic deduplication</span>
         <span class="n">important_rows</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">rows_with_content_indices</span><span class="p">)</span>
         <span class="n">important_cols</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">cols_with_content_indices</span><span class="p">)</span>
 
-        <span class="c1"># Process Row Anchors</span>
+        <span class="c1"># Process Anchors with broadcasting</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows_with_content_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># Convert to numpy arrays for broadcasting</span>
             <span class="n">content_row_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rows_with_content_indices</span><span class="p">)</span>
-            
             <span class="k">for</span> <span class="n">anchor</span> <span class="ow">in</span> <span class="n">anchor_rows</span><span class="p">:</span>
-                <span class="c1"># Vectorized distance check: find min distance to any content row</span>
-                <span class="n">min_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">content_row_arr</span> <span class="o">-</span> <span class="n">anchor</span><span class="p">))</span>
-                
-                <span class="k">if</span> <span class="n">min_dist</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">:</span>
-                    <span class="c1"># Add neighborhood</span>
-                    <span class="n">start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">anchor</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
-                    <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">anchor</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-                    <span class="n">important_rows</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
+                <span class="c1"># Find content rows within k distance</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">content_row_arr</span> <span class="o">-</span> <span class="n">anchor</span><span class="p">)</span>
+                <span class="n">nearby</span> <span class="o">=</span> <span class="n">content_row_arr</span><span class="p">[</span><span class="n">dist</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">]</span>
+                <span class="n">important_rows</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">nearby</span><span class="p">)</span>
 
-        <span class="c1"># Process Column Anchors</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols_with_content_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">content_col_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cols_with_content_indices</span><span class="p">)</span>
-            
             <span class="k">for</span> <span class="n">anchor</span> <span class="ow">in</span> <span class="n">anchor_cols</span><span class="p">:</span>
-                <span class="n">min_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">content_col_arr</span> <span class="o">-</span> <span class="n">anchor</span><span class="p">))</span>
-                
-                <span class="k">if</span> <span class="n">min_dist</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">:</span>
-                    <span class="n">start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">anchor</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
-                    <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">anchor</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-                    <span class="n">important_cols</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">content_col_arr</span> <span class="o">-</span> <span class="n">anchor</span><span class="p">)</span>
+                <span class="n">nearby</span> <span class="o">=</span> <span class="n">content_col_arr</span><span class="p">[</span><span class="n">dist</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">]</span>
+                <span class="n">important_cols</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">nearby</span><span class="p">)</span>
 
         <span class="c1"># Fallback for empty/sparse sheets</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">important_rows</span><span class="p">:</span>
-            <span class="n">important_rows</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)}</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+            <span class="n">important_rows</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">important_cols</span><span class="p">:</span>
-            <span class="n">important_cols</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)}</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+            <span class="n">important_cols</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span>
 
-        <span class="c1"># Sort and slice</span>
-        <span class="n">sorted_rows</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">important_rows</span><span class="p">))</span>
-        <span class="n">sorted_cols</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">important_cols</span><span class="p">))</span>
-
-        <span class="c1"># Using iloc for integer-position based indexing</span>
-        <span class="n">skeleton_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sorted_rows</span><span class="p">,</span> <span class="n">sorted_cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">skeleton_df</span></div>
+        <span class="c1"># Slicing</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">important_rows</span><span class="p">)),</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">important_cols</span><span class="p">))]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 </div>
 
 
@@ -403,26 +380,15 @@
 <div class="viewcode-block" id="InvertedIndexTranslator">
 <a class="viewcode-back" href="../../api/sheetwise.extractors.html#sheetwise.extractors.InvertedIndexTranslator">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">InvertedIndexTranslator</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements inverted-index translation for token efficiency&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements inverted-index translation with 2D block compression&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="InvertedIndexTranslator.translate">
 <a class="viewcode-back" href="../../api/sheetwise.extractors.html#sheetwise.extractors.InvertedIndexTranslator.translate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Convert spreadsheet to inverted index format.</span>
-<span class="sd">        Optimized to use DataFrame stacking instead of iteration.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            df: Input DataFrame</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Dictionary with cell values as keys and cell addresses as values</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{}</span>
 
-        <span class="c1"># Resetting index to get simple integer coordinates relative to the current slice</span>
-        <span class="c1"># This ensures we work with 0-based integer indices regardless of the DF&#39;s index labels</span>
+        <span class="c1"># Reset index for clean coordinates</span>
         <span class="n">temp_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">temp_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp_df</span><span class="p">))</span>
         <span class="n">temp_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp_df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
@@ -431,22 +397,20 @@
         <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">stacked</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">stacked</span><span class="p">)</span>
         <span class="n">valid_cells</span> <span class="o">=</span> <span class="n">stacked</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
 
-        <span class="n">inverted_index</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-        
-        <span class="c1"># Iterate over the valid cells only</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">row_idx</span><span class="p">,</span> <span class="n">col_idx</span><span class="p">),</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">valid_cells</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">str_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">str_value</span><span class="p">:</span>
-                <span class="n">cell_addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_excel_address</span><span class="p">(</span><span class="n">row_idx</span><span class="p">,</span> <span class="n">col_idx</span><span class="p">)</span>
-                <span class="n">inverted_index</span><span class="p">[</span><span class="n">str_value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell_addr</span><span class="p">)</span>
+        <span class="c1"># Group coordinates by value</span>
+        <span class="n">value_groups</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">),</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">valid_cells</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value_groups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">))</span>
 
-        <span class="c1"># Merge ranges for final output</span>
+        <span class="c1"># Convert groups to compressed ranges</span>
         <span class="n">final_index</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">addresses</span> <span class="ow">in</span> <span class="n">inverted_index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">addresses</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">final_index</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_merge_address_ranges</span><span class="p">(</span><span class="n">addresses</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">val</span><span class="p">,</span> <span class="n">coords</span> <span class="ow">in</span> <span class="n">value_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">val</span><span class="p">:</span> <span class="k">continue</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">final_index</span><span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_merge_2d_ranges</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">final_index</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">addresses</span>
+                <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">final_index</span><span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_excel_address</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)]</span>
 
         <span class="k">return</span> <span class="n">final_index</span></div>
 
@@ -461,56 +425,57 @@
             <span class="n">col_num</span> <span class="o">//=</span> <span class="mi">26</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col_letter</span><span class="si">}{</span><span class="n">row</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_merge_address_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addresses</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Attempt to merge contiguous cell addresses into ranges&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">addresses</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">addresses</span>
-            
-        <span class="c1"># Helper to parse A1 to (col, row)</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">parse_addr</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span> <span class="ow">and</span> <span class="n">addr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>
-                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">col_str</span> <span class="o">=</span> <span class="n">addr</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">row_str</span> <span class="o">=</span> <span class="n">addr</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
-            
-            <span class="n">col_num</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">col_str</span><span class="p">:</span>
-                <span class="n">col_num</span> <span class="o">=</span> <span class="n">col_num</span> <span class="o">*</span> <span class="mi">26</span> <span class="o">+</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">col_num</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">row_str</span><span class="p">),</span> <span class="n">addr</span>
-
-        <span class="n">parsed</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_addr</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span> <span class="k">for</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">addresses</span><span class="p">]</span>
-        <span class="c1"># Sort by row then column</span>
-        <span class="n">parsed</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_merge_2d_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Merges a list of (row, col) coordinates into optimal rectangular ranges.</span>
+<span class="sd">        Uses a greedy maximal rectangle algorithm.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Convert to set for fast lookup</span>
+        <span class="n">point_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
         <span class="n">ranges</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">current_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">parsed</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
         
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed</span><span class="p">)):</span>
-            <span class="n">prev_col</span><span class="p">,</span> <span class="n">prev_row</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">current_range</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">curr_col</span><span class="p">,</span> <span class="n">curr_row</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            
-            <span class="c1"># Check adjacency (horizontal OR vertical)</span>
-            <span class="n">is_horizontal_next</span> <span class="o">=</span> <span class="p">(</span><span class="n">curr_row</span> <span class="o">==</span> <span class="n">prev_row</span> <span class="ow">and</span> <span class="n">curr_col</span> <span class="o">==</span> <span class="n">prev_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">is_vertical_next</span> <span class="o">=</span> <span class="p">(</span><span class="n">curr_col</span> <span class="o">==</span> <span class="n">prev_col</span> <span class="ow">and</span> <span class="n">curr_row</span> <span class="o">==</span> <span class="n">prev_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            
-            <span class="k">if</span> <span class="n">is_horizontal_next</span> <span class="ow">or</span> <span class="n">is_vertical_next</span><span class="p">:</span>
-                <span class="n">current_range</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_range</span><span class="p">(</span><span class="n">current_range</span><span class="p">,</span> <span class="n">ranges</span><span class="p">)</span>
-                <span class="n">current_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">parsed</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="c1"># Sort to ensure deterministic processing (Row-major)</span>
+        <span class="n">sorted_coords</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_range</span><span class="p">(</span><span class="n">current_range</span><span class="p">,</span> <span class="n">ranges</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ranges</span>
+        <span class="n">processed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_finalize_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_range</span><span class="p">,</span> <span class="n">ranges</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper to format and append range&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_range</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">start_addr</span> <span class="o">=</span> <span class="n">current_range</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
-            <span class="n">end_addr</span> <span class="o">=</span> <span class="n">current_range</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
-            <span class="n">ranges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_addr</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">end_addr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ranges</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">current_range</span><span class="p">])</span></div>
+        <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">sorted_coords</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="n">processed</span><span class="p">:</span>
+                <span class="k">continue</span>
+                
+            <span class="c1"># Start a new rectangle here</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="mi">1</span>
+            
+            <span class="c1"># 1. Expand Right</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">width</span><span class="p">)</span> <span class="ow">in</span> <span class="n">point_set</span> <span class="ow">and</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">width</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">processed</span><span class="p">:</span>
+                <span class="n">width</span> <span class="o">+=</span> <span class="mi">1</span>
+                
+            <span class="c1"># 2. Expand Down (must match full width)</span>
+            <span class="n">can_expand_down</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">while</span> <span class="n">can_expand_down</span><span class="p">:</span>
+                <span class="n">next_r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">height</span>
+                <span class="c1"># Check if the entire row segment exists below</span>
+                <span class="n">row_segment</span> <span class="o">=</span> <span class="p">[(</span><span class="n">next_r</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">)]</span>
+                <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">p</span> <span class="ow">in</span> <span class="n">point_set</span> <span class="ow">and</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">row_segment</span><span class="p">):</span>
+                    <span class="n">height</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">can_expand_down</span> <span class="o">=</span> <span class="kc">False</span>
+            
+            <span class="c1"># 3. Mark as processed</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+                    <span class="n">processed</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">r</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">j</span><span class="p">))</span>
+            
+            <span class="c1"># 4. Generate Address String</span>
+            <span class="n">start_addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_excel_address</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">width</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">height</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">ranges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start_addr</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">end_addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_excel_address</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">ranges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_addr</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">end_addr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                
+        <span class="k">return</span> <span class="n">ranges</span></div>
 
 
 
@@ -524,100 +489,93 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Aggregate cells by data format and type.</span>
-<span class="sd">        Vectorized where possible.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            df: Input DataFrame</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Dictionary containing aggregated format information</span>
+<span class="sd">        Uses 2D Block Compression for token efficiency.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{}</span>
 
-        <span class="c1"># Create type grid</span>
         <span class="n">type_grid</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">DataTypeClassifier</span><span class="o">.</span><span class="n">classify_cell_type</span><span class="p">)</span>
-        
-        <span class="c1"># We need coordinates for the groups</span>
         <span class="n">aggregated</span> <span class="o">=</span> <span class="p">{}</span>
-        
-        <span class="c1"># Group by type</span>
         <span class="n">unique_types</span> <span class="o">=</span> <span class="n">type_grid</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
         
         <span class="k">for</span> <span class="n">data_type</span> <span class="ow">in</span> <span class="n">unique_types</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;Empty&quot;</span><span class="p">:</span>
                 <span class="k">continue</span>
                 
-            <span class="c1"># Get boolean mask for this type</span>
             <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">type_grid</span> <span class="o">==</span> <span class="n">data_type</span><span class="p">)</span>
-            
-            <span class="c1"># Get coordinates</span>
             <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
-            <span class="n">cells</span> <span class="o">=</span> <span class="p">[]</span>
             
-            <span class="c1"># This part is still a loop but over specific cells of one type</span>
-            <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
-                <span class="n">val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span>
-                <span class="n">addr</span> <span class="o">=</span> <span class="n">InvertedIndexTranslator</span><span class="p">()</span><span class="o">.</span><span class="n">_to_excel_address</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-                <span class="n">cells</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                    <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="n">addr</span><span class="p">,</span>
-                    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">val</span><span class="p">,</span>
-                    <span class="s2">&quot;row&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">,</span>
-                    <span class="s2">&quot;col&quot;</span><span class="p">:</span> <span class="n">c</span>
-                <span class="p">})</span>
+            <span class="c1"># Prepare coords for 2D merger</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">))</span>
             
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">aggregated</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_contiguous_cells</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># Reuse the logic, but we need metadata, not just address strings</span>
+                <span class="n">ranges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_2d_blocks</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+                <span class="n">aggregated</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">ranges</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">aggregated</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">cells</span>
+                <span class="c1"># Single cell case</span>
+                <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">aggregated</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+                    <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="n">InvertedIndexTranslator</span><span class="p">()</span><span class="o">.</span><span class="n">_to_excel_address</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span>
+                    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span>
+                    <span class="s2">&quot;row&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">,</span> <span class="s2">&quot;col&quot;</span><span class="p">:</span> <span class="n">c</span>
+                <span class="p">}]</span>
 
         <span class="k">return</span> <span class="n">aggregated</span></div>
 
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_group_contiguous_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cells</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Group contiguous cells with same data type&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">cells</span>
-            
-        <span class="c1"># Sort cells by position (row-major)</span>
-        <span class="n">cells</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;row&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">]))</span>
-        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_group_2d_blocks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">coords</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Similar to _merge_2d_ranges but preserves sample values and counts&quot;&quot;&quot;</span>
+        <span class="n">point_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
         <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">current_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-        
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cells</span><span class="p">)):</span>
-            <span class="n">prev_cell</span> <span class="o">=</span> <span class="n">current_group</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">curr_cell</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            
-            <span class="c1"># Check if cells are adjacent (horizontal OR vertical)</span>
-            <span class="n">is_horizontal</span> <span class="o">=</span> <span class="p">(</span><span class="n">prev_cell</span><span class="p">[</span><span class="s1">&#39;row&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">curr_cell</span><span class="p">[</span><span class="s1">&#39;row&#39;</span><span class="p">]</span> <span class="ow">and</span> 
-                           <span class="n">curr_cell</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prev_cell</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">is_vertical</span> <span class="o">=</span> <span class="p">(</span><span class="n">prev_cell</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">curr_cell</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">]</span> <span class="ow">and</span> 
-                         <span class="n">curr_cell</span><span class="p">[</span><span class="s1">&#39;row&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prev_cell</span><span class="p">[</span><span class="s1">&#39;row&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            
-            <span class="k">if</span> <span class="n">is_horizontal</span> <span class="ow">or</span> <span class="n">is_vertical</span><span class="p">:</span>
-                <span class="n">current_group</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr_cell</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_group</span><span class="p">(</span><span class="n">current_group</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
-                <span class="n">current_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">curr_cell</span><span class="p">]</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_group</span><span class="p">(</span><span class="n">current_group</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">groups</span>
+        <span class="n">sorted_coords</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+        <span class="n">processed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">translator</span> <span class="o">=</span> <span class="n">InvertedIndexTranslator</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_finalize_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_group</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper to format and append group&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_group</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">start_addr</span> <span class="o">=</span> <span class="n">current_group</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;address&#39;</span><span class="p">]</span>
-            <span class="n">end_addr</span> <span class="o">=</span> <span class="n">current_group</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;address&#39;</span><span class="p">]</span>
-            <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;range&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="n">start_addr</span><span class="p">,</span>
-                <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="n">end_addr</span><span class="p">,</span>
-                <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_group</span><span class="p">),</span>
-                <span class="s1">&#39;sample_value&#39;</span><span class="p">:</span> <span class="n">current_group</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
-            <span class="p">})</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">groups</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">current_group</span><span class="p">)</span></div>
+        <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">sorted_coords</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="n">processed</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="n">width</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="mi">1</span>
+            
+            <span class="c1"># Expand Right</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">width</span><span class="p">)</span> <span class="ow">in</span> <span class="n">point_set</span> <span class="ow">and</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">width</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">processed</span><span class="p">:</span>
+                <span class="n">width</span> <span class="o">+=</span> <span class="mi">1</span>
+                
+            <span class="c1"># Expand Down</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">next_r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">height</span>
+                <span class="n">row_segment</span> <span class="o">=</span> <span class="p">[(</span><span class="n">next_r</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">)]</span>
+                <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">p</span> <span class="ow">in</span> <span class="n">point_set</span> <span class="ow">and</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">row_segment</span><span class="p">):</span>
+                    <span class="n">height</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+            
+            <span class="c1"># Mark processed</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+                    <span class="n">processed</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">r</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">j</span><span class="p">))</span>
+            
+            <span class="n">start_addr</span> <span class="o">=</span> <span class="n">translator</span><span class="o">.</span><span class="n">_to_excel_address</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">width</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">height</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="n">start_addr</span><span class="p">,</span>
+                    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span>
+                    <span class="s2">&quot;row&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">,</span> <span class="s2">&quot;col&quot;</span><span class="p">:</span> <span class="n">c</span>
+                <span class="p">})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">end_addr</span> <span class="o">=</span> <span class="n">translator</span><span class="o">.</span><span class="n">_to_excel_address</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;range&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="n">start_addr</span><span class="p">,</span>
+                    <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="n">end_addr</span><span class="p">,</span>
+                    <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">width</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span>
+                    <span class="s1">&#39;sample_value&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="c1"># Representative value</span>
+                <span class="p">})</span>
+                
+        <span class="k">return</span> <span class="n">groups</span></div>
 
 </pre></div>
         </article>
@@ -651,7 +609,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=983e91d6"></script>
+</div><script src="../../_static/documentation_options.js?v=0a414f3d"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
