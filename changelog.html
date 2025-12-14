@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="License" href="license.html"><link rel="prev" title="Contributing" href="contributing.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>Changelog - SheetWise 2.6.1 documentation</title>
+        <title>Changelog - Sheetwise 2.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">SheetWise 2.6.1 documentation</div></a>
+      <a href="index.html"><div class="brand">Sheetwise 2.6.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <span class="sidebar-brand-text">SheetWise 2.6.1 documentation</span>
+  <span class="sidebar-brand-text">Sheetwise 2.6.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -258,194 +258,156 @@
           <section id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h1>
 <section id="changelog">
-<h2>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h2>
-<p>All notable changes to this project will be documented in this file.</p>
-<p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
-and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<h2>CHANGELOG<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h2>
+<section id="v2-6-2-2025-12-14">
+<h3>v2.6.2 (2025-12-14)<a class="headerlink" href="#v2-6-2-2025-12-14" title="Link to this heading">¶</a></h3>
+<section id="bug-fixes">
+<h4>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Add interactive HTML report generation for spreadsheet compression analysis
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/0831171e485a519c3efc60fba53472d0e166ac25"><code class="docutils literal notranslate"><span class="pre">0831171</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="chores">
+<h4>Chores<a class="headerlink" href="#chores" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Update CHANGELOG for version 2.6.1 with new features, enhancements, and fixes
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/b6717afdb6d53bd6b57d947e77c8825274261ad5"><code class="docutils literal notranslate"><span class="pre">b6717af</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="continuous-integration">
+<h4>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Add release workflow
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/3fff10bb9c1c379524c6df4c90282b121d56ff5d"><code class="docutils literal notranslate"><span class="pre">3fff10b</span></code></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-6-1-2025-12-13">
+<h3>v2.6.1 (2025-12-13)<a class="headerlink" href="#v2-6-1-2025-12-13" title="Link to this heading">¶</a></h3>
 <section id="id1">
-<h3>[2.6.1] - 2025-12-13<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
-<section id="added">
-<h4>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h4>
+<h4>Bug Fixes<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <ul class="simple">
-<li><p><strong>Robust File Detection</strong>: Implemented binary signature (“magic number”) verification in <code class="docutils literal notranslate"><span class="pre">load_from_file</span></code> to correctly identify file types regardless of extension (fixes crashes on mislabeled files).</p></li>
-<li><p><strong>Legacy Excel Support</strong>: Added <code class="docutils literal notranslate"><span class="pre">xlrd</span></code> dependency to support older <code class="docutils literal notranslate"><span class="pre">.xls</span></code> files.</p></li>
-<li><p><strong>CI/CD Pipeline</strong>: Added <code class="docutils literal notranslate"><span class="pre">.github/workflows/tests.yml</span></code> to automate testing across multiple Python versions.</p></li>
+<li><p>Add tomli dependency for improved TOML file handling in development
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/309ace492762bd766310e764c6829a6572ff6e6e"><code class="docutils literal notranslate"><span class="pre">309ace4</span></code></a>)</p></li>
+<li><p>Change data loading method from Excel to CSV for consistency
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/fd5bacb5a460b274f8df743fecd44cc5904d6a6d"><code class="docutils literal notranslate"><span class="pre">fd5bacb</span></code></a>)</p></li>
+<li><p>Remove tomli dependency and revert version reading in Sphinx config
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/1f425d21bb062146b4d86a76f17be3d4f27b34f5"><code class="docutils literal notranslate"><span class="pre">1f425d2</span></code></a>)</p></li>
+<li><p>Update documentation workflow to install specific dependencies for API generation
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/4600f18bf1b3e426b787571f0655e1cf4be08d69"><code class="docutils literal notranslate"><span class="pre">4600f18</span></code></a>)</p></li>
+<li><p>Update links and author information in documentation files
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/8a6dd0c963dc9698a935ea96066b7916c706a691"><code class="docutils literal notranslate"><span class="pre">8a6dd0c</span></code></a>)</p></li>
+<li><p>Update PyPI version badge in README.md for accurate display
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/58765b769c00258a5398d37c86406af113661f6c"><code class="docutils literal notranslate"><span class="pre">58765b7</span></code></a>)</p></li>
+<li><p>Update Python version in workflow and dynamically read project version from pyproject.toml
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/2cc538724b2d20b9ec7c1fab30fc78344bd27f56"><code class="docutils literal notranslate"><span class="pre">2cc5387</span></code></a>)</p></li>
+<li><p>Update Python version link in README.md to correct release
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/59858595f2c93060f615bb536ee28fff28d9a555"><code class="docutils literal notranslate"><span class="pre">5985859</span></code></a>)</p></li>
+<li><p>Update release version to 2.5.1 in Sphinx config and improve test workflow
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/58c5b524d80325045f1322735fc9be0ffdd253d1"><code class="docutils literal notranslate"><span class="pre">58c5b52</span></code></a>)</p></li>
 </ul>
-</section>
-<section id="enhanced">
-<h4>Enhanced<a class="headerlink" href="#enhanced" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>SQL Security</strong>: Completely rewrote <code class="docutils literal notranslate"><span class="pre">query_sql</span></code> to use isolated DuckDB connections and parameterized queries, preventing SQL injection risks.</p></li>
-<li><p><strong>Compression Algorithms</strong>:</p>
-<ul>
-<li><p><strong>Transition Anchors</strong>: Updated <code class="docutils literal notranslate"><span class="pre">StructuralAnchorExtractor</span></code> to detect data type transitions (e.g., Header -&gt; Body) ensuring context is preserved.</p></li>
-<li><p><strong>2D Block Merging</strong>: Updated <code class="docutils literal notranslate"><span class="pre">InvertedIndexTranslator</span></code> to merge rectangular regions (e.g., <code class="docutils literal notranslate"><span class="pre">A1:B2</span></code>) instead of just rows, significantly reducing token usage for dense tables.</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="fixed">
-<h4>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Dependency Handling</strong>: Fixed optional/missing dependency issues for <code class="docutils literal notranslate"><span class="pre">duckdb</span></code> and <code class="docutils literal notranslate"><span class="pre">xlrd</span></code>.</p></li>
-<li><p><strong>Production Stability</strong>: Removed “research-grade” shortcuts in favor of robust error handling and type safety.</p></li>
-</ul>
-</section>
 </section>
 <section id="id2">
-<h3>[2.4.0] - 2025-12-09<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
-<section id="id3">
-<h4>Added<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<h4>Chores<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <ul class="simple">
-<li><p><strong>Offline SQL Interface</strong>: Integrated <code class="docutils literal notranslate"><span class="pre">duckdb</span></code> to allow standard SQL queries directly against spreadsheet data via <code class="docutils literal notranslate"><span class="pre">query_sql()</span></code>.</p></li>
-<li><p><strong>Deterministic Reasoning Engine</strong>: Replaced LLM-based reasoning with a fuzzy keyword search engine using <code class="docutils literal notranslate"><span class="pre">thefuzz</span></code> in <code class="docutils literal notranslate"><span class="pre">ChainOfSpreadsheet</span></code>.</p></li>
-<li><p><strong>Structured JSON Export</strong>: New <code class="docutils literal notranslate"><span class="pre">encode_to_json()</span></code> method that exports compressed data to machine-readable JSON, featuring a custom <code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code> for numerical stability.</p></li>
-<li><p><strong>Advanced Data Classifiers</strong>: Expanded <code class="docutils literal notranslate"><span class="pre">DataTypeClassifier</span></code> to detect PII (Emails, SSNs, Phone Numbers) and Business Entities (IBANs, Stock Tickers).</p></li>
+<li><p>Add comprehensive documentation for SheetWise
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/a19187ebb0015bb7a8c7190bcab8e51929698ad8"><code class="docutils literal notranslate"><span class="pre">a19187e</span></code></a>)</p></li>
+<li><p>Created examples for basic and advanced usage in <code class="docutils literal notranslate"><span class="pre">examples.rst</span></code> - Established main documentation
+structure in <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> - Added installation instructions in <code class="docutils literal notranslate"><span class="pre">installation.rst</span></code> - Included
+license information in <code class="docutils literal notranslate"><span class="pre">license.rst</span></code> - Developed a quick start guide in <code class="docutils literal notranslate"><span class="pre">quickstart.rst</span></code> -
+Documented command line interface in <code class="docutils literal notranslate"><span class="pre">cli.rst</span></code> - Added user guides for compression, encoding,
+formulas, tables, and visualization - Updated <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> for documentation dependencies -
+Implemented scripts for building and generating documentation - Enhanced <code class="docutils literal notranslate"><span class="pre">uv.lock</span></code> with new
+dependencies for documentation tools</p></li>
+<li><p>Add image to README
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/34884d6ce99003e924c6be174196b43f8900547c"><code class="docutils literal notranslate"><span class="pre">34884d6</span></code></a>)</p></li>
 </ul>
-</section>
-<section id="changed">
-<h4>Changed<a class="headerlink" href="#changed" title="Link to this heading">¶</a></h4>
+<p>Added an image to the README for better visualization.</p>
 <ul class="simple">
-<li><p><strong>Core Philosophy Pivot</strong>: Transformed the project into a fully offline tool, removing dependencies on external LLM APIs and context window constraints.</p></li>
-<li><p><strong>Refactored Reasoning</strong>: <code class="docutils literal notranslate"><span class="pre">ChainOfSpreadsheet</span></code> now uses <code class="docutils literal notranslate"><span class="pre">SmartTableDetector</span></code> and relevance scoring instead of LLM prompts.</p></li>
-<li><p><strong>Updated Tests</strong>: Refactored test suite (<code class="docutils literal notranslate"><span class="pre">test_classifiers.py</span></code>, <code class="docutils literal notranslate"><span class="pre">test_core.py</span></code>) to validate deterministic outputs and new offline capabilities.</p></li>
-</ul>
-</section>
-<section id="removed">
-<h4>Removed<a class="headerlink" href="#removed" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>LLM-Specific Features</strong>: Removed <code class="docutils literal notranslate"><span class="pre">encode_to_token_limit</span></code> and other token-counting logic associated with LLM context windows.</p></li>
-<li><p><strong>Heuristic Detectors</strong>: Deprecated/removed older heuristic table detectors in favor of <code class="docutils literal notranslate"><span class="pre">SmartTableDetector</span></code>.</p></li>
-</ul>
-</section>
-<section id="id4">
-<h4>Fixed<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>JSON Serialization</strong>: Implemented a robust <code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code> to fix <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> crashes when exporting <code class="docutils literal notranslate"><span class="pre">int64</span></code> or <code class="docutils literal notranslate"><span class="pre">float64</span></code> data types to JSON.</p></li>
-</ul>
-</section>
-</section>
-<section id="id5">
-<h3>[2.3.0] - 2025-08-19<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
-<section id="id6">
-<h4>Added<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Colorful CLI Output</strong>: Enhanced CLI with rich color, tables, and progress bars for a more user-friendly experience (using the <code class="docutils literal notranslate"><span class="pre">rich</span></code> library).</p></li>
-<li><p><strong>Parallel Processing</strong>: Added <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> and <code class="docutils literal notranslate"><span class="pre">--jobs</span></code> options for fast multi-sheet workbook processing.</p></li>
-<li><p><strong>Benchmark &amp; Visualization Script</strong>: New script (<code class="docutils literal notranslate"><span class="pre">scripts/generate_benchmarks.py</span></code>) to benchmark compression, speed, and memory usage, and generate beautiful Seaborn charts for documentation.</p></li>
-<li><p><strong>Benchmarks Section in Docs</strong>: Updated README with instructions and example output for running and visualizing benchmarks.</p></li>
-</ul>
-</section>
-<section id="id7">
-<h4>Enhanced<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>CLI Usability</strong>: Improved error messages, output formatting, and summary tables for both demo and normal CLI modes.</p></li>
-<li><p><strong>Documentation</strong>: Expanded documentation to cover new CLI features, parallel processing, and benchmarking workflow.</p></li>
-</ul>
-</section>
-<section id="id8">
-<h4>Fixed<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>CLI Argument Handling</strong>: Improved validation and error reporting for missing or invalid arguments.</p></li>
-<li><p><strong>Visualization Output</strong>: Fixed issues with saving and displaying generated charts.</p></li>
-</ul>
-</section>
-</section>
-<section id="id9">
-<h3>[2.0.0] - 2025-08-02<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
-<section id="id10">
-<h4>Added<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Enhanced Spreadsheet Analysis</strong>: Improved structural analysis for better data representation</p></li>
-<li><p><strong>Expanded Visualization Tools</strong>: More visualization options for compression analysis</p></li>
-<li><p><strong>Optimized Token Usage</strong>: Further token reduction for more efficient processing</p></li>
-<li><p><strong>Multi-Sheet Analysis</strong>: Better handling of workbooks with multiple sheets</p></li>
-<li><p><strong>Smart Table Detection</strong>: Advanced algorithms for detecting and classifying table regions</p></li>
-<li><p><strong>Formula Extraction &amp; Analysis</strong>: Improved extraction and dependency analysis for Excel formulas</p></li>
-</ul>
-</section>
-<section id="id11">
-<h4>Enhanced<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Core Architecture</strong>: Refactored core architecture for better maintainability and extensibility</p></li>
-<li><p><strong>Performance Optimizations</strong>: Reduced memory usage and improved processing speed</p></li>
-<li><p><strong>CLI Interface</strong>: Added new command options for enhanced functionality</p></li>
-<li><p><strong>Documentation</strong>: Comprehensive documentation updates with more examples</p></li>
-</ul>
-</section>
-<section id="id12">
-<h4>Fixed<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Table Detection Edge Cases</strong>: Fixed issues with complex table structures</p></li>
-<li><p><strong>Compression Ratio Calculation</strong>: More accurate calculation for sparse spreadsheets</p></li>
-<li><p><strong>Memory Leaks</strong>: Addressed potential memory issues with large spreadsheets</p></li>
-</ul>
-</section>
-</section>
-<section id="id13">
-<h3>[1.1.0] - 2025-07-30<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
-<section id="id14">
-<h4>Added<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Auto-Configuration</strong>: New <code class="docutils literal notranslate"><span class="pre">auto_configure()</span></code> method that automatically optimizes compression settings based on spreadsheet characteristics (sparsity, size, data types)</p></li>
-<li><p><strong>Auto-Compress</strong>: New <code class="docutils literal notranslate"><span class="pre">compress_with_auto_config()</span></code> method for one-step automatic optimization and compression</p></li>
-<li><p><strong>Multi-LLM Support</strong>: Provider-specific output formats for ChatGPT, Claude, and Gemini via <code class="docutils literal notranslate"><span class="pre">encode_for_llm_provider()</span></code></p></li>
-<li><p><strong>Enhanced CLI</strong>: Support for <code class="docutils literal notranslate"><span class="pre">--auto-config</span></code>, <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> flags with demo mode</p></li>
-<li><p><strong>Advanced Logging</strong>: Optional detailed logging for debugging and monitoring compression operations</p></li>
-<li><p><strong>Enhanced Range Detection</strong>: Improved <code class="docutils literal notranslate"><span class="pre">_merge_address_ranges()</span></code> method that creates ranges like <code class="docutils literal notranslate"><span class="pre">A1:A5</span></code> for contiguous cells</p></li>
-<li><p><strong>Contiguous Cell Grouping</strong>: Enhanced <code class="docutils literal notranslate"><span class="pre">_group_contiguous_cells()</span></code> method for better data format aggregation</p></li>
-<li><p><strong>Comprehensive Test Suite</strong>: Added <code class="docutils literal notranslate"><span class="pre">test_enhanced_features.py</span></code> with 6 new test cases</p></li>
-<li><p><strong>CSV Testing Tools</strong>: Added demo scripts and test files for easy CSV testing</p></li>
-<li><p><strong>Format Comparison Tools</strong>: Added utilities to compare different LLM output formats</p></li>
-</ul>
-</section>
-<section id="id15">
-<h4>Enhanced<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>CLI Interface</strong>: Can now combine <code class="docutils literal notranslate"><span class="pre">--demo</span></code> with <code class="docutils literal notranslate"><span class="pre">--vanilla</span></code>, <code class="docutils literal notranslate"><span class="pre">--auto-config</span></code>, <code class="docutils literal notranslate"><span class="pre">--format</span></code>, and <code class="docutils literal notranslate"><span class="pre">--stats</span></code> options</p></li>
-<li><p><strong>JSON Output</strong>: Proper JSON serialization with numpy type handling</p></li>
-<li><p><strong>Error Handling</strong>: Better error messages and validation</p></li>
-<li><p><strong>Code Coverage</strong>: Increased test coverage to 34 passing tests</p></li>
-</ul>
-</section>
-<section id="id16">
-<h4>Fixed<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Range Detection</strong>: Fixed incomplete implementation in address range merging</p></li>
-<li><p><strong>Cell Grouping</strong>: Fixed placeholder implementation in contiguous cell detection</p></li>
-<li><p><strong>JSON Serialization</strong>: Fixed numpy data type serialization issues</p></li>
-<li><p><strong>CLI Argument Handling</strong>: Fixed argument parsing for combined flags</p></li>
-</ul>
-</section>
-<section id="performance">
-<h4>Performance<a class="headerlink" href="#performance" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Token Reduction</strong>: Improved compression ratios, especially for sparse data (up to 5.5x reduction vs vanilla)</p></li>
-<li><p><strong>Format Optimization</strong>: Provider-specific formats reduce token usage by 34-90% compared to general format</p></li>
-<li><p><strong>Auto-tuning</strong>: Automatic parameter optimization based on data characteristics</p></li>
+<li><p>Add pyproject.toml for project configuration and dependencies
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/212b0937fa484a8fc731dde46840f1c8bbfb80b0"><code class="docutils literal notranslate"><span class="pre">212b093</span></code></a>)</p></li>
+<li><p>Initialize Poetry configuration for the ‘sheetwise’ package. - Specify package metadata including
+name, version, description, authors, and classifiers. - Define dependencies for the project,
+including pandas, numpy, and openpyxl. - Set up development and testing dependencies with pytest,
+black, flake8, and others. - Configure build system to use poetry-core. - Add script entry point
+for command line interface. - Include configuration for black, isort, mypy, pytest, and coverage.</p></li>
+<li><p>Change from loop to matric check
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/0d7f40b4da8a16aaad07a77a0f8d7d70d71ff8ef"><code class="docutils literal notranslate"><span class="pre">0d7f40b</span></code></a>)</p></li>
+<li><p>Enhance benchmarking script with error handling and auto-sample generation
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/f038262a74b5f93ac5bb51dd8f0d6a52a7775c80"><code class="docutils literal notranslate"><span class="pre">f038262</span></code></a>)</p></li>
+<li><p>Enhance index.html with additional meta tags for improved SEO and social sharing
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/acb516fdc146331a3403331dfba50b14dfaa983e"><code class="docutils literal notranslate"><span class="pre">acb516f</span></code></a>)</p></li>
+<li><p>Integrated <code class="docutils literal notranslate"><span class="pre">duckdb</span></code> to allow standard SQL queries directly against spreadsheet data via
+<code class="docutils literal notranslate"><span class="pre">query_sql()</span></code>
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/87540591b9108313774bbf543266c5dd4ab1b52d"><code class="docutils literal notranslate"><span class="pre">8754059</span></code></a>)</p></li>
+<li><p>Remove obsolete HTML and CSS files from documentation
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/2e0f02469b965b3aaa5381bd095800c96a627af0"><code class="docutils literal notranslate"><span class="pre">2e0f024</span></code></a>)</p></li>
+<li><p>Remove Read the Docs configuration file
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/f172a05727d8efcf152a9130fbec347b19454f10"><code class="docutils literal notranslate"><span class="pre">f172a05</span></code></a>)</p></li>
+<li><p>Update pyproject.toml for version 2.3.0 and restructure dependencies
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/29ddb3950cb345d438bb3603dd435ce12c85d09a"><code class="docutils literal notranslate"><span class="pre">29ddb39</span></code></a>)</p></li>
+<li><p>Update version to 2.1.1 in pyproject.toml and clean up README.md formatting
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/5f65b580422cd367f1c38793d0661bcc56fdf142"><code class="docutils literal notranslate"><span class="pre">5f65b58</span></code></a>)</p></li>
+<li><p>Update version to 2.2.0 in pyproject.toml
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/9f1a3271676e89152f7eab7f0eae28ed3f25d432"><code class="docutils literal notranslate"><span class="pre">9f1a327</span></code></a>)</p></li>
 </ul>
 </section>
 <section id="documentation">
 <h4>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h4>
 <ul class="simple">
-<li><p><strong>README Updates</strong>: Added documentation for all new features and CLI options</p></li>
-<li><p><strong>Format Guide</strong>: Created comprehensive LLM format comparison documentation</p></li>
-<li><p><strong>Testing Guide</strong>: Added CSV testing documentation and examples</p></li>
-<li><p><strong>API Reference</strong>: Updated with new methods and parameters</p></li>
+<li><p>Add Token Budgeting section with usage example in README
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/33557c6ccb034d18ea03a64f23b728b955a54952"><code class="docutils literal notranslate"><span class="pre">33557c6</span></code></a>)</p></li>
 </ul>
 </section>
-</section>
-<section id="xx-xx">
-<h3>[1.0.0] - 2024-XX-XX<a class="headerlink" href="#xx-xx" title="Link to this heading">¶</a></h3>
-<section id="id17">
-<h4>Added<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
+<section id="features">
+<h4>Features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h4>
 <ul class="simple">
-<li><p>Initial release of SheetWise</p></li>
-<li><p>Core compression framework with three modules</p></li>
-<li><p>Vanilla encoding methods</p></li>
-<li><p>Chain of Spreadsheet reasoning</p></li>
-<li><p>Basic CLI interface</p></li>
-<li><p>Comprehensive test suite</p></li>
+<li><p>Add advanced table detection and classification utilities
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/5c554e956b56017e6647ed7be467829255f1861f"><code class="docutils literal notranslate"><span class="pre">5c554e9</span></code></a>)</p></li>
+<li><p>Introduced SmartTableDetector for detecting and classifying tables in spreadsheets. - Implemented
+EnhancedTableRegion to extend table metadata with types and header information. - Added
+visualization utilities for spreadsheet compression analysis in CompressionVisualizer. - Created
+WorkbookManager for handling multi-sheet workbooks and cross-sheet references. - Developed methods
+for detecting cross-sheet references and generating sheet relationship graphs. - Enhanced tests
+for new features and ensured logging functionality works as expected.</p></li>
+<li><p>Add benchmarking and visualization capabilities to README and CLI
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/0c74580a89bb8f430c4804d2780025758c7fb41c"><code class="docutils literal notranslate"><span class="pre">0c74580</span></code></a>)</p></li>
+<li><p>Add comprehensive tests for SpreadsheetLLM, SheetCompressor, and utility functions
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/82e7e63f806f55890461d07471a7017c44bc3605"><code class="docutils literal notranslate"><span class="pre">82e7e63</span></code></a>)</p></li>
+<li><p>Add initial documentation and styles for SheetWise project
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/83803235402e79830241abb85107489c6303f440"><code class="docutils literal notranslate"><span class="pre">8380323</span></code></a>)</p></li>
+<li><p>Add memory optimization for large files and enhance formula parsing with robust tokenizer
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/aa7124a02f636375374c91209d339ca55dd37b91"><code class="docutils literal notranslate"><span class="pre">aa7124a</span></code></a>)</p></li>
+<li><p>Add Read the Docs configuration file for documentation build
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/dd78ee23f275ca8c22f615be26d0a65fd54ec261"><code class="docutils literal notranslate"><span class="pre">dd78ee2</span></code></a>)</p></li>
+<li><p>Add seaborn and rich as dependencies in pyproject.toml
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/62f3186563b82ae95fa57b139474da36c2da2b23"><code class="docutils literal notranslate"><span class="pre">62f3186</span></code></a>)</p></li>
+<li><p>Enhance SheetWise with auto-configuration, multi-LLM support, and improved logging
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/aed9f04e774f06116d0cfbad862c74891adc73ca"><code class="docutils literal notranslate"><span class="pre">aed9f04</span></code></a>)</p></li>
+<li><p>Enhance StructuralAnchorExtractor with transition detection and vectorized implementation
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/5844c9798ad126808517795f78bb960b34b439d0"><code class="docutils literal notranslate"><span class="pre">5844c97</span></code></a>)</p></li>
+<li><p>Implement robust file loading and SQL querying in SpreadsheetLLM, update version to 2.5.1 and add
+xlrd dependency
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/4b094095c2d4c76d00c8653964e907cc14d78b06"><code class="docutils literal notranslate"><span class="pre">4b09409</span></code></a>)</p></li>
+<li><p>Implement SpreadsheetLLM framework with utilities for encoding spreadsheets
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/1ba9b7bfc95d9307dc3d4908be288c9f6bd23d1b"><code class="docutils literal notranslate"><span class="pre">1ba9b7b</span></code></a>)</p></li>
+<li><p>Added core components for SpreadsheetLLM including compression, encoding, and table detection. -
+Introduced utility functions to create realistic demo spreadsheets. - Developed a command line
+interface for user interaction with the SpreadsheetLLM package. - Implemented data type
+classification and structural anchor extraction for efficient data handling. - Created a
+comprehensive README with package overview and usage instructions.</p></li>
+<li><p>Update version to 1.2.0, add changelog, and improve version retrieval in <strong>init</strong>.py
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/e234cae229ee3825e35673835e909e7abea7f588"><code class="docutils literal notranslate"><span class="pre">e234cae</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="refactoring">
+<h4>Refactoring<a class="headerlink" href="#refactoring" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Add index.html and styles.css for improved design and functionality
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/53bfb0437cb44b1632d9c70a7d6f70c065b8ec7a"><code class="docutils literal notranslate"><span class="pre">53bfb04</span></code></a>)</p></li>
+<li><p>Remove unused modules and classes from SpreadsheetLLM package
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/7bb74022e85948b766bf1f6e3c0ff3f84298afb0"><code class="docutils literal notranslate"><span class="pre">7bb7402</span></code></a>)</p></li>
 </ul>
 </section>
 </section>
@@ -481,7 +443,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2025, Khushiyant Chauhan
+                Copyright &#169; , Khushiyant Chauhan
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -508,42 +470,19 @@ and this project adheres to <a class="reference external" href="https://semver.o
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Changelog</a><ul>
-<li><a class="reference internal" href="#changelog">Changelog</a><ul>
-<li><a class="reference internal" href="#id1">[2.6.1] - 2025-12-13</a><ul>
-<li><a class="reference internal" href="#added">Added</a></li>
-<li><a class="reference internal" href="#enhanced">Enhanced</a></li>
-<li><a class="reference internal" href="#fixed">Fixed</a></li>
+<li><a class="reference internal" href="#changelog">CHANGELOG</a><ul>
+<li><a class="reference internal" href="#v2-6-2-2025-12-14">v2.6.2 (2025-12-14)</a><ul>
+<li><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
+<li><a class="reference internal" href="#chores">Chores</a></li>
+<li><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id2">[2.4.0] - 2025-12-09</a><ul>
-<li><a class="reference internal" href="#id3">Added</a></li>
-<li><a class="reference internal" href="#changed">Changed</a></li>
-<li><a class="reference internal" href="#removed">Removed</a></li>
-<li><a class="reference internal" href="#id4">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id5">[2.3.0] - 2025-08-19</a><ul>
-<li><a class="reference internal" href="#id6">Added</a></li>
-<li><a class="reference internal" href="#id7">Enhanced</a></li>
-<li><a class="reference internal" href="#id8">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id9">[2.0.0] - 2025-08-02</a><ul>
-<li><a class="reference internal" href="#id10">Added</a></li>
-<li><a class="reference internal" href="#id11">Enhanced</a></li>
-<li><a class="reference internal" href="#id12">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id13">[1.1.0] - 2025-07-30</a><ul>
-<li><a class="reference internal" href="#id14">Added</a></li>
-<li><a class="reference internal" href="#id15">Enhanced</a></li>
-<li><a class="reference internal" href="#id16">Fixed</a></li>
-<li><a class="reference internal" href="#performance">Performance</a></li>
+<li><a class="reference internal" href="#v2-6-1-2025-12-13">v2.6.1 (2025-12-13)</a><ul>
+<li><a class="reference internal" href="#id1">Bug Fixes</a></li>
+<li><a class="reference internal" href="#id2">Chores</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#xx-xx">[1.0.0] - 2024-XX-XX</a><ul>
-<li><a class="reference internal" href="#id17">Added</a></li>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#refactoring">Refactoring</a></li>
 </ul>
 </li>
 </ul>
@@ -559,7 +498,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=0a414f3d"></script>
+</div><script src="_static/documentation_options.js?v=3db9c557"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
