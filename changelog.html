@@ -263,9 +263,39 @@
 <p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
 and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <section id="id1">
-<h3>[2.4.0] - 2025-12-09<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<h3>[2.6.1] - 2025-12-13<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <section id="added">
 <h4>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Robust File Detection</strong>: Implemented binary signature (“magic number”) verification in <code class="docutils literal notranslate"><span class="pre">load_from_file</span></code> to correctly identify file types regardless of extension (fixes crashes on mislabeled files).</p></li>
+<li><p><strong>Legacy Excel Support</strong>: Added <code class="docutils literal notranslate"><span class="pre">xlrd</span></code> dependency to support older <code class="docutils literal notranslate"><span class="pre">.xls</span></code> files.</p></li>
+<li><p><strong>CI/CD Pipeline</strong>: Added <code class="docutils literal notranslate"><span class="pre">.github/workflows/tests.yml</span></code> to automate testing across multiple Python versions.</p></li>
+</ul>
+</section>
+<section id="enhanced">
+<h4>Enhanced<a class="headerlink" href="#enhanced" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>SQL Security</strong>: Completely rewrote <code class="docutils literal notranslate"><span class="pre">query_sql</span></code> to use isolated DuckDB connections and parameterized queries, preventing SQL injection risks.</p></li>
+<li><p><strong>Compression Algorithms</strong>:</p>
+<ul>
+<li><p><strong>Transition Anchors</strong>: Updated <code class="docutils literal notranslate"><span class="pre">StructuralAnchorExtractor</span></code> to detect data type transitions (e.g., Header -&gt; Body) ensuring context is preserved.</p></li>
+<li><p><strong>2D Block Merging</strong>: Updated <code class="docutils literal notranslate"><span class="pre">InvertedIndexTranslator</span></code> to merge rectangular regions (e.g., <code class="docutils literal notranslate"><span class="pre">A1:B2</span></code>) instead of just rows, significantly reducing token usage for dense tables.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="fixed">
+<h4>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Dependency Handling</strong>: Fixed optional/missing dependency issues for <code class="docutils literal notranslate"><span class="pre">duckdb</span></code> and <code class="docutils literal notranslate"><span class="pre">xlrd</span></code>.</p></li>
+<li><p><strong>Production Stability</strong>: Removed “research-grade” shortcuts in favor of robust error handling and type safety.</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h3>[2.4.0] - 2025-12-09<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<section id="id3">
+<h4>Added<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Offline SQL Interface</strong>: Integrated <code class="docutils literal notranslate"><span class="pre">duckdb</span></code> to allow standard SQL queries directly against spreadsheet data via <code class="docutils literal notranslate"><span class="pre">query_sql()</span></code>.</p></li>
 <li><p><strong>Deterministic Reasoning Engine</strong>: Replaced LLM-based reasoning with a fuzzy keyword search engine using <code class="docutils literal notranslate"><span class="pre">thefuzz</span></code> in <code class="docutils literal notranslate"><span class="pre">ChainOfSpreadsheet</span></code>.</p></li>
@@ -288,17 +318,17 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p><strong>Heuristic Detectors</strong>: Deprecated/removed older heuristic table detectors in favor of <code class="docutils literal notranslate"><span class="pre">SmartTableDetector</span></code>.</p></li>
 </ul>
 </section>
-<section id="fixed">
-<h4>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h4>
+<section id="id4">
+<h4>Fixed<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>JSON Serialization</strong>: Implemented a robust <code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code> to fix <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> crashes when exporting <code class="docutils literal notranslate"><span class="pre">int64</span></code> or <code class="docutils literal notranslate"><span class="pre">float64</span></code> data types to JSON.</p></li>
 </ul>
 </section>
 </section>
-<section id="id2">
-<h3>[2.3.0] - 2025-08-19<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
-<section id="id3">
-<h4>Added<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<section id="id5">
+<h3>[2.3.0] - 2025-08-19<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<section id="id6">
+<h4>Added<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Colorful CLI Output</strong>: Enhanced CLI with rich color, tables, and progress bars for a more user-friendly experience (using the <code class="docutils literal notranslate"><span class="pre">rich</span></code> library).</p></li>
 <li><p><strong>Parallel Processing</strong>: Added <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> and <code class="docutils literal notranslate"><span class="pre">--jobs</span></code> options for fast multi-sheet workbook processing.</p></li>
@@ -306,25 +336,25 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p><strong>Benchmarks Section in Docs</strong>: Updated README with instructions and example output for running and visualizing benchmarks.</p></li>
 </ul>
 </section>
-<section id="enhanced">
-<h4>Enhanced<a class="headerlink" href="#enhanced" title="Link to this heading">¶</a></h4>
+<section id="id7">
+<h4>Enhanced<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>CLI Usability</strong>: Improved error messages, output formatting, and summary tables for both demo and normal CLI modes.</p></li>
 <li><p><strong>Documentation</strong>: Expanded documentation to cover new CLI features, parallel processing, and benchmarking workflow.</p></li>
 </ul>
 </section>
-<section id="id4">
-<h4>Fixed<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<section id="id8">
+<h4>Fixed<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>CLI Argument Handling</strong>: Improved validation and error reporting for missing or invalid arguments.</p></li>
 <li><p><strong>Visualization Output</strong>: Fixed issues with saving and displaying generated charts.</p></li>
 </ul>
 </section>
 </section>
-<section id="id5">
-<h3>[2.0.0] - 2025-08-02<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
-<section id="id6">
-<h4>Added<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<section id="id9">
+<h3>[2.0.0] - 2025-08-02<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<section id="id10">
+<h4>Added<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Enhanced Spreadsheet Analysis</strong>: Improved structural analysis for better data representation</p></li>
 <li><p><strong>Expanded Visualization Tools</strong>: More visualization options for compression analysis</p></li>
@@ -334,8 +364,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p><strong>Formula Extraction &amp; Analysis</strong>: Improved extraction and dependency analysis for Excel formulas</p></li>
 </ul>
 </section>
-<section id="id7">
-<h4>Enhanced<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<section id="id11">
+<h4>Enhanced<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Core Architecture</strong>: Refactored core architecture for better maintainability and extensibility</p></li>
 <li><p><strong>Performance Optimizations</strong>: Reduced memory usage and improved processing speed</p></li>
@@ -343,8 +373,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p><strong>Documentation</strong>: Comprehensive documentation updates with more examples</p></li>
 </ul>
 </section>
-<section id="id8">
-<h4>Fixed<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<section id="id12">
+<h4>Fixed<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Table Detection Edge Cases</strong>: Fixed issues with complex table structures</p></li>
 <li><p><strong>Compression Ratio Calculation</strong>: More accurate calculation for sparse spreadsheets</p></li>
@@ -352,10 +382,10 @@ and this project adheres to <a class="reference external" href="https://semver.o
 </ul>
 </section>
 </section>
-<section id="id9">
-<h3>[1.1.0] - 2025-07-30<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
-<section id="id10">
-<h4>Added<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<section id="id13">
+<h3>[1.1.0] - 2025-07-30<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<section id="id14">
+<h4>Added<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Auto-Configuration</strong>: New <code class="docutils literal notranslate"><span class="pre">auto_configure()</span></code> method that automatically optimizes compression settings based on spreadsheet characteristics (sparsity, size, data types)</p></li>
 <li><p><strong>Auto-Compress</strong>: New <code class="docutils literal notranslate"><span class="pre">compress_with_auto_config()</span></code> method for one-step automatic optimization and compression</p></li>
@@ -369,8 +399,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p><strong>Format Comparison Tools</strong>: Added utilities to compare different LLM output formats</p></li>
 </ul>
 </section>
-<section id="id11">
-<h4>Enhanced<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
+<section id="id15">
+<h4>Enhanced<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>CLI Interface</strong>: Can now combine <code class="docutils literal notranslate"><span class="pre">--demo</span></code> with <code class="docutils literal notranslate"><span class="pre">--vanilla</span></code>, <code class="docutils literal notranslate"><span class="pre">--auto-config</span></code>, <code class="docutils literal notranslate"><span class="pre">--format</span></code>, and <code class="docutils literal notranslate"><span class="pre">--stats</span></code> options</p></li>
 <li><p><strong>JSON Output</strong>: Proper JSON serialization with numpy type handling</p></li>
@@ -378,8 +408,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p><strong>Code Coverage</strong>: Increased test coverage to 34 passing tests</p></li>
 </ul>
 </section>
-<section id="id12">
-<h4>Fixed<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<section id="id16">
+<h4>Fixed<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Range Detection</strong>: Fixed incomplete implementation in address range merging</p></li>
 <li><p><strong>Cell Grouping</strong>: Fixed placeholder implementation in contiguous cell detection</p></li>
@@ -407,8 +437,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 </section>
 <section id="xx-xx">
 <h3>[1.0.0] - 2024-XX-XX<a class="headerlink" href="#xx-xx" title="Link to this heading">¶</a></h3>
-<section id="id13">
-<h4>Added<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
+<section id="id17">
+<h4>Added<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Initial release of SheetWise</p></li>
 <li><p>Core compression framework with three modules</p></li>
@@ -479,35 +509,41 @@ and this project adheres to <a class="reference external" href="https://semver.o
             <ul>
 <li><a class="reference internal" href="#">Changelog</a><ul>
 <li><a class="reference internal" href="#changelog">Changelog</a><ul>
-<li><a class="reference internal" href="#id1">[2.4.0] - 2025-12-09</a><ul>
+<li><a class="reference internal" href="#id1">[2.6.1] - 2025-12-13</a><ul>
 <li><a class="reference internal" href="#added">Added</a></li>
-<li><a class="reference internal" href="#changed">Changed</a></li>
-<li><a class="reference internal" href="#removed">Removed</a></li>
+<li><a class="reference internal" href="#enhanced">Enhanced</a></li>
 <li><a class="reference internal" href="#fixed">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id2">[2.3.0] - 2025-08-19</a><ul>
+<li><a class="reference internal" href="#id2">[2.4.0] - 2025-12-09</a><ul>
 <li><a class="reference internal" href="#id3">Added</a></li>
-<li><a class="reference internal" href="#enhanced">Enhanced</a></li>
+<li><a class="reference internal" href="#changed">Changed</a></li>
+<li><a class="reference internal" href="#removed">Removed</a></li>
 <li><a class="reference internal" href="#id4">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5">[2.0.0] - 2025-08-02</a><ul>
+<li><a class="reference internal" href="#id5">[2.3.0] - 2025-08-19</a><ul>
 <li><a class="reference internal" href="#id6">Added</a></li>
 <li><a class="reference internal" href="#id7">Enhanced</a></li>
 <li><a class="reference internal" href="#id8">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id9">[1.1.0] - 2025-07-30</a><ul>
+<li><a class="reference internal" href="#id9">[2.0.0] - 2025-08-02</a><ul>
 <li><a class="reference internal" href="#id10">Added</a></li>
 <li><a class="reference internal" href="#id11">Enhanced</a></li>
 <li><a class="reference internal" href="#id12">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id13">[1.1.0] - 2025-07-30</a><ul>
+<li><a class="reference internal" href="#id14">Added</a></li>
+<li><a class="reference internal" href="#id15">Enhanced</a></li>
+<li><a class="reference internal" href="#id16">Fixed</a></li>
 <li><a class="reference internal" href="#performance">Performance</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#xx-xx">[1.0.0] - 2024-XX-XX</a><ul>
-<li><a class="reference internal" href="#id13">Added</a></li>
+<li><a class="reference internal" href="#id17">Added</a></li>
 </ul>
 </li>
 </ul>

@@ -271,39 +271,20 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.visualizer.CompressionVisualizer">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.visualizer.</span></span><span class="sig-name descname"><span class="pre">CompressionVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable_interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.visualizer.CompressionVisualizer" title="Link to this definition">¶</a></dt>
-<dd><p>Visualization tools for spreadsheet compression analysis.</p>
-<p>This class provides utilities to:
-1. Generate heatmaps showing data density
-2. Visualize structural anchors and compression
-3. Compare original and compressed data
-4. Create shareable visual reports</p>
+<dd><p>Visualization tools for spreadsheet compression analysis.
+Now includes Interactive HTML Reports.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.visualizer.CompressionVisualizer.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable_interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.visualizer.CompressionVisualizer.__init__" title="Link to this definition">¶</a></dt>
-<dd><p>Initialize the visualizer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>enable_interactive</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to enable interactive visualizations</p>
-</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.visualizer.CompressionVisualizer.create_data_density_heatmap">
 <span class="sig-name descname"><span class="pre">create_data_density_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Data</span> <span class="pre">Density</span> <span class="pre">Heatmap'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.create_data_density_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.visualizer.CompressionVisualizer.create_data_density_heatmap" title="Link to this definition">¶</a></dt>
 <dd><p>Generate a heatmap showing data density in the spreadsheet.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – The dataframe to visualize</p></li>
-<li><p><strong>title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Title for the plot</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Matplotlib figure object</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -313,18 +294,23 @@
 <span class="sig-name descname"><span class="pre">visualize_anchors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Structural</span> <span class="pre">Anchors'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.visualize_anchors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.visualizer.CompressionVisualizer.visualize_anchors" title="Link to this definition">¶</a></dt>
 <dd><p>Visualize structural anchors identified in the spreadsheet.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – Original dataframe</p></li>
-<li><p><strong>anchors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – Tuple of (row_anchors, col_anchors)</p></li>
-<li><p><strong>title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Title for the plot</p></li>
-</ul>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Matplotlib figure object</p>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.visualizer.CompressionVisualizer.generate_interactive_report">
+<span class="sig-name descname"><span class="pre">generate_interactive_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compressed_result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'report.html'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.generate_interactive_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.visualizer.CompressionVisualizer.generate_interactive_report" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a standalone interactive HTML report for auditing compression.</p>
+<p>Features:
+- Side-by-side view (Original vs Compressed)
+- Highlighted “Removed” regions
+- Click-to-scroll navigation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -332,59 +318,15 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.visualizer.CompressionVisualizer.compare_original_vs_compressed">
 <span class="sig-name descname"><span class="pre">compare_original_vs_compressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compressed_result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.compare_original_vs_compressed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.visualizer.CompressionVisualizer.compare_original_vs_compressed" title="Link to this definition">¶</a></dt>
-<dd><p>Create a visual comparison between original and compressed data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>original_df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – Original dataframe</p></li>
-<li><p><strong>compressed_result</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Compression result dictionary</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Matplotlib figure with comparison visualization</p>
-</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.visualizer.CompressionVisualizer.generate_html_report">
 <span class="sig-name descname"><span class="pre">generate_html_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compressed_result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.generate_html_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.visualizer.CompressionVisualizer.generate_html_report" title="Link to this definition">¶</a></dt>
-<dd><p>Generate an HTML report with visualizations.</p>
+<dd><p>Legacy static report (Backwards compatibility)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>original_df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – Original dataframe</p></li>
-<li><p><strong>compressed_result</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Compression result dictionary</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>HTML string with embedded visualizations</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.visualizer.CompressionVisualizer.save_visualization_to_file">
-<span class="sig-name descname"><span class="pre">save_visualization_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.save_visualization_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.visualizer.CompressionVisualizer.save_visualization_to_file" title="Link to this definition">¶</a></dt>
-<dd><p>Save visualization to file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>fig</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span>) – Matplotlib figure</p></li>
-<li><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Output filename</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Path to saved file</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -435,9 +377,9 @@
 <li><a class="reference internal" href="#sheetwise.visualizer.CompressionVisualizer.__init__"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.__init__()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.visualizer.CompressionVisualizer.create_data_density_heatmap"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.create_data_density_heatmap()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.visualizer.CompressionVisualizer.visualize_anchors"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.visualize_anchors()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.visualizer.CompressionVisualizer.generate_interactive_report"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.generate_interactive_report()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.visualizer.CompressionVisualizer.compare_original_vs_compressed"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.compare_original_vs_compressed()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.visualizer.CompressionVisualizer.generate_html_report"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.generate_html_report()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.visualizer.CompressionVisualizer.save_visualization_to_file"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer.save_visualization_to_file()</span></code></a></li>
 </ul>
 </li>
 </ul>
