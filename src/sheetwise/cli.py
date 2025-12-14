@@ -47,6 +47,8 @@ def main():
         help="Use vanilla encoding instead of compression",
     )
 
+    
+
     parser.add_argument("--stats", action="store_true", help="Show encoding statistics")
 
     parser.add_argument("--demo", action="store_true", help="Run demo with sample data")
@@ -74,6 +76,8 @@ def main():
                              help="Number of parallel workers (default: number of sheets)")
     feature_group.add_argument("--detect-tables", action="store_true",
                              help="Detect and extract tables from the spreadsheet")
+    feature_group.add_argument("--report", action="store_true",
+                             help="Generate an interactive HTML audit report")
     
     args = parser.parse_args()
     console = Console()
@@ -87,6 +91,22 @@ def main():
         sllm = SpreadsheetLLM(enable_logging=args.verbose)
         console.print(f"[bold yellow]Created demo spreadsheet:[/] {df.shape}")
         
+        if args.report:
+                console.print("[cyan]Generating interactive audit report...[/]")
+                visualizer = CompressionVisualizer()
+                
+                # We need the raw compression result dict, not just the string output
+                # (Re-running compression is cheap, or we could refactor to keep the result)
+                raw_result = sllm.compress_spreadsheet(df)
+                
+                report_file = "./sheetwise_report.html"
+                visualizer.generate_interactive_report(df, raw_result, filename=report_file)
+                
+                console.print(Panel(
+                    f"Interactive report saved to: [bold underline]{report_file}[/]\n"
+                    f"Open this file in your browser to audit the compression.",
+                    title="[green]Report Generated", style="bold green"
+                ))
         if args.vanilla:
             console.print("[bold cyan]Using vanilla encoding...[/]")
             encoded = sllm.encode_vanilla(df)
@@ -99,6 +119,7 @@ def main():
             console.print("[bold cyan]Using auto-configuration...[/]")
             encoded = sllm.compress_with_auto_config(df)
             encoding_type = "auto-compressed"
+        
         else:
             encoded = sllm.compress_and_encode_for_llm(df)
             encoding_type = "compressed"
@@ -108,6 +129,7 @@ def main():
         console.print(f"\nLLM-ready output ({encoding_type}, {len(encoded)} characters):")
         console.print(encoded[:500] + "..." if len(encoded) > 500 else encoded)
         return
+    
 
     # Standard Mode Logic
     if not args.input_file:

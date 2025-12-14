@@ -152,4 +152,4 @@ branch = "main"
 changelog_file = "CHANGELOG.md"
 
 # Use 'uv' to build the package
-build_command = "uv build"
+build_command = "pip install build && python -m build"
