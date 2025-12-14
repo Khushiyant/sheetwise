@@ -3,17 +3,48 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+
 import os
 import sys
+import re
 sys.path.insert(0, os.path.abspath('../../src'))
+
+# -- Project metadata from pyproject.toml --------------------------------------
+def get_project_metadata():
+    import pathlib
+    import sys
+    pyproject_path = pathlib.Path(__file__).parents[2] / "pyproject.toml"
+    if sys.version_info >= (3, 11):
+        import tomllib
+        with open(pyproject_path, "rb") as f:
+            data = tomllib.load(f)
+    else:
+        try:
+            import tomli
+            with open(pyproject_path, "rb") as f:
+                data = tomli.load(f)
+        except ImportError:
+            return {}
+    project = data.get("project", {})
+    author = project.get("authors", [{}])[0].get("name", "")
+    copyright_year = re.search(r"\\d{4}", project.get("version", ""))
+    copyright_str = f"{copyright_year.group(0) if copyright_year else ''}, {author}"
+    return {
+        "project": project.get("name", "SheetWise"),
+        "author": author,
+        "release": project.get("version", "0.0.0"),
+        "copyright": copyright_str,
+    }
+
+meta = get_project_metadata()
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'SheetWise'
-copyright = '2025, Khushiyant Chauhan'
-author = 'Khushiyant Chauhan'
-release = '2.6.1' 
+project = "Sheetwise"
+copyright = meta.get('copyright', '2025, Khushiyant Chauhan')
+author = meta.get('author', 'Khushiyant Chauhan')
+release = meta.get('release', '0.0.0')
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
