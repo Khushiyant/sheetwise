@@ -186,7 +186,57 @@ class SpreadsheetLLM:
             
         return config
 
+    def compress_with_auto_config(self, df: pd.DataFrame) -> str:
+        """
+        Automatically configure compression parameters based on spreadsheet characteristics
+        and return the encoded string.
+        """
+        config = self.auto_configure(df)
+        # Create a temporary compressor with optimized settings
+        temp_compressor = SheetCompressor(**config)
+        compressed = temp_compressor.compress(df)
+        return self.encode_compressed_for_llm(compressed)
+
     def compress_and_encode_for_llm(self, df: pd.DataFrame) -> str:
+        """Original Markdown encoding (retained for compatibility)."""
+        compressed = self.compressor.compress(df)
+        return self.encode_compressed_for_llm(compressed)
+
+    def encode_to_token_limit(self, df: pd.DataFrame, max_tokens: int) -> str:
+        """
+        Attempt to encode the spreadsheet within a specific token limit.
+        Iteratively increases compression aggressiveness if needed.
+        Note: Uses a heuristic of 4 characters ~= 1 token.
+        """
+        chars_limit = max_tokens * 4
+        
+        # Level 0: Vanilla (if small enough)
+        encoded = self.encode_vanilla(df)
+        if len(encoded) <= chars_limit:
+            return encoded
+            
+        # Level 1: Standard Compression
+        encoded = self.compress_and_encode_for_llm(df)
+        if len(encoded) <= chars_limit:
+            return encoded
+            
+        # Level 2: Aggressive Compression (low k)
+        aggressive_params = {
+            'k': 2,
+            'use_extraction': True,
+            'use_translation': True,
+            'use_aggregation': True
+        }
+        temp_compressor = SheetCompressor(**aggressive_params)
+        compressed = temp_compressor.compress(df)
+        encoded = self.encode_compressed_for_llm(compressed)
+        
+        if len(encoded) <= chars_limit:
+            return encoded
+            
+        # Level 3: Truncation (Last resort)
+        # Just return what we have, maybe logging a warning would be appropriate in a real app
+        return encoded
         """Original Markdown encoding (retained for compatibility)."""
         compressed = self.compressor.compress(df)
         return self.encode_compressed_for_llm(compressed)

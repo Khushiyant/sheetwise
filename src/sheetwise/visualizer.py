@@ -110,28 +110,28 @@ class CompressionVisualizer:
         <head>
             <title>SheetWise Compression Audit</title>
             <style>
-                :root { --primary: #2c3e50; --deleted: #ffebee; --gap: #f5f5f5; --highlight: #ffcdd2; }
-                body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; }
-                header { background: var(--primary); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
-                .container { display: flex; flex: 1; overflow: hidden; }
-                .panel { flex: 1; display: flex; flex-direction: column; border-right: 1px solid #ddd; min-width: 0; }
-                .panel-header { background: #eee; padding: 10px; font-weight: bold; border-bottom: 1px solid #ccc; }
-                .grid-container { flex: 1; overflow: auto; padding: 10px; position: relative; }
+                :root {{ --primary: #2c3e50; --deleted: #ffebee; --gap: #f5f5f5; --highlight: #ffcdd2; }}
+                body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; }}
+                header {{ background: var(--primary); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }}
+                .container {{ display: flex; flex: 1; overflow: hidden; }}
+                .panel {{ flex: 1; display: flex; flex-direction: column; border-right: 1px solid #ddd; min-width: 0; }}
+                .panel-header {{ background: #eee; padding: 10px; font-weight: bold; border-bottom: 1px solid #ccc; }}
+                .grid-container {{ flex: 1; overflow: auto; padding: 10px; position: relative; }}
                 
-                table { border-collapse: collapse; width: 100%; font-size: 13px; table-layout: fixed; }
-                th, td { border: 1px solid #ddd; padding: 4px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; height: 25px; }
-                th { background: #f8f9fa; position: sticky; top: 0; z-index: 10; text-align: left; font-weight: 600; color: #555; }
+                table {{ border-collapse: collapse; width: 100%; font-size: 13px; table-layout: fixed; }}
+                th, td {{ border: 1px solid #ddd; padding: 4px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; height: 25px; }}
+                th {{ background: #f8f9fa; position: sticky; top: 0; z-index: 10; text-align: left; font-weight: 600; color: #555; }}
                 
                 /* Specific Styles */
-                .orig-row { transition: background 0.3s; }
-                .orig-row.deleted { background-color: var(--deleted); color: #888; }
-                .orig-row.target-highlight { background-color: #e53935 !important; color: white !important; }
+                .orig-row {{ transition: background 0.3s; }}
+                .orig-row.deleted {{ background-color: var(--deleted); color: #888; }}
+                .orig-row.target-highlight {{ background-color: #e53935 !important; color: white !important; }}
                 
-                .gap-row { background-color: var(--gap); cursor: pointer; color: #666; font-style: italic; font-size: 11px; text-align: center; border-left: 4px solid #bbb; }
-                .gap-row:hover { background-color: #e0e0e0; border-left-color: var(--primary); }
+                .gap-row {{ background-color: var(--gap); cursor: pointer; color: #666; font-style: italic; font-size: 11px; text-align: center; border-left: 4px solid #bbb; }}
+                .gap-row:hover {{ background-color: #e0e0e0; border-left-color: var(--primary); }}
                 
                 /* Stats Badge */
-                .badge { background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 4px; font-size: 0.9em; margin-left: 10px; }
+                .badge {{ background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 4px; font-size: 0.9em; margin-left: 10px; }}
             </style>
         </head>
         <body>
@@ -169,7 +169,7 @@ class CompressionVisualizer:
 
             <script>
                 // Interaction Logic
-                function highlightRange(start, end) {
+                function highlightRange(start, end) {{
                     // Remove old highlights
                     document.querySelectorAll('.target-highlight').forEach(el => el.classList.remove('target-highlight'));
                     
@@ -177,19 +177,19 @@ class CompressionVisualizer:
                     const container = document.getElementById('orig-container');
                     let firstEl = null;
                     
-                    for (let i = start; i <= end; i++) {
+                    for (let i = start; i <= end; i++) {{
                         const el = document.getElementById('orig-row-' + i);
-                        if (el) {
+                        if (el) {{
                             el.classList.add('target-highlight');
                             if (!firstEl) firstEl = el;
-                        }
-                    }
+                        }}
+                    }}
                     
                     // Scroll to first element
-                    if (firstEl) {
-                        firstEl.scrollIntoView({behavior: 'smooth', block: 'center'});
-                    }
-                }
+                    if (firstEl) {{
+                        firstEl.scrollIntoView({{behavior: 'smooth', block: 'center'}});
+                    }}
+                }}
             </script>
         </body>
         </html>
@@ -275,10 +275,37 @@ class CompressionVisualizer:
         return filename
 
     # Keep existing methods (comparison, html static, fig_to_base64)
-    def compare_original_vs_compressed(self, original_df, compressed_result):
-        # ... (Previous implementation remains unchanged)
-        # Just creating a placeholder to ensure class continuity
-        pass 
+    def compare_original_vs_compressed(self, original_df: pd.DataFrame, 
+                                     compressed_result: Dict[str, Any]) -> plt.Figure:
+        """Compare original vs compressed spreadsheet structure side-by-side."""
+        compressed_df = compressed_result.get('compressed_data', pd.DataFrame())
+        
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 8))
+        
+        # Original Heatmap
+        non_empty_mask_orig = ~original_df.isna() & (original_df != "")
+        matrix_orig = non_empty_mask_orig.astype(int)
+        
+        ax1.pcolor(matrix_orig.transpose(), cmap='Blues', edgecolors='face')
+        ax1.set_title(f"Original ({original_df.shape[0]}x{original_df.shape[1]})")
+        ax1.set_xlabel("Row")
+        ax1.set_ylabel("Column")
+        ax1.invert_yaxis()
+        
+        # Compressed Heatmap
+        non_empty_mask_comp = ~compressed_df.isna() & (compressed_df != "")
+        matrix_comp = non_empty_mask_comp.astype(int)
+        
+        if not matrix_comp.empty:
+            ax2.pcolor(matrix_comp.transpose(), cmap='Greens', edgecolors='face')
+        
+        ratio = compressed_result.get('compression_ratio', 0)
+        ax2.set_title(f"Compressed ({compressed_df.shape[0]}x{compressed_df.shape[1]}) - {ratio:.1f}x")
+        ax2.set_xlabel("Row")
+        ax2.invert_yaxis()
+        
+        plt.tight_layout()
+        return fig 
         
     def _fig_to_base64(self, fig):
         buf = io.BytesIO()

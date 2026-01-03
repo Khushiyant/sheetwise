@@ -17,11 +17,11 @@ class WorkbookManager:
     4. Identify inter-sheet relationships
     """
     
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the workbook manager."""
-        self.sheets = {}  # Dict mapping sheet names to dataframes
-        self.sheet_metadata = {}  # Dict mapping sheet names to metadata
-        self.cross_references = {}  # Dict mapping sheets to their references
+        self.sheets: Dict[str, pd.DataFrame] = {}
+        self.sheet_metadata: Dict[str, Dict[str, Any]] = {}
+        self.cross_references: Dict[str, Set[str]] = {}
         
     def load_workbook(self, excel_path: str) -> Dict[str, pd.DataFrame]:
         """
@@ -36,9 +36,12 @@ class WorkbookManager:
         if not os.path.exists(excel_path):
             raise FileNotFoundError(f"Excel file not found: {excel_path}")
             
+        # Store path for later use
+        self._last_loaded_path = excel_path
+            
         # Load all sheets into a dict of dataframes
         sheet_dict = pd.read_excel(excel_path, sheet_name=None)
-        self.sheets = sheet_dict
+        self.sheets = sheet_dict  # type: ignore
         
         # Initialize metadata for each sheet
         for sheet_name in sheet_dict:
@@ -159,7 +162,7 @@ class WorkbookManager:
             "edges": edges
         }
     
-    def compress_workbook(self, compressor) -> Dict[str, Any]:
+    def compress_workbook(self, compressor: Any) -> Dict[str, Any]:
         """
         Compress all sheets in the workbook.
         

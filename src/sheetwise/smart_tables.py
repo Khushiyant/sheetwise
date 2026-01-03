@@ -24,8 +24,8 @@ class EnhancedTableRegion(TableRegion):
     """Extended table region with additional metadata."""
     table_type: TableType = TableType.DATA_TABLE
     has_headers: bool = False
-    header_rows: List[int] = None
-    header_cols: List[int] = None
+    header_rows: Optional[List[int]] = None
+    header_cols: Optional[List[int]] = None
     confidence: float = 1.0
     
     def __post_init__(self):

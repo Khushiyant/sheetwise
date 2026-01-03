@@ -194,7 +194,7 @@ class FormulaParser:
             return 0
         return 1 + max((self._calculate_dependency_depth(dep) for dep in self.dependency_graph[cell_address]), default=0)
 
-    def encode_formulas_for_llm(self, formulas: Dict[str, str] = None) -> str:
+    def encode_formulas_for_llm(self, formulas: Optional[Dict[str, str]] = None) -> str:
         """Generate LLM-friendly encoding."""
         if formulas is None:
             formulas = self.formula_map
@@ -205,7 +205,7 @@ class FormulaParser:
         lines = ["## Spreadsheet Formulas"]
         
         # Group similar formulas to save tokens
-        formula_groups = {}
+        formula_groups: Dict[str, List[str]] = {}
         for cell, formula in formulas.items():
             if formula not in formula_groups:
                 formula_groups[formula] = []
@@ -229,7 +229,7 @@ class FormulaParser:
 class FormulaDependencyAnalyzer:
     """Specialized analyzer for formula dependencies."""
     
-    def __init__(self, formula_parser: FormulaParser = None):
+    def __init__(self, formula_parser: Optional[FormulaParser] = None):
         self.parser = formula_parser or FormulaParser()
         
     # (Existing methods remain unchanged)
