@@ -1,6 +1,29 @@
 # CHANGELOG
 
 
+## v2.6.3 (2026-01-03)
+
+### Bug Fixes
+
+- Add compression configuration and visualization enhancements
+  ([`846af23`](https://github.com/Khushiyant/sheetwise/commit/846af23f9db7b9bfa20f74f89ceb0f7ca419e7b9))
+
+- Implemented automatic compression configuration based on spreadsheet characteristics in
+  `SpreadsheetLLM`. - Added methods for encoding within token limits and aggressive compression
+  strategies. - Enhanced `CompressionVisualizer` with new comparison and heatmap generation
+  functionalities. - Introduced unit tests for `CompressionVisualizer` and `WorkbookManager` to
+  ensure functionality and reliability. - Updated type hints for better clarity and maintainability
+  across various classes.
+
+### Chores
+
+- Change license to Apache 2.0
+  ([`37f5f1b`](https://github.com/Khushiyant/sheetwise/commit/37f5f1b39b2badf7e00b77073bd3bc87c60cb6af))
+
+- Implement dynamic project metadata retrieval from pyproject.toml
+  ([`1a3221c`](https://github.com/Khushiyant/sheetwise/commit/1a3221c084c1a437a7f980d083dc804749e8dd67))
+
+
 ## v2.6.2 (2025-12-14)
 
 ### Bug Fixes
