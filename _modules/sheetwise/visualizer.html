@@ -374,28 +374,28 @@
 <span class="s2">        &lt;head&gt;</span>
 <span class="s2">            &lt;title&gt;SheetWise Compression Audit&lt;/title&gt;</span>
 <span class="s2">            &lt;style&gt;</span>
-<span class="s2">                :root { --primary: #2c3e50; --deleted: #ffebee; --gap: #f5f5f5; --highlight: #ffcdd2; }</span>
-<span class="s2">                body { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; }</span>
-<span class="s2">                header { background: var(--primary); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }</span>
-<span class="s2">                .container { display: flex; flex: 1; overflow: hidden; }</span>
-<span class="s2">                .panel { flex: 1; display: flex; flex-direction: column; border-right: 1px solid #ddd; min-width: 0; }</span>
-<span class="s2">                .panel-header { background: #eee; padding: 10px; font-weight: bold; border-bottom: 1px solid #ccc; }</span>
-<span class="s2">                .grid-container { flex: 1; overflow: auto; padding: 10px; position: relative; }</span>
+<span class="s2">                :root {{ --primary: #2c3e50; --deleted: #ffebee; --gap: #f5f5f5; --highlight: #ffcdd2; }}</span>
+<span class="s2">                body {{ font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; }}</span>
+<span class="s2">                header {{ background: var(--primary); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }}</span>
+<span class="s2">                .container {{ display: flex; flex: 1; overflow: hidden; }}</span>
+<span class="s2">                .panel {{ flex: 1; display: flex; flex-direction: column; border-right: 1px solid #ddd; min-width: 0; }}</span>
+<span class="s2">                .panel-header {{ background: #eee; padding: 10px; font-weight: bold; border-bottom: 1px solid #ccc; }}</span>
+<span class="s2">                .grid-container {{ flex: 1; overflow: auto; padding: 10px; position: relative; }}</span>
 <span class="s2">                </span>
-<span class="s2">                table { border-collapse: collapse; width: 100%; font-size: 13px; table-layout: fixed; }</span>
-<span class="s2">                th, td { border: 1px solid #ddd; padding: 4px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; height: 25px; }</span>
-<span class="s2">                th { background: #f8f9fa; position: sticky; top: 0; z-index: 10; text-align: left; font-weight: 600; color: #555; }</span>
+<span class="s2">                table {{ border-collapse: collapse; width: 100%; font-size: 13px; table-layout: fixed; }}</span>
+<span class="s2">                th, td {{ border: 1px solid #ddd; padding: 4px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; height: 25px; }}</span>
+<span class="s2">                th {{ background: #f8f9fa; position: sticky; top: 0; z-index: 10; text-align: left; font-weight: 600; color: #555; }}</span>
 <span class="s2">                </span>
 <span class="s2">                /* Specific Styles */</span>
-<span class="s2">                .orig-row { transition: background 0.3s; }</span>
-<span class="s2">                .orig-row.deleted { background-color: var(--deleted); color: #888; }</span>
-<span class="s2">                .orig-row.target-highlight { background-color: #e53935 !important; color: white !important; }</span>
+<span class="s2">                .orig-row {{ transition: background 0.3s; }}</span>
+<span class="s2">                .orig-row.deleted {{ background-color: var(--deleted); color: #888; }}</span>
+<span class="s2">                .orig-row.target-highlight {{ background-color: #e53935 !important; color: white !important; }}</span>
 <span class="s2">                </span>
-<span class="s2">                .gap-row { background-color: var(--gap); cursor: pointer; color: #666; font-style: italic; font-size: 11px; text-align: center; border-left: 4px solid #bbb; }</span>
-<span class="s2">                .gap-row:hover { background-color: #e0e0e0; border-left-color: var(--primary); }</span>
+<span class="s2">                .gap-row {{ background-color: var(--gap); cursor: pointer; color: #666; font-style: italic; font-size: 11px; text-align: center; border-left: 4px solid #bbb; }}</span>
+<span class="s2">                .gap-row:hover {{ background-color: #e0e0e0; border-left-color: var(--primary); }}</span>
 <span class="s2">                </span>
 <span class="s2">                /* Stats Badge */</span>
-<span class="s2">                .badge { background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 4px; font-size: 0.9em; margin-left: 10px; }</span>
+<span class="s2">                .badge {{ background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 4px; font-size: 0.9em; margin-left: 10px; }}</span>
 <span class="s2">            &lt;/style&gt;</span>
 <span class="s2">        &lt;/head&gt;</span>
 <span class="s2">        &lt;body&gt;</span>
@@ -433,7 +433,7 @@
 
 <span class="s2">            &lt;script&gt;</span>
 <span class="s2">                // Interaction Logic</span>
-<span class="s2">                function highlightRange(start, end) {</span>
+<span class="s2">                function highlightRange(start, end) {{</span>
 <span class="s2">                    // Remove old highlights</span>
 <span class="s2">                    document.querySelectorAll(&#39;.target-highlight&#39;).forEach(el =&gt; el.classList.remove(&#39;target-highlight&#39;));</span>
 <span class="s2">                    </span>
@@ -441,19 +441,19 @@
 <span class="s2">                    const container = document.getElementById(&#39;orig-container&#39;);</span>
 <span class="s2">                    let firstEl = null;</span>
 <span class="s2">                    </span>
-<span class="s2">                    for (let i = start; i &lt;= end; i++) {</span>
+<span class="s2">                    for (let i = start; i &lt;= end; i++) {{</span>
 <span class="s2">                        const el = document.getElementById(&#39;orig-row-&#39; + i);</span>
-<span class="s2">                        if (el) {</span>
+<span class="s2">                        if (el) {{</span>
 <span class="s2">                            el.classList.add(&#39;target-highlight&#39;);</span>
 <span class="s2">                            if (!firstEl) firstEl = el;</span>
-<span class="s2">                        }</span>
-<span class="s2">                    }</span>
+<span class="s2">                        }}</span>
+<span class="s2">                    }}</span>
 <span class="s2">                    </span>
 <span class="s2">                    // Scroll to first element</span>
-<span class="s2">                    if (firstEl) {</span>
-<span class="s2">                        firstEl.scrollIntoView({behavior: &#39;smooth&#39;, block: &#39;center&#39;});</span>
-<span class="s2">                    }</span>
-<span class="s2">                }</span>
+<span class="s2">                    if (firstEl) {{</span>
+<span class="s2">                        firstEl.scrollIntoView({{behavior: &#39;smooth&#39;, block: &#39;center&#39;}});</span>
+<span class="s2">                    }}</span>
+<span class="s2">                }}</span>
 <span class="s2">            &lt;/script&gt;</span>
 <span class="s2">        &lt;/body&gt;</span>
 <span class="s2">        &lt;/html&gt;</span>
@@ -542,10 +542,37 @@
     <span class="c1"># Keep existing methods (comparison, html static, fig_to_base64)</span>
 <div class="viewcode-block" id="CompressionVisualizer.compare_original_vs_compressed">
 <a class="viewcode-back" href="../../user_guide/visualization.html#sheetwise.CompressionVisualizer.compare_original_vs_compressed">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">compare_original_vs_compressed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_df</span><span class="p">,</span> <span class="n">compressed_result</span><span class="p">):</span>
-        <span class="c1"># ... (Previous implementation remains unchanged)</span>
-        <span class="c1"># Just creating a placeholder to ensure class continuity</span>
-        <span class="k">pass</span> </div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compare_original_vs_compressed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> 
+                                     <span class="n">compressed_result</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compare original vs compressed spreadsheet structure side-by-side.&quot;&quot;&quot;</span>
+        <span class="n">compressed_df</span> <span class="o">=</span> <span class="n">compressed_result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;compressed_data&#39;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">())</span>
+        
+        <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        
+        <span class="c1"># Original Heatmap</span>
+        <span class="n">non_empty_mask_orig</span> <span class="o">=</span> <span class="o">~</span><span class="n">original_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">original_df</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">matrix_orig</span> <span class="o">=</span> <span class="n">non_empty_mask_orig</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        
+        <span class="n">ax1</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">matrix_orig</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original (</span><span class="si">{</span><span class="n">original_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">original_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Row&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Column&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+        
+        <span class="c1"># Compressed Heatmap</span>
+        <span class="n">non_empty_mask_comp</span> <span class="o">=</span> <span class="o">~</span><span class="n">compressed_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">compressed_df</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">matrix_comp</span> <span class="o">=</span> <span class="n">non_empty_mask_comp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">matrix_comp</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">matrix_comp</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">)</span>
+        
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">compressed_result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;compression_ratio&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Compressed (</span><span class="si">{</span><span class="n">compressed_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">compressed_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">) - </span><span class="si">{</span><span class="n">ratio</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Row&quot;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">fig</span> </div>
 
         
     <span class="k">def</span><span class="w"> </span><span class="nf">_fig_to_base64</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig</span><span class="p">):</span>

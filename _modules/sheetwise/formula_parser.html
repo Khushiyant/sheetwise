@@ -476,7 +476,7 @@
 
 <div class="viewcode-block" id="FormulaParser.encode_formulas_for_llm">
 <a class="viewcode-back" href="../../user_guide/formulas.html#sheetwise.FormulaParser.encode_formulas_for_llm">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">encode_formulas_for_llm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formulas</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">encode_formulas_for_llm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formulas</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate LLM-friendly encoding.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">formulas</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">formulas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formula_map</span>
@@ -487,7 +487,7 @@
         <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;## Spreadsheet Formulas&quot;</span><span class="p">]</span>
         
         <span class="c1"># Group similar formulas to save tokens</span>
-        <span class="n">formula_groups</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">formula_groups</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">formula</span> <span class="ow">in</span> <span class="n">formulas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">formula</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">formula_groups</span><span class="p">:</span>
                 <span class="n">formula_groups</span><span class="p">[</span><span class="n">formula</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -517,7 +517,7 @@
     
 <div class="viewcode-block" id="FormulaDependencyAnalyzer.__init__">
 <a class="viewcode-back" href="../../user_guide/formulas.html#sheetwise.FormulaDependencyAnalyzer.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula_parser</span><span class="p">:</span> <span class="n">FormulaParser</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula_parser</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FormulaParser</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">formula_parser</span> <span class="ow">or</span> <span class="n">FormulaParser</span><span class="p">()</span></div>
 
         

@@ -272,11 +272,11 @@
     
 <div class="viewcode-block" id="WorkbookManager.__init__">
 <a class="viewcode-back" href="../../api/sheetwise.workbook.html#sheetwise.WorkbookManager.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the workbook manager.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dict mapping sheet names to dataframes</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sheet_metadata</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dict mapping sheet names to metadata</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cross_references</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dict mapping sheets to their references</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sheet_metadata</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cross_references</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span></div>
 
         
 <div class="viewcode-block" id="WorkbookManager.load_workbook">
@@ -294,9 +294,12 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">excel_path</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Excel file not found: </span><span class="si">{</span><span class="n">excel_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             
+        <span class="c1"># Store path for later use</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_loaded_path</span> <span class="o">=</span> <span class="n">excel_path</span>
+            
         <span class="c1"># Load all sheets into a dict of dataframes</span>
         <span class="n">sheet_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">excel_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span> <span class="o">=</span> <span class="n">sheet_dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span> <span class="o">=</span> <span class="n">sheet_dict</span>  <span class="c1"># type: ignore</span>
         
         <span class="c1"># Initialize metadata for each sheet</span>
         <span class="k">for</span> <span class="n">sheet_name</span> <span class="ow">in</span> <span class="n">sheet_dict</span><span class="p">:</span>
@@ -426,7 +429,7 @@
     
 <div class="viewcode-block" id="WorkbookManager.compress_workbook">
 <a class="viewcode-back" href="../../api/sheetwise.workbook.html#sheetwise.WorkbookManager.compress_workbook">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">compress_workbook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compressor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compress_workbook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compressor</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compress all sheets in the workbook.</span>
 <span class="sd">        </span>

@@ -376,9 +376,34 @@ Ideal for piping into other scripts or APIs.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.core.SpreadsheetLLM.compress_with_auto_config">
+<span class="sig-name descname"><span class="pre">compress_with_auto_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.compress_with_auto_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.core.SpreadsheetLLM.compress_with_auto_config" title="Link to this definition">¶</a></dt>
+<dd><p>Automatically configure compression parameters based on spreadsheet characteristics
+and return the encoded string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.core.SpreadsheetLLM.compress_and_encode_for_llm">
 <span class="sig-name descname"><span class="pre">compress_and_encode_for_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.compress_and_encode_for_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.core.SpreadsheetLLM.compress_and_encode_for_llm" title="Link to this definition">¶</a></dt>
 <dd><p>Original Markdown encoding (retained for compatibility).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.core.SpreadsheetLLM.encode_to_token_limit">
+<span class="sig-name descname"><span class="pre">encode_to_token_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tokens</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_to_token_limit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.core.SpreadsheetLLM.encode_to_token_limit" title="Link to this definition">¶</a></dt>
+<dd><p>Attempt to encode the spreadsheet within a specific token limit.
+Iteratively increases compression aggressiveness if needed.
+Note: Uses a heuristic of 4 characters ~= 1 token.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
@@ -491,7 +516,9 @@ Ideal for piping into other scripts or APIs.</p>
 <li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.query_sql"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.query_sql()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.encode_to_json"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_to_json()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.auto_configure"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.auto_configure()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.compress_with_auto_config"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.compress_with_auto_config()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.compress_and_encode_for_llm"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.compress_and_encode_for_llm()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.encode_to_token_limit"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_to_token_limit()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.encode_compressed_for_llm"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_compressed_for_llm()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.process_qa_query"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.process_qa_query()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.core.SpreadsheetLLM.encode_vanilla"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_vanilla()</span></code></a></li>

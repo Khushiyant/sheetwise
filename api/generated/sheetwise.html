@@ -321,6 +321,18 @@ Includes Offline SQL and JSON export capabilities.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.compress_with_auto_config">
+<span class="sig-name descname"><span class="pre">compress_with_auto_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.compress_with_auto_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.compress_with_auto_config" title="Link to this definition">¶</a></dt>
+<dd><p>Automatically configure compression parameters based on spreadsheet characteristics
+and return the encoded string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.encode_compressed_for_llm">
 <span class="sig-name descname"><span class="pre">encode_compressed_for_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compressed_result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_compressed_for_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.encode_compressed_for_llm" title="Link to this definition">¶</a></dt>
 <dd><p>Generate text representation (Markdown).</p>
@@ -336,6 +348,19 @@ Includes Offline SQL and JSON export capabilities.</p>
 <span class="sig-name descname"><span class="pre">encode_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.encode_to_json" title="Link to this definition">¶</a></dt>
 <dd><p>Encode compressed spreadsheet data into structured JSON.
 Ideal for piping into other scripts or APIs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.encode_to_token_limit">
+<span class="sig-name descname"><span class="pre">encode_to_token_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tokens</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/core.html#SpreadsheetLLM.encode_to_token_limit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.encode_to_token_limit" title="Link to this definition">¶</a></dt>
+<dd><p>Attempt to encode the spreadsheet within a specific token limit.
+Iteratively increases compression aggressiveness if needed.
+Note: Uses a heuristic of 4 characters ~= 1 token.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
@@ -725,7 +750,13 @@ Now includes Interactive HTML Reports.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.CompressionVisualizer.compare_original_vs_compressed">
 <span class="sig-name descname"><span class="pre">compare_original_vs_compressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compressed_result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sheetwise/visualizer.html#CompressionVisualizer.compare_original_vs_compressed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.CompressionVisualizer.compare_original_vs_compressed" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Compare original vs compressed spreadsheet structure side-by-side.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.CompressionVisualizer.create_data_density_heatmap">
@@ -798,7 +829,7 @@ Now includes Interactive HTML Reports.</p>
 <dd><p>Compress all sheets in the workbook.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>compressor</strong> – SheetCompressor instance to use for compression</p>
+<dd class="field-odd"><p><strong>compressor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – SheetCompressor instance to use for compression</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
@@ -1014,12 +1045,12 @@ Now includes Interactive HTML Reports.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.header_cols">
-<span class="sig-name descname"><span class="pre">header_cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.header_cols" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">header_cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.header_cols" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sheetwise.EnhancedTableRegion.header_rows">
-<span class="sig-name descname"><span class="pre">header_rows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.header_rows" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">header_rows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sheetwise.EnhancedTableRegion.header_rows" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -1133,8 +1164,10 @@ Now includes Interactive HTML Reports.</p>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.auto_configure"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.auto_configure()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.compress_and_encode_for_llm"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.compress_and_encode_for_llm()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.compress_spreadsheet"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.compress_spreadsheet()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.compress_with_auto_config"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.compress_with_auto_config()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_compressed_for_llm"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_compressed_for_llm()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_to_json"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_to_json()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_to_token_limit"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_to_token_limit()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.encode_vanilla"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.encode_vanilla()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.get_encoding_stats"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.get_encoding_stats()</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.SpreadsheetLLM.load_from_file"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM.load_from_file()</span></code></a></li>
