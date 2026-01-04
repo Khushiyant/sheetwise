@@ -1,0 +1,12 @@
+sheetwise.loaders
+=================
+
+.. automodule:: sheetwise.loaders
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SheetwiseLoader
+   

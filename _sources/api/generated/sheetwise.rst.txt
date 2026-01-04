@@ -20,6 +20,7 @@
    encoders
    extractors
    formula_parser
+   loaders
    smart_tables
    utils
    visualizer

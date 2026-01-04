@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>sheetwise package - Sheetwise 2.6.2 documentation</title>
+        <title>sheetwise package - Sheetwise 2.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Sheetwise 2.6.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">Sheetwise 2.7.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
-  <span class="sidebar-brand-text">Sheetwise 2.6.2 documentation</span>
+  <span class="sidebar-brand-text">Sheetwise 2.7.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -616,6 +616,56 @@ Uses fuzzy matching and heuristic scoring instead of LLMs.</p>
 <dt class="sig sig-object py" id="sheetwise.create_realistic_spreadsheet">
 <span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">create_realistic_spreadsheet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/utils.html#create_realistic_spreadsheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.create_realistic_spreadsheet" title="Link to this definition">¶</a></dt>
 <dd><p>Create a realistic large, sparse spreadsheet with multiple tables</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sheetwise.SheetwiseLoader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SheetwiseLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sheets'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'markdown'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/loaders.html#SheetwiseLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SheetwiseLoader" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Loader for spreadsheets using SheetWise.
+Compatible with LangChain’s BaseLoader interface.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SheetwiseLoader.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sheets'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'markdown'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/loaders.html#SheetwiseLoader.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SheetwiseLoader.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the loader.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>]</span>) – Path to the spreadsheet file.</p></li>
+<li><p><strong>mode</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Loading mode.
+- “sheets”: One document per sheet (default).
+- “single”: All sheets merged into one document.</p></li>
+<li><p><strong>layout</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Output format.
+- “markdown”: Optimized Markdown string (SpreadsheetLLM style).
+- “json”: Structured JSON string.</p></li>
+<li><p><strong>compression_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span>) – Parameters for the SheetCompressor.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SheetwiseLoader.lazy_load">
+<span class="sig-name descname"><span class="pre">lazy_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/loaders.html#SheetwiseLoader.lazy_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SheetwiseLoader.lazy_load" title="Link to this definition">¶</a></dt>
+<dd><p>A lazy loader for Documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[Document]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.SheetwiseLoader.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/loaders.html#SheetwiseLoader.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SheetwiseLoader.load" title="Link to this definition">¶</a></dt>
+<dd><p>Load data into Documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[Document]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1236,6 +1286,15 @@ Now includes Interactive HTML Reports.</p>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.loaders.html">sheetwise.loaders module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.loaders.html#sheetwise.loaders.SheetwiseLoader"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sheetwise.loaders.html#sheetwise.loaders.SheetwiseLoader.__init__"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sheetwise.loaders.html#sheetwise.loaders.SheetwiseLoader.lazy_load"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader.lazy_load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sheetwise.loaders.html#sheetwise.loaders.SheetwiseLoader.load"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader.load()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="sheetwise.smart_tables.html">sheetwise.smart_tables module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.TableType"><code class="docutils literal notranslate"><span class="pre">TableType</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.TableType.DATA_TABLE"><code class="docutils literal notranslate"><span class="pre">TableType.DATA_TABLE</span></code></a></li>
@@ -1393,6 +1452,12 @@ Now includes Interactive HTML Reports.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.create_realistic_spreadsheet"><code class="docutils literal notranslate"><span class="pre">create_realistic_spreadsheet()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SheetwiseLoader"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader</span></code></a><ul>
+<li><a class="reference internal" href="#sheetwise.SheetwiseLoader.__init__"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SheetwiseLoader.lazy_load"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader.lazy_load()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.SheetwiseLoader.load"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader.load()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#sheetwise.FormulaParser"><code class="docutils literal notranslate"><span class="pre">FormulaParser</span></code></a><ul>
 <li><a class="reference internal" href="#sheetwise.FormulaParser.CELL_REF_PATTERN"><code class="docutils literal notranslate"><span class="pre">FormulaParser.CELL_REF_PATTERN</span></code></a></li>
 <li><a class="reference internal" href="#sheetwise.FormulaParser.__init__"><code class="docutils literal notranslate"><span class="pre">FormulaParser.__init__()</span></code></a></li>
@@ -1473,7 +1538,7 @@ Now includes Interactive HTML Reports.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=3db9c557"></script>
+</div><script src="../_static/documentation_options.js?v=dfec817d"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

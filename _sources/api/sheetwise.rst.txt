@@ -22,6 +22,7 @@ Submodules
    sheetwise.encoders
    sheetwise.extractors
    sheetwise.formula_parser
+   sheetwise.loaders
    sheetwise.smart_tables
    sheetwise.utils
    sheetwise.visualizer

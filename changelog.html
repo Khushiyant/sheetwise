@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="License" href="license.html"><link rel="prev" title="Contributing" href="contributing.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>Changelog - Sheetwise 2.6.2 documentation</title>
+        <title>Changelog - Sheetwise 2.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Sheetwise 2.6.2 documentation</div></a>
+      <a href="index.html"><div class="brand">Sheetwise 2.7.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <span class="sidebar-brand-text">Sheetwise 2.6.2 documentation</span>
+  <span class="sidebar-brand-text">Sheetwise 2.7.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -259,17 +259,52 @@
 <h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h1>
 <section id="changelog">
 <h2>CHANGELOG<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h2>
-<section id="v2-6-2-2025-12-14">
-<h3>v2.6.2 (2025-12-14)<a class="headerlink" href="#v2-6-2-2025-12-14" title="Link to this heading">¶</a></h3>
+<section id="v2-7-0-2026-01-04">
+<h3>v2.7.0 (2026-01-04)<a class="headerlink" href="#v2-7-0-2026-01-04" title="Link to this heading">¶</a></h3>
+<section id="features">
+<h4>Features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Implement SheetwiseLoader for spreadsheet loading and add tests
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/9208a479656f670924da47cd11cdb83a9437788b"><code class="docutils literal notranslate"><span class="pre">9208a47</span></code></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-6-3-2026-01-03">
+<h3>v2.6.3 (2026-01-03)<a class="headerlink" href="#v2-6-3-2026-01-03" title="Link to this heading">¶</a></h3>
 <section id="bug-fixes">
 <h4>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Add compression configuration and visualization enhancements
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/846af23f9db7b9bfa20f74f89ceb0f7ca419e7b9"><code class="docutils literal notranslate"><span class="pre">846af23</span></code></a>)</p></li>
+<li><p>Implemented automatic compression configuration based on spreadsheet characteristics in
+<code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM</span></code>. - Added methods for encoding within token limits and aggressive compression
+strategies. - Enhanced <code class="docutils literal notranslate"><span class="pre">CompressionVisualizer</span></code> with new comparison and heatmap generation
+functionalities. - Introduced unit tests for <code class="docutils literal notranslate"><span class="pre">CompressionVisualizer</span></code> and <code class="docutils literal notranslate"><span class="pre">WorkbookManager</span></code> to
+ensure functionality and reliability. - Updated type hints for better clarity and maintainability
+across various classes.</p></li>
+</ul>
+</section>
+<section id="chores">
+<h4>Chores<a class="headerlink" href="#chores" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Change license to Apache 2.0
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/37f5f1b39b2badf7e00b77073bd3bc87c60cb6af"><code class="docutils literal notranslate"><span class="pre">37f5f1b</span></code></a>)</p></li>
+<li><p>Implement dynamic project metadata retrieval from pyproject.toml
+(<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/1a3221c084c1a437a7f980d083dc804749e8dd67"><code class="docutils literal notranslate"><span class="pre">1a3221c</span></code></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-6-2-2025-12-14">
+<h3>v2.6.2 (2025-12-14)<a class="headerlink" href="#v2-6-2-2025-12-14" title="Link to this heading">¶</a></h3>
+<section id="id1">
+<h4>Bug Fixes<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Add interactive HTML report generation for spreadsheet compression analysis
 (<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/0831171e485a519c3efc60fba53472d0e166ac25"><code class="docutils literal notranslate"><span class="pre">0831171</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="chores">
-<h4>Chores<a class="headerlink" href="#chores" title="Link to this heading">¶</a></h4>
+<section id="id2">
+<h4>Chores<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Update CHANGELOG for version 2.6.1 with new features, enhancements, and fixes
 (<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/b6717afdb6d53bd6b57d947e77c8825274261ad5"><code class="docutils literal notranslate"><span class="pre">b6717af</span></code></a>)</p></li>
@@ -285,8 +320,8 @@
 </section>
 <section id="v2-6-1-2025-12-13">
 <h3>v2.6.1 (2025-12-13)<a class="headerlink" href="#v2-6-1-2025-12-13" title="Link to this heading">¶</a></h3>
-<section id="id1">
-<h4>Bug Fixes<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
+<section id="id3">
+<h4>Bug Fixes<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Add tomli dependency for improved TOML file handling in development
 (<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/309ace492762bd766310e764c6829a6572ff6e6e"><code class="docutils literal notranslate"><span class="pre">309ace4</span></code></a>)</p></li>
@@ -308,8 +343,8 @@
 (<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/58c5b524d80325045f1322735fc9be0ffdd253d1"><code class="docutils literal notranslate"><span class="pre">58c5b52</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id2">
-<h4>Chores<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
+<section id="id4">
+<h4>Chores<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Add comprehensive documentation for SheetWise
 (<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/a19187ebb0015bb7a8c7190bcab8e51929698ad8"><code class="docutils literal notranslate"><span class="pre">a19187e</span></code></a>)</p></li>
@@ -360,8 +395,8 @@ for command line interface. - Include configuration for black, isort, mypy, pyte
 (<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/33557c6ccb034d18ea03a64f23b728b955a54952"><code class="docutils literal notranslate"><span class="pre">33557c6</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="features">
-<h4>Features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h4>
+<section id="id5">
+<h4>Features<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Add advanced table detection and classification utilities
 (<a class="reference external" href="https://github.com/Khushiyant/sheetwise/commit/5c554e956b56017e6647ed7be467829255f1861f"><code class="docutils literal notranslate"><span class="pre">5c554e9</span></code></a>)</p></li>
@@ -471,17 +506,26 @@ comprehensive README with package overview and usage instructions.</p></li>
             <ul>
 <li><a class="reference internal" href="#">Changelog</a><ul>
 <li><a class="reference internal" href="#changelog">CHANGELOG</a><ul>
-<li><a class="reference internal" href="#v2-6-2-2025-12-14">v2.6.2 (2025-12-14)</a><ul>
+<li><a class="reference internal" href="#v2-7-0-2026-01-04">v2.7.0 (2026-01-04)</a><ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v2-6-3-2026-01-03">v2.6.3 (2026-01-03)</a><ul>
 <li><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
 <li><a class="reference internal" href="#chores">Chores</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v2-6-2-2025-12-14">v2.6.2 (2025-12-14)</a><ul>
+<li><a class="reference internal" href="#id1">Bug Fixes</a></li>
+<li><a class="reference internal" href="#id2">Chores</a></li>
 <li><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v2-6-1-2025-12-13">v2.6.1 (2025-12-13)</a><ul>
-<li><a class="reference internal" href="#id1">Bug Fixes</a></li>
-<li><a class="reference internal" href="#id2">Chores</a></li>
+<li><a class="reference internal" href="#id3">Bug Fixes</a></li>
+<li><a class="reference internal" href="#id4">Chores</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
-<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#id5">Features</a></li>
 <li><a class="reference internal" href="#refactoring">Refactoring</a></li>
 </ul>
 </li>
@@ -498,7 +542,7 @@ comprehensive README with package overview and usage instructions.</p></li>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=3db9c557"></script>
+</div><script src="_static/documentation_options.js?v=dfec817d"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
