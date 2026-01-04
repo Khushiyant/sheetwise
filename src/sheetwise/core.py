@@ -15,6 +15,7 @@ except ImportError:
 from .chain import ChainOfSpreadsheet
 from .compressor import SheetCompressor
 from .encoders import VanillaEncoder
+from .privacy import PIIRedactor
 
 
 class NumpyEncoder(json.JSONEncoder):
@@ -41,17 +42,30 @@ class SpreadsheetLLM:
     Includes Offline SQL and JSON export capabilities.
     """
 
-    def __init__(self, compression_params: Dict[str, Any] = None, enable_logging: bool = False):
+    def __init__(
+        self, 
+        compression_params: Dict[str, Any] = None, 
+        enable_logging: bool = False,
+        enable_pii_redaction: bool = False,
+        redaction_mask: str = "[REDACTED]"
+    ):
         """
         Initialize SheetWise framework.
 
         Args:
             compression_params: Parameters for SheetCompressor
             enable_logging: Enable detailed logging for debugging
+            enable_pii_redaction: Whether to automatically redact PII from inputs
+            redaction_mask: Mask to use for redaction (default: "[REDACTED]")
         """
         self.params = compression_params or {}
         self.compressor = SheetCompressor(**self.params)
         self.vanilla_encoder = VanillaEncoder()
+        
+        # Privacy setup
+        self.enable_pii_redaction = enable_pii_redaction
+        self.redactor = PIIRedactor(mask=redaction_mask) if enable_pii_redaction else None
+
         # Pass compressor to chain, though chain now uses SmartTableDetector internally
         self.chain_processor = ChainOfSpreadsheet(self.compressor)
         
@@ -144,11 +158,20 @@ class SpreadsheetLLM:
         finally:
             con.close()
 
+    def _maybe_redact(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Apply PII redaction if enabled."""
+        if self.enable_pii_redaction and self.redactor:
+            return self.redactor.redact(df)
+        return df
+
     def encode_to_json(self, df: pd.DataFrame) -> str:
         """
         Encode compressed spreadsheet data into structured JSON.
         Ideal for piping into other scripts or APIs.
         """
+        # Optional Redaction
+        df = self._maybe_redact(df)
+
         # Compress first
         compressed = self.compressor.compress(df)
         
@@ -191,6 +214,9 @@ class SpreadsheetLLM:
         Automatically configure compression parameters based on spreadsheet characteristics
         and return the encoded string.
         """
+        # Optional Redaction
+        df = self._maybe_redact(df)
+
         config = self.auto_configure(df)
         # Create a temporary compressor with optimized settings
         temp_compressor = SheetCompressor(**config)
@@ -199,6 +225,9 @@ class SpreadsheetLLM:
 
     def compress_and_encode_for_llm(self, df: pd.DataFrame) -> str:
         """Original Markdown encoding (retained for compatibility)."""
+        # Optional Redaction
+        df = self._maybe_redact(df)
+
         compressed = self.compressor.compress(df)
         return self.encode_compressed_for_llm(compressed)
 
@@ -208,6 +237,9 @@ class SpreadsheetLLM:
         Iteratively increases compression aggressiveness if needed.
         Note: Uses a heuristic of 4 characters ~= 1 token.
         """
+        # Optional Redaction
+        df = self._maybe_redact(df)
+
         chars_limit = max_tokens * 4
         
         # Level 0: Vanilla (if small enough)
@@ -216,7 +248,9 @@ class SpreadsheetLLM:
             return encoded
             
         # Level 1: Standard Compression
-        encoded = self.compress_and_encode_for_llm(df)
+        # We manually call compressor here to avoid double redaction if we called compress_and_encode_for_llm
+        compressed = self.compressor.compress(df)
+        encoded = self.encode_compressed_for_llm(compressed)
         if len(encoded) <= chars_limit:
             return encoded
             
@@ -235,11 +269,7 @@ class SpreadsheetLLM:
             return encoded
             
         # Level 3: Truncation (Last resort)
-        # Just return what we have, maybe logging a warning would be appropriate in a real app
         return encoded
-        """Original Markdown encoding (retained for compatibility)."""
-        compressed = self.compressor.compress(df)
-        return self.encode_compressed_for_llm(compressed)
 
     def encode_compressed_for_llm(self, compressed_result: Dict[str, Any]) -> str:
         """Generate text representation (Markdown)."""
@@ -270,9 +300,13 @@ class SpreadsheetLLM:
     
     # Kept for backward compatibility
     def encode_vanilla(self, df: pd.DataFrame, include_format: bool = False) -> str:
+        # Optional Redaction
+        df = self._maybe_redact(df)
         return self.vanilla_encoder.encode_to_markdown(df, include_format)
     
     def compress_spreadsheet(self, df: pd.DataFrame) -> Dict[str, Any]:
+        # Optional Redaction
+        df = self._maybe_redact(df)
         return self.compressor.compress(df)
     
     def get_encoding_stats(self, df: pd.DataFrame) -> Dict[str, Any]:

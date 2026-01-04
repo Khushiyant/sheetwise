@@ -29,6 +29,7 @@ from .visualizer import CompressionVisualizer
 from .workbook import WorkbookManager
 from .loaders import SheetwiseLoader
 from .smart_tables import SmartTableDetector, TableType, EnhancedTableRegion
+from .privacy import PIIRedactor
 
 try:
     from importlib.metadata import version
@@ -52,12 +53,14 @@ __all__ = [
     "CellInfo",
     "TableRegion",
     "create_realistic_spreadsheet",
-
+    
     # Loaders
     "SheetwiseLoader",
+
+    # Privacy
+    "PIIRedactor",
     
-    # Formula handling
-    "FormulaParser",
+    # Formula handling    "FormulaParser",
     "FormulaDependencyAnalyzer",
     
     # Visualization
