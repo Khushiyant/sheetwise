@@ -1,0 +1,12 @@
+sheetwise.privacy
+=================
+
+.. automodule:: sheetwise.privacy
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PIIRedactor
+   

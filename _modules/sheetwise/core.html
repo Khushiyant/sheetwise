@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>sheetwise.core - Sheetwise 2.7.0 documentation</title>
+        <title>sheetwise.core - Sheetwise 2.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Sheetwise 2.7.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Sheetwise 2.8.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">Sheetwise 2.7.0 documentation</span>
+  <span class="sidebar-brand-text">Sheetwise 2.8.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -266,6 +266,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">.chain</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChainOfSpreadsheet</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.compressor</span><span class="w"> </span><span class="kn">import</span> <span class="n">SheetCompressor</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.encoders</span><span class="w"> </span><span class="kn">import</span> <span class="n">VanillaEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.privacy</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIIRedactor</span>
 
 
 <div class="viewcode-block" id="NumpyEncoder">
@@ -302,17 +303,30 @@
 
 <div class="viewcode-block" id="SpreadsheetLLM.__init__">
 <a class="viewcode-back" href="../../api/sheetwise.core.html#sheetwise.SpreadsheetLLM.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compression_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">enable_logging</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">compression_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="n">enable_logging</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">enable_pii_redaction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">redaction_mask</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;[REDACTED]&quot;</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize SheetWise framework.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            compression_params: Parameters for SheetCompressor</span>
 <span class="sd">            enable_logging: Enable detailed logging for debugging</span>
+<span class="sd">            enable_pii_redaction: Whether to automatically redact PII from inputs</span>
+<span class="sd">            redaction_mask: Mask to use for redaction (default: &quot;[REDACTED]&quot;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">compression_params</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compressor</span> <span class="o">=</span> <span class="n">SheetCompressor</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vanilla_encoder</span> <span class="o">=</span> <span class="n">VanillaEncoder</span><span class="p">()</span>
+        
+        <span class="c1"># Privacy setup</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enable_pii_redaction</span> <span class="o">=</span> <span class="n">enable_pii_redaction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">redactor</span> <span class="o">=</span> <span class="n">PIIRedactor</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">redaction_mask</span><span class="p">)</span> <span class="k">if</span> <span class="n">enable_pii_redaction</span> <span class="k">else</span> <span class="kc">None</span>
+
         <span class="c1"># Pass compressor to chain, though chain now uses SmartTableDetector internally</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chain_processor</span> <span class="o">=</span> <span class="n">ChainOfSpreadsheet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compressor</span><span class="p">)</span>
         
@@ -412,6 +426,12 @@
             <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
+    <span class="k">def</span><span class="w"> </span><span class="nf">_maybe_redact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply PII redaction if enabled.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_pii_redaction</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">redactor</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">redactor</span><span class="o">.</span><span class="n">redact</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span>
+
 <div class="viewcode-block" id="SpreadsheetLLM.encode_to_json">
 <a class="viewcode-back" href="../../api/sheetwise.core.html#sheetwise.SpreadsheetLLM.encode_to_json">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">encode_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -419,6 +439,9 @@
 <span class="sd">        Encode compressed spreadsheet data into structured JSON.</span>
 <span class="sd">        Ideal for piping into other scripts or APIs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Optional Redaction</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_redact</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
         <span class="c1"># Compress first</span>
         <span class="n">compressed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compressor</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
         
@@ -467,6 +490,9 @@
 <span class="sd">        Automatically configure compression parameters based on spreadsheet characteristics</span>
 <span class="sd">        and return the encoded string.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Optional Redaction</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_redact</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_configure</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
         <span class="c1"># Create a temporary compressor with optimized settings</span>
         <span class="n">temp_compressor</span> <span class="o">=</span> <span class="n">SheetCompressor</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
@@ -478,6 +504,9 @@
 <a class="viewcode-back" href="../../api/sheetwise.core.html#sheetwise.SpreadsheetLLM.compress_and_encode_for_llm">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">compress_and_encode_for_llm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Original Markdown encoding (retained for compatibility).&quot;&quot;&quot;</span>
+        <span class="c1"># Optional Redaction</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_redact</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
         <span class="n">compressed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compressor</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_compressed_for_llm</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span></div>
 
@@ -490,6 +519,9 @@
 <span class="sd">        Iteratively increases compression aggressiveness if needed.</span>
 <span class="sd">        Note: Uses a heuristic of 4 characters ~= 1 token.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Optional Redaction</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_redact</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
         <span class="n">chars_limit</span> <span class="o">=</span> <span class="n">max_tokens</span> <span class="o">*</span> <span class="mi">4</span>
         
         <span class="c1"># Level 0: Vanilla (if small enough)</span>
@@ -498,7 +530,9 @@
             <span class="k">return</span> <span class="n">encoded</span>
             
         <span class="c1"># Level 1: Standard Compression</span>
-        <span class="n">encoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compress_and_encode_for_llm</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="c1"># We manually call compressor here to avoid double redaction if we called compress_and_encode_for_llm</span>
+        <span class="n">compressed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compressor</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">encoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_compressed_for_llm</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">chars_limit</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">encoded</span>
             
@@ -517,11 +551,7 @@
             <span class="k">return</span> <span class="n">encoded</span>
             
         <span class="c1"># Level 3: Truncation (Last resort)</span>
-        <span class="c1"># Just return what we have, maybe logging a warning would be appropriate in a real app</span>
-        <span class="k">return</span> <span class="n">encoded</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Original Markdown encoding (retained for compatibility).&quot;&quot;&quot;</span>
-        <span class="n">compressed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compressor</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_compressed_for_llm</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">encoded</span></div>
 
 
 <div class="viewcode-block" id="SpreadsheetLLM.encode_compressed_for_llm">
@@ -561,12 +591,16 @@
 <div class="viewcode-block" id="SpreadsheetLLM.encode_vanilla">
 <a class="viewcode-back" href="../../api/sheetwise.core.html#sheetwise.SpreadsheetLLM.encode_vanilla">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">encode_vanilla</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">include_format</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="c1"># Optional Redaction</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_redact</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vanilla_encoder</span><span class="o">.</span><span class="n">encode_to_markdown</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">include_format</span><span class="p">)</span></div>
 
     
 <div class="viewcode-block" id="SpreadsheetLLM.compress_spreadsheet">
 <a class="viewcode-back" href="../../api/sheetwise.core.html#sheetwise.SpreadsheetLLM.compress_spreadsheet">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">compress_spreadsheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="c1"># Optional Redaction</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_redact</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compressor</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 
     
@@ -614,7 +648,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=dfec817d"></script>
+</div><script src="../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

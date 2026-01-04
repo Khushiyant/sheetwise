@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>sheetwise package - Sheetwise 2.7.0 documentation</title>
+        <title>sheetwise package - Sheetwise 2.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Sheetwise 2.7.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">Sheetwise 2.8.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
-  <span class="sidebar-brand-text">Sheetwise 2.7.0 documentation</span>
+  <span class="sidebar-brand-text">Sheetwise 2.8.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -271,19 +271,21 @@
 by Microsoft Research Team</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SpreadsheetLLM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compression_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/core.html#SpreadsheetLLM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">SpreadsheetLLM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compression_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_pii_redaction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redaction_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'[REDACTED]'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/core.html#SpreadsheetLLM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Main class integrating all SheetWise components.
 Includes Offline SQL and JSON export capabilities.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sheetwise.SpreadsheetLLM.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compression_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/core.html#SpreadsheetLLM.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compression_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_pii_redaction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redaction_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'[REDACTED]'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/core.html#SpreadsheetLLM.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.SpreadsheetLLM.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize SheetWise framework.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>compression_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Parameters for SheetCompressor</p></li>
 <li><p><strong>enable_logging</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Enable detailed logging for debugging</p></li>
+<li><p><strong>enable_pii_redaction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to automatically redact PII from inputs</p></li>
+<li><p><strong>redaction_mask</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Mask to use for redaction (default: “[REDACTED]”)</p></li>
 </ul>
 </dd>
 </dl>
@@ -669,94 +671,52 @@ Compatible with LangChain’s BaseLoader interface.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">FormulaParser</span></span><a class="reference internal" href="../_modules/sheetwise/formula_parser.html#FormulaParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sheetwise.PIIRedactor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sheetwise.</span></span><span class="sig-name descname"><span class="pre">PIIRedactor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_patterns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'[REDACTED]'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/privacy.html#PIIRedactor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.PIIRedactor" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Extracts, analyzes and simplifies Excel formulas from spreadsheets.
-Optimized for memory usage with streaming reads.</p>
+<p>Redacts Personally Identifiable Information (PII) from dataframes.
+Uses regex patterns to identify and mask sensitive data.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.CELL_REF_PATTERN">
-<span class="sig-name descname"><span class="pre">CELL_REF_PATTERN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">re.compile('([A-Z]+[0-9]+|[A-Z]+\\:[A-Z]+|[0-9]+\\:[0-9]+|[A-Z]+[0-9]+\\:[A-Z]+[0-9]+)')</span></em><a class="headerlink" href="#sheetwise.FormulaParser.CELL_REF_PATTERN" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sheetwise.PIIRedactor.PATTERNS">
+<span class="sig-name descname"><span class="pre">PATTERNS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'credit_card':</span> <span class="pre">'\\b(?:\\d{4}[-\\s]?){3}\\d{4}\\b',</span> <span class="pre">'email':</span> <span class="pre">'\\b[A-Za-z0-9._%+-]+&#64;[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b',</span> <span class="pre">'ip_address':</span> <span class="pre">'\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b',</span> <span class="pre">'ipv6':</span> <span class="pre">'([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])',</span> <span class="pre">'phone':</span> <span class="pre">'\\b(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\\b',</span> <span class="pre">'ssn':</span> <span class="pre">'\\b\\d{3}-\\d{2}-\\d{4}\\b'}</span></em><a class="headerlink" href="#sheetwise.PIIRedactor.PATTERNS" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/formula_parser.html#FormulaParser.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.__init__" title="Link to this definition">¶</a></dt>
-<dd><p>Initialize the formula parser.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.build_dependency_graph">
-<span class="sig-name descname"><span class="pre">build_dependency_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/formula_parser.html#FormulaParser.build_dependency_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.build_dependency_graph" title="Link to this definition">¶</a></dt>
-<dd><p>Build a graph of cell dependencies based on extracted formulas.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.encode_formulas_for_llm">
-<span class="sig-name descname"><span class="pre">encode_formulas_for_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formulas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/formula_parser.html#FormulaParser.encode_formulas_for_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.encode_formulas_for_llm" title="Link to this definition">¶</a></dt>
-<dd><p>Generate LLM-friendly encoding.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.extract_cell_references">
-<span class="sig-name descname"><span class="pre">extract_cell_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/formula_parser.html#FormulaParser.extract_cell_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.extract_cell_references" title="Link to this definition">¶</a></dt>
-<dd><p>Extract all cell references from a formula.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.extract_formulas">
-<span class="sig-name descname"><span class="pre">extract_formulas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/formula_parser.html#FormulaParser.extract_formulas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.extract_formulas" title="Link to this definition">¶</a></dt>
-<dd><p>Extract all formulas from an Excel file using Memory-Efficient Streaming.</p>
+<dt class="sig sig-object py" id="sheetwise.PIIRedactor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_patterns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'[REDACTED]'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/privacy.html#PIIRedactor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.PIIRedactor.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the redactor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>excel_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the Excel file</p></li>
-<li><p><strong>sheet_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Optional specific sheet to parse (saves time)</p></li>
+<li><p><strong>custom_patterns</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span>) – Dictionary of {name: regex_pattern} to add/override.</p></li>
+<li><p><strong>mask</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – String to replace PII with. Default is “[REDACTED]”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.PIIRedactor.add_pattern">
+<span class="sig-name descname"><span class="pre">add_pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/privacy.html#PIIRedactor.add_pattern"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.PIIRedactor.add_pattern" title="Link to this definition">¶</a></dt>
+<dd><p>Add a new pattern dynamically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sheetwise.PIIRedactor.redact">
+<span class="sig-name descname"><span class="pre">redact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/privacy.html#PIIRedactor.redact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.PIIRedactor.redact" title="Link to this definition">¶</a></dt>
+<dd><p>Redact PII from the dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – Input dataframe.</p></li>
+<li><p><strong>inplace</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to modify the dataframe in place.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dictionary mapping cell addresses to formulas</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.get_formula_impact">
-<span class="sig-name descname"><span class="pre">get_formula_impact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_address</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/formula_parser.html#FormulaParser.get_formula_impact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.get_formula_impact" title="Link to this definition">¶</a></dt>
-<dd><p>Analyze the impact of a formula cell.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sheetwise.FormulaParser.simplify_formula">
-<span class="sig-name descname"><span class="pre">simplify_formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sheetwise/formula_parser.html#FormulaParser.simplify_formula"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sheetwise.FormulaParser.simplify_formula" title="Link to this definition">¶</a></dt>
-<dd><p>Generate a simplified explanation using robust tokenization.
-Handles nested functions better than Regex.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+<dd class="field-odd"><p>Redacted dataframe.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1295,6 +1255,16 @@ Now includes Interactive HTML Reports.</p>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.privacy.html">sheetwise.privacy module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.privacy.html#sheetwise.privacy.PIIRedactor"><code class="docutils literal notranslate"><span class="pre">PIIRedactor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sheetwise.privacy.html#sheetwise.privacy.PIIRedactor.PATTERNS"><code class="docutils literal notranslate"><span class="pre">PIIRedactor.PATTERNS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sheetwise.privacy.html#sheetwise.privacy.PIIRedactor.__init__"><code class="docutils literal notranslate"><span class="pre">PIIRedactor.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sheetwise.privacy.html#sheetwise.privacy.PIIRedactor.redact"><code class="docutils literal notranslate"><span class="pre">PIIRedactor.redact()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sheetwise.privacy.html#sheetwise.privacy.PIIRedactor.add_pattern"><code class="docutils literal notranslate"><span class="pre">PIIRedactor.add_pattern()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="sheetwise.smart_tables.html">sheetwise.smart_tables module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.TableType"><code class="docutils literal notranslate"><span class="pre">TableType</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.TableType.DATA_TABLE"><code class="docutils literal notranslate"><span class="pre">TableType.DATA_TABLE</span></code></a></li>
@@ -1458,15 +1428,11 @@ Now includes Interactive HTML Reports.</p>
 <li><a class="reference internal" href="#sheetwise.SheetwiseLoader.load"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader.load()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser"><code class="docutils literal notranslate"><span class="pre">FormulaParser</span></code></a><ul>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.CELL_REF_PATTERN"><code class="docutils literal notranslate"><span class="pre">FormulaParser.CELL_REF_PATTERN</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.__init__"><code class="docutils literal notranslate"><span class="pre">FormulaParser.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.build_dependency_graph"><code class="docutils literal notranslate"><span class="pre">FormulaParser.build_dependency_graph()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.encode_formulas_for_llm"><code class="docutils literal notranslate"><span class="pre">FormulaParser.encode_formulas_for_llm()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.extract_cell_references"><code class="docutils literal notranslate"><span class="pre">FormulaParser.extract_cell_references()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.extract_formulas"><code class="docutils literal notranslate"><span class="pre">FormulaParser.extract_formulas()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.get_formula_impact"><code class="docutils literal notranslate"><span class="pre">FormulaParser.get_formula_impact()</span></code></a></li>
-<li><a class="reference internal" href="#sheetwise.FormulaParser.simplify_formula"><code class="docutils literal notranslate"><span class="pre">FormulaParser.simplify_formula()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.PIIRedactor"><code class="docutils literal notranslate"><span class="pre">PIIRedactor</span></code></a><ul>
+<li><a class="reference internal" href="#sheetwise.PIIRedactor.PATTERNS"><code class="docutils literal notranslate"><span class="pre">PIIRedactor.PATTERNS</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.PIIRedactor.__init__"><code class="docutils literal notranslate"><span class="pre">PIIRedactor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.PIIRedactor.add_pattern"><code class="docutils literal notranslate"><span class="pre">PIIRedactor.add_pattern()</span></code></a></li>
+<li><a class="reference internal" href="#sheetwise.PIIRedactor.redact"><code class="docutils literal notranslate"><span class="pre">PIIRedactor.redact()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sheetwise.FormulaDependencyAnalyzer"><code class="docutils literal notranslate"><span class="pre">FormulaDependencyAnalyzer</span></code></a><ul>
@@ -1538,7 +1504,7 @@ Now includes Interactive HTML Reports.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=dfec817d"></script>
+</div><script src="../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

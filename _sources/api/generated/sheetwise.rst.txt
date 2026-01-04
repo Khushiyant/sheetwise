@@ -21,6 +21,7 @@
    extractors
    formula_parser
    loaders
+   privacy
    smart_tables
    utils
    visualizer

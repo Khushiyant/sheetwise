@@ -1,0 +1,7 @@
+sheetwise.privacy module
+========================
+
+.. automodule:: sheetwise.privacy
+   :members:
+   :show-inheritance:
+   :undoc-members:

@@ -20,6 +20,7 @@ Modules
    sheetwise.extractors
    sheetwise.formula_parser
    sheetwise.loaders
+   sheetwise.privacy
    sheetwise.smart_tables
    sheetwise.utils
    sheetwise.visualizer
