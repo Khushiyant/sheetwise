@@ -1,7 +1,10 @@
 name: Documentation
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Semantic Release & Publish"]
+    types:
+      - completed
     branches: [ main ]
   pull_request:
     branches: [ main ]
@@ -13,9 +16,12 @@ permissions:
 jobs:
   build-docs:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     
     steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.workflow_run.head_branch || github.ref }}
     
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -44,7 +50,9 @@ jobs:
       continue-on-error: true
     
     - name: Deploy to GitHub Pages
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      if: |
+        (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') ||
+        (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
