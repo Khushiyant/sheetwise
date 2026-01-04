@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v2.7.0 (2026-01-04)
+
+### Features
+
+- Implement SheetwiseLoader for spreadsheet loading and add tests
+  ([`9208a47`](https://github.com/Khushiyant/sheetwise/commit/9208a479656f670924da47cd11cdb83a9437788b))
+
+
 ## v2.6.3 (2026-01-03)
 
 ### Bug Fixes
