@@ -258,67 +258,42 @@
           <section id="api-reference">
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h1>
 <p>This section contains the complete API documentation for SheetWise.</p>
-<section id="core-classes">
-<h2>Core Classes<a class="headerlink" href="#core-classes" title="Link to this heading">¶</a></h2>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.core.html">sheetwise.core module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.core.html#sheetwise.core.NumpyEncoder"><code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.core.html#sheetwise.core.SpreadsheetLLM"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.chain.html">sheetwise.chain module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.chain.html#sheetwise.chain.ChainOfSpreadsheet"><code class="docutils literal notranslate"><span class="pre">ChainOfSpreadsheet</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.classifiers.html">sheetwise.classifiers module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.classifiers.html#sheetwise.classifiers.DataTypeClassifier"><code class="docutils literal notranslate"><span class="pre">DataTypeClassifier</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.cli.html">sheetwise.cli module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.cli.html#sheetwise.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sheetwise.compressor.html">sheetwise.compressor module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sheetwise.compressor.html#sheetwise.compressor.SheetCompressor"><code class="docutils literal notranslate"><span class="pre">SheetCompressor</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.encoders.html">sheetwise.encoders module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.encoders.html#sheetwise.encoders.VanillaEncoder"><code class="docutils literal notranslate"><span class="pre">VanillaEncoder</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.core.html">sheetwise.core module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.core.html#sheetwise.core.NumpyEncoder"><code class="docutils literal notranslate"><span class="pre">NumpyEncoder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.core.html#sheetwise.core.SpreadsheetLLM"><code class="docutils literal notranslate"><span class="pre">SpreadsheetLLM</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.chain.html">sheetwise.chain module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.chain.html#sheetwise.chain.ChainOfSpreadsheet"><code class="docutils literal notranslate"><span class="pre">ChainOfSpreadsheet</span></code></a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
-<section id="advanced-features">
-<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.smart_tables.html">sheetwise.smart_tables module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.TableType"><code class="docutils literal notranslate"><span class="pre">TableType</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.EnhancedTableRegion"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.SmartTableDetector"><code class="docutils literal notranslate"><span class="pre">SmartTableDetector</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.formula_parser.html">sheetwise.formula_parser module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.formula_parser.html#sheetwise.formula_parser.FormulaTokenizer"><code class="docutils literal notranslate"><span class="pre">FormulaTokenizer</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.formula_parser.html#sheetwise.formula_parser.FormulaParser"><code class="docutils literal notranslate"><span class="pre">FormulaParser</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.formula_parser.html#sheetwise.formula_parser.FormulaDependencyAnalyzer"><code class="docutils literal notranslate"><span class="pre">FormulaDependencyAnalyzer</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.workbook.html">sheetwise.workbook module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.workbook.html#sheetwise.workbook.WorkbookManager"><code class="docutils literal notranslate"><span class="pre">WorkbookManager</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.visualizer.html">sheetwise.visualizer module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.visualizer.html#sheetwise.visualizer.CompressionVisualizer"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer</span></code></a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
-<section id="supporting-modules">
-<h2>Supporting Modules<a class="headerlink" href="#supporting-modules" title="Link to this heading">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.classifiers.html">sheetwise.classifiers module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.classifiers.html#sheetwise.classifiers.DataTypeClassifier"><code class="docutils literal notranslate"><span class="pre">DataTypeClassifier</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.data_types.html">sheetwise.data_types module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.data_types.html#sheetwise.data_types.CellInfo"><code class="docutils literal notranslate"><span class="pre">CellInfo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.data_types.html#sheetwise.data_types.TableRegion"><code class="docutils literal notranslate"><span class="pre">TableRegion</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sheetwise.detectors.html">sheetwise.detectors module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sheetwise.detectors.html#sheetwise.detectors.TableDetector"><code class="docutils literal notranslate"><span class="pre">TableDetector</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.encoders.html">sheetwise.encoders module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.encoders.html#sheetwise.encoders.VanillaEncoder"><code class="docutils literal notranslate"><span class="pre">VanillaEncoder</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sheetwise.extractors.html">sheetwise.extractors module</a><ul>
@@ -327,17 +302,32 @@
 <li class="toctree-l2"><a class="reference internal" href="sheetwise.extractors.html#sheetwise.extractors.DataFormatAggregator"><code class="docutils literal notranslate"><span class="pre">DataFormatAggregator</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.data_types.html">sheetwise.data_types module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.data_types.html#sheetwise.data_types.CellInfo"><code class="docutils literal notranslate"><span class="pre">CellInfo</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.data_types.html#sheetwise.data_types.TableRegion"><code class="docutils literal notranslate"><span class="pre">TableRegion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.formula_parser.html">sheetwise.formula_parser module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.formula_parser.html#sheetwise.formula_parser.FormulaTokenizer"><code class="docutils literal notranslate"><span class="pre">FormulaTokenizer</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.formula_parser.html#sheetwise.formula_parser.FormulaParser"><code class="docutils literal notranslate"><span class="pre">FormulaParser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.formula_parser.html#sheetwise.formula_parser.FormulaDependencyAnalyzer"><code class="docutils literal notranslate"><span class="pre">FormulaDependencyAnalyzer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.loaders.html">sheetwise.loaders module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.loaders.html#sheetwise.loaders.SheetwiseLoader"><code class="docutils literal notranslate"><span class="pre">SheetwiseLoader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.smart_tables.html">sheetwise.smart_tables module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.TableType"><code class="docutils literal notranslate"><span class="pre">TableType</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.EnhancedTableRegion"><code class="docutils literal notranslate"><span class="pre">EnhancedTableRegion</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.smart_tables.html#sheetwise.smart_tables.SmartTableDetector"><code class="docutils literal notranslate"><span class="pre">SmartTableDetector</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sheetwise.utils.html">sheetwise.utils module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sheetwise.utils.html#sheetwise.utils.create_realistic_spreadsheet"><code class="docutils literal notranslate"><span class="pre">create_realistic_spreadsheet()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sheetwise.cli.html">sheetwise.cli module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sheetwise.cli.html#sheetwise.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.visualizer.html">sheetwise.visualizer module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.visualizer.html#sheetwise.visualizer.CompressionVisualizer"><code class="docutils literal notranslate"><span class="pre">CompressionVisualizer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sheetwise.workbook.html">sheetwise.workbook module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sheetwise.workbook.html#sheetwise.workbook.WorkbookManager"><code class="docutils literal notranslate"><span class="pre">WorkbookManager</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -395,9 +385,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">API Reference</a><ul>
-<li><a class="reference internal" href="#core-classes">Core Classes</a></li>
-<li><a class="reference internal" href="#advanced-features">Advanced Features</a></li>
-<li><a class="reference internal" href="#supporting-modules">Supporting Modules</a></li>
+<li><a class="reference internal" href="#modules">Modules</a></li>
 <li><a class="reference internal" href="#module-index">Module Index</a></li>
 </ul>
 </li>
