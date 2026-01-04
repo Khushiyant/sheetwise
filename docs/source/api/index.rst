@@ -3,40 +3,27 @@ API Reference
 
 This section contains the complete API documentation for SheetWise.
 
-Core Classes
-------------
+Modules
+-------
 
 .. toctree::
    :maxdepth: 2
 
-   sheetwise.core
-   sheetwise.compressor
-   sheetwise.encoders
    sheetwise.chain
-
-Advanced Features
------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   sheetwise.smart_tables
-   sheetwise.formula_parser
-   sheetwise.workbook
-   sheetwise.visualizer
-
-Supporting Modules
-------------------
-
-.. toctree::
-   :maxdepth: 2
-
    sheetwise.classifiers
-   sheetwise.detectors
-   sheetwise.extractors
-   sheetwise.data_types
-   sheetwise.utils
    sheetwise.cli
+   sheetwise.compressor
+   sheetwise.core
+   sheetwise.data_types
+   sheetwise.detectors
+   sheetwise.encoders
+   sheetwise.extractors
+   sheetwise.formula_parser
+   sheetwise.loaders
+   sheetwise.smart_tables
+   sheetwise.utils
+   sheetwise.visualizer
+   sheetwise.workbook
 
 Module Index
 ------------

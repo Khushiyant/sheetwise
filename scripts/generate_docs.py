@@ -60,47 +60,26 @@ def generate_api_docs():
 
 
 def create_api_index(api_dir):
-    """Create a custom API reference index."""
+    """Create a custom API reference index dynamically."""
     
-    index_content = """API Reference
+    # Find all generated module files
+    module_files = sorted([f.stem for f in api_dir.glob("sheetwise.*.rst")])
+    
+    # Format the toctree entries
+    toctree_entries = "\n   ".join(module_files)
+    
+    index_content = f"""API Reference
 =============
 
 This section contains the complete API documentation for SheetWise.
 
-Core Classes
-------------
+Modules
+-------
 
 .. toctree::
    :maxdepth: 2
 
-   sheetwise.core
-   sheetwise.compressor
-   sheetwise.encoders
-   sheetwise.chain
-
-Advanced Features
------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   sheetwise.smart_tables
-   sheetwise.formula_parser
-   sheetwise.workbook
-   sheetwise.visualizer
-
-Supporting Modules
-------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   sheetwise.classifiers
-   sheetwise.detectors
-   sheetwise.extractors
-   sheetwise.data_types
-   sheetwise.utils
-   sheetwise.cli
+   {toctree_entries}
 
 Module Index
 ------------
@@ -114,7 +93,7 @@ Module Index
     
     index_file = api_dir / "index.rst"
     index_file.write_text(index_content)
-    print(f"Created API index at {index_file}")
+    print(f"Created API index at {index_file} with {len(module_files)} modules.")
 
 
 def generate_user_guide_stubs():
