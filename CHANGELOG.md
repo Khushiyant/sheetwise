@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v2.8.0 (2026-01-04)
+
+### Chores
+
+- Update API documentation structure and add loaders module
+  ([`5778c51`](https://github.com/Khushiyant/sheetwise/commit/5778c51ee01ce5b14d7f12d2497566f95610a124))
+
+### Features
+
+- Add PII redaction support to SpreadsheetLLM
+  ([`bb23767`](https://github.com/Khushiyant/sheetwise/commit/bb23767868142f5cdc9350b3678af29e9456bf72))
+
+
 ## v2.7.0 (2026-01-04)
 
 ### Features
